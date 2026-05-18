@@ -44,6 +44,7 @@ type ActivityItem = {
 };
 
 const DEPLOYMENT_BLOCK = 19416324;
+const DEMO_RESET_STORAGE_KEY = "faith-demo-reset-block";
 
 export default function Home() {
   const [wallet, setWallet] = useState("");
@@ -74,10 +75,21 @@ export default function Home() {
   const [activity, setActivity] = useState<ActivityItem[]>([]);
   const [activityLoading, setActivityLoading] = useState(false);
 
+  const [demoResetBlock, setDemoResetBlock] = useState(0);
   const [status, setStatus] = useState("");
 
   const healthNumber =
     healthFactor === "∞" ? Number.POSITIVE_INFINITY : Number(healthFactor);
+
+  useEffect(() => {
+    const storedResetBlock = window.localStorage.getItem(
+      DEMO_RESET_STORAGE_KEY
+    );
+
+    if (storedResetBlock) {
+      setDemoResetBlock(Number(storedResetBlock));
+    }
+  }, []);
 
   const riskStatus = useMemo(() => {
     if (healthFactor === "∞") {
@@ -122,9 +134,10 @@ export default function Home() {
       (item) =>
         item.type === "Deposit" &&
         item.user?.toLowerCase() === normalizedWallet &&
-        Number(item.amount || 0) >= 10
+        Number(item.amount || 0) >= 10 &&
+        item.blockNumber > demoResetBlock
     );
-  }, [activity, normalizedWallet]);
+  }, [activity, normalizedWallet, demoResetBlock]);
 
   const latestDemoBorrow = useMemo(() => {
     if (!latestDemoDeposit) return undefined;
@@ -134,9 +147,10 @@ export default function Home() {
         item.type === "Borrow" &&
         item.user?.toLowerCase() === normalizedWallet &&
         Number(item.amount || 0) >= 5 &&
-        item.blockNumber > latestDemoDeposit.blockNumber
+        item.blockNumber > latestDemoDeposit.blockNumber &&
+        item.blockNumber > demoResetBlock
     );
-  }, [activity, latestDemoDeposit, normalizedWallet]);
+  }, [activity, latestDemoDeposit, normalizedWallet, demoResetBlock]);
 
   const latestDemoCrash = useMemo(() => {
     if (!latestDemoBorrow) return undefined;
@@ -145,9 +159,10 @@ export default function Home() {
       (item) =>
         item.type === "Oracle" &&
         Number(item.newPrice || 999) <= 0.4 &&
-        item.blockNumber > latestDemoBorrow.blockNumber
+        item.blockNumber > latestDemoBorrow.blockNumber &&
+        item.blockNumber > demoResetBlock
     );
-  }, [activity, latestDemoBorrow]);
+  }, [activity, latestDemoBorrow, demoResetBlock]);
 
   const latestDemoLiquidation = useMemo(() => {
     if (!latestDemoCrash) return undefined;
@@ -156,9 +171,10 @@ export default function Home() {
       (item) =>
         item.type === "Liquidation" &&
         item.user?.toLowerCase() === normalizedWallet &&
-        item.blockNumber > latestDemoCrash.blockNumber
+        item.blockNumber > latestDemoCrash.blockNumber &&
+        item.blockNumber > demoResetBlock
     );
-  }, [activity, latestDemoCrash, normalizedWallet]);
+  }, [activity, latestDemoCrash, normalizedWallet, demoResetBlock]);
 
   const demoSteps = [
     {
@@ -518,6 +534,52 @@ export default function Home() {
     }
   }
 
+  async function resetDemoFlow() {
+    try {
+      if (!window.ethereum) {
+        const latestKnownBlock = activity.reduce(
+          (highestBlock, item) => Math.max(highestBlock, item.blockNumber),
+          DEPLOYMENT_BLOCK
+        );
+
+        setDemoResetBlock(latestKnownBlock);
+        window.localStorage.setItem(
+          DEMO_RESET_STORAGE_KEY,
+          latestKnownBlock.toString()
+        );
+
+        setStatus("Demo Flow reset to 0/4 for presentation ✔");
+        return;
+      }
+
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const currentBlock = await provider.getBlockNumber();
+
+      setDemoResetBlock(currentBlock);
+      window.localStorage.setItem(
+        DEMO_RESET_STORAGE_KEY,
+        currentBlock.toString()
+      );
+
+      setStatus("Demo Flow reset to 0/4 for presentation ✔");
+    } catch (error) {
+      console.error(error);
+
+      const latestKnownBlock = activity.reduce(
+        (highestBlock, item) => Math.max(highestBlock, item.blockNumber),
+        DEPLOYMENT_BLOCK
+      );
+
+      setDemoResetBlock(latestKnownBlock);
+      window.localStorage.setItem(
+        DEMO_RESET_STORAGE_KEY,
+        latestKnownBlock.toString()
+      );
+
+      setStatus("Demo Flow reset to 0/4 for presentation ✔");
+    }
+  }
+
   async function depositCollateral() {
     try {
       if (!depositAmount || !wallet) return;
@@ -785,15 +847,25 @@ export default function Home() {
             </h2>
 
             <p className="mt-2 max-w-3xl text-zinc-300">
-              This tracker now follows only the most recent complete demo cycle.
+              This tracker follows the demo actions completed after the latest
+              visual reset.
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-black/30 px-5 py-4">
-            <p className="text-sm text-zinc-400">Demo Progress</p>
-            <p className="mt-1 text-3xl font-bold text-cyan-200">
-              {completedDemoSteps}/4
-            </p>
+          <div className="flex flex-col gap-3">
+            <div className="rounded-2xl border border-white/10 bg-black/30 px-5 py-4">
+              <p className="text-sm text-zinc-400">Demo Progress</p>
+              <p className="mt-1 text-3xl font-bold text-cyan-200">
+                {completedDemoSteps}/4
+              </p>
+            </div>
+
+            <button
+              onClick={resetDemoFlow}
+              className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-5 py-3 text-sm font-bold text-cyan-200 transition hover:bg-cyan-400/20"
+            >
+              Reset Demo Flow
+            </button>
           </div>
         </div>
 
@@ -803,6 +875,10 @@ export default function Home() {
           </p>
           <p className="mt-2 text-lg font-semibold text-white">
             {recommendedAction}
+          </p>
+          <p className="mt-2 text-sm text-zinc-500">
+            Reset Demo Flow only resets the presentation tracker. It does not
+            change your wallet, balances, or protocol state.
           </p>
         </div>
 
