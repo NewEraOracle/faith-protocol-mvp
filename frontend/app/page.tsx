@@ -675,7 +675,7 @@ export default function Home() {
       const targetVault = await vault.vaults(liquidateAddress);
       const targetDebt = targetVault.debtAmount;
 
-      if (targetDebt === 0n) {
+      if (targetDebt.toString() === "0") {
         setStatus("Target tVault has no tfUSD debt ❌");
         return;
       }
