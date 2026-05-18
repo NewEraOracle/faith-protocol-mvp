@@ -3,19 +3,19 @@
 # ==================================================
 
 # Root old Hardhat workspace files — not part of final MVP
-artifacts/
-cache/
-contracts/
-ignition/
-node_modules/
-scripts/
-test/
-hardhat.config.js
-package.json
-package-lock.json
-pnpm-lock.yaml
-pnpm-workspace.yaml
-tsconfig.json
+/artifacts/
+/cache/
+/contracts/
+/ignition/
+/node_modules/
+/scripts/
+/test/
+/hardhat.config.js
+/package.json
+/package-lock.json
+/pnpm-lock.yaml
+/pnpm-workspace.yaml
+/tsconfig.json
 
 # Frontend dependencies and builds
 frontend/node_modules/
