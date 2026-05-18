@@ -1,0 +1,50 @@
+# ==================================================
+# Main FAITH Protocol Repository Ignore Rules
+# ==================================================
+
+# Root old Hardhat workspace files — not part of final MVP
+artifacts/
+cache/
+contracts/
+ignition/
+node_modules/
+scripts/
+test/
+hardhat.config.js
+package.json
+package-lock.json
+pnpm-lock.yaml
+pnpm-workspace.yaml
+tsconfig.json
+
+# Frontend dependencies and builds
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.vercel/
+
+# Environment files
+.env
+.env.*
+frontend/.env
+frontend/.env.*
+backend/.env
+backend/.env.*
+
+# Foundry generated files
+backend/cache/
+backend/out/
+backend/broadcast/
+
+# Foundry installed dependencies
+backend/lib/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
