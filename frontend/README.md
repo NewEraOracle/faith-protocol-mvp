@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FAITH Protocol
 
-## Getting Started
+**Real-time collateralized credit on MegaETH.**
 
-First, run the development server:
+FAITH Protocol is a live MegaETH Testnet MVP demonstrating a complete on-chain credit loop:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- `tFAITH` collateral deposits
+- `tfUSD` borrowing
+- Oracle-based risk simulation
+- Real-time vault health tracking
+- Liquidation execution
+- Live on-chain protocol activity
+- Guided investor demo flow
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Quick Links
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Live Demo:**  
+  https://faith-protocol-mvp.vercel.app
 
-## Learn More
+- **GitHub Repository:**  
+  https://github.com/NewEraOracle/faith-protocol-mvp
 
-To learn more about Next.js, take a look at the following resources:
+- **Network:**  
+  MegaETH Testnet
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Thesis
 
-## Deploy on Vercel
+FAITH Protocol explores how **high-speed execution environments like MegaETH** can make decentralized credit systems more responsive, transparent, and interactive.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The MVP proves a complete real-time credit cycle:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. A user deposits collateral
+2. The user borrows a stable asset
+3. The collateral price falls through an oracle shock
+4. The vault becomes unsafe
+5. The position is liquidated on-chain
+
+This creates a simple but powerful public proof of:
+
+> **Real-time collateralized credit with visible risk, rapid liquidations, and transparent on-chain activity.**
+
+---
+
+## Why MegaETH
+
+FAITH Protocol is designed specifically around the strengths of MegaETH.
+
+### Real-Time Risk Visibility
+Vault solvency updates immediately as collateral values change.
+
+### Fast Liquidation Execution
+Unsafe debt positions can be resolved quickly, reducing stale-state risk.
+
+### Interactive Financial Demos
+The protocol can demonstrate the full lifecycle of credit risk live in a public dashboard.
+
+### Transparent On-Chain Monitoring
+Deposits, borrows, oracle updates, repayments, and liquidations are surfaced through a recent activity feed.
+
+---
+
+## Live Investor Demo Flow
+
+The deployed frontend includes a guided **4-step demo flow**:
+
+### 1. Deposit Collateral
+
+```text
+10 tFAITH
