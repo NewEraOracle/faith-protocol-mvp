@@ -10,3 +10,207 @@ body {
   color: white;
   font-family: Arial, Helvetica, sans-serif;
 }
+/* FAITH cinematic premium UI */
+.faith-shell {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(147,197,253,0.34), transparent 24%),
+    radial-gradient(circle at 20% 28%, rgba(56,189,248,0.16), transparent 22%),
+    radial-gradient(circle at 80% 32%, rgba(148,163,184,0.14), transparent 24%),
+    linear-gradient(180deg, #02040a 0%, #050b16 45%, #02040a 100%);
+}
+
+.faith-stars {
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.75) 1px, transparent 1px),
+    radial-gradient(circle, rgba(125,211,252,0.45) 1px, transparent 1px);
+  background-size: 120px 120px, 220px 220px;
+  background-position: 0 0, 40px 80px;
+}
+
+.faith-panel {
+  position: relative;
+  border: 1px solid rgba(191, 219, 254, 0.18);
+  background:
+    linear-gradient(180deg, rgba(15,23,42,0.72), rgba(2,6,23,0.82)),
+    radial-gradient(circle at top, rgba(125,211,252,0.08), transparent 55%);
+  box-shadow:
+    inset 0 0 30px rgba(148,163,184,0.06),
+    0 0 45px rgba(14,165,233,0.08);
+}
+
+.faith-panel::before,
+.faith-panel::after {
+  content: "";
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+}
+
+.faith-panel::before {
+  left: -1px;
+  top: -1px;
+  border-left: 1px solid rgba(207,250,254,0.75);
+  border-top: 1px solid rgba(207,250,254,0.75);
+}
+
+.faith-panel::after {
+  right: -1px;
+  bottom: -1px;
+  border-right: 1px solid rgba(207,250,254,0.75);
+  border-bottom: 1px solid rgba(207,250,254,0.75);
+}
+
+.faith-chrome-text {
+  background: linear-gradient(180deg, #ffffff 0%, #dbeafe 35%, #64748b 76%, #f8fafc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow:
+    0 0 18px rgba(191,219,254,0.35),
+    0 0 46px rgba(56,189,248,0.18);
+}
+
+.faith-gothic {
+  font-family: Georgia, "Times New Roman", serif;
+  letter-spacing: -0.08em;
+}
+
+.faith-button {
+  border: 1px solid rgba(207,250,254,0.42);
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(15,23,42,0.38));
+  box-shadow:
+    inset 0 0 18px rgba(255,255,255,0.06),
+    0 0 24px rgba(125,211,252,0.18);
+}
+
+.faith-button:hover {
+  background: rgba(207,250,254,0.9);
+  color: #020617;
+}
+
+.faith-divider {
+  background: linear-gradient(90deg, transparent, rgba(207,250,254,0.45), transparent);
+}
+
+.faith-orb {
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255,255,255,0.9), rgba(125,211,252,0.18) 26%, rgba(2,6,23,0.8) 62%),
+    linear-gradient(180deg, rgba(148,163,184,0.18), rgba(2,6,23,0.92));
+}
+
+@keyframes faithPulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+
+.faith-pulse {
+  animation: faithPulse 3.8s ease-in-out infinite;
+}
+
+/* FAITH dashboard cinematic layer */
+.faith-dashboard {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(147,197,253,0.22), transparent 24%),
+    radial-gradient(circle at 18% 22%, rgba(56,189,248,0.12), transparent 24%),
+    radial-gradient(circle at 82% 18%, rgba(148,163,184,0.10), transparent 24%),
+    linear-gradient(180deg, #02040a 0%, #050b16 46%, #02040a 100%) !important;
+  color: white;
+}
+
+.faith-dashboard::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.72) 1px, transparent 1px),
+    radial-gradient(circle, rgba(125,211,252,0.38) 1px, transparent 1px);
+  background-size: 130px 130px, 230px 230px;
+  background-position: 0 0, 50px 90px;
+}
+
+.faith-dashboard section {
+  position: relative;
+  border: 1px solid rgba(191,219,254,0.18) !important;
+  background:
+    linear-gradient(180deg, rgba(15,23,42,0.72), rgba(2,6,23,0.84)),
+    radial-gradient(circle at top, rgba(125,211,252,0.08), transparent 58%) !important;
+  box-shadow:
+    inset 0 0 30px rgba(148,163,184,0.06),
+    0 0 45px rgba(14,165,233,0.08) !important;
+  backdrop-filter: blur(18px);
+}
+
+.faith-dashboard section::before,
+.faith-dashboard section::after {
+  content: "";
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  pointer-events: none;
+}
+
+.faith-dashboard section::before {
+  left: -1px;
+  top: -1px;
+  border-left: 1px solid rgba(207,250,254,0.72);
+  border-top: 1px solid rgba(207,250,254,0.72);
+}
+
+.faith-dashboard section::after {
+  right: -1px;
+  bottom: -1px;
+  border-right: 1px solid rgba(207,250,254,0.72);
+  border-bottom: 1px solid rgba(207,250,254,0.72);
+}
+
+.faith-dashboard h1,
+.faith-dashboard h2 {
+  letter-spacing: -0.04em;
+  text-shadow:
+    0 0 18px rgba(191,219,254,0.22),
+    0 0 42px rgba(56,189,248,0.12);
+}
+
+.faith-dashboard button,
+.faith-dashboard a {
+  transition: all 0.2s ease;
+}
+
+.faith-dashboard button {
+  border: 1px solid rgba(207,250,254,0.26) !important;
+  box-shadow:
+    inset 0 0 18px rgba(255,255,255,0.04),
+    0 0 22px rgba(125,211,252,0.10);
+}
+
+.faith-dashboard button:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 0 18px rgba(255,255,255,0.07),
+    0 0 32px rgba(125,211,252,0.22);
+}
+
+.faith-dashboard input {
+  border: 1px solid rgba(191,219,254,0.18) !important;
+  background: rgba(2,6,23,0.78) !important;
+  color: white !important;
+}
+
+.faith-dashboard input:focus {
+  outline: none;
+  border-color: rgba(125,211,252,0.6) !important;
+  box-shadow: 0 0 24px rgba(125,211,252,0.16);
+}
+
+.faith-dashboard .rounded-3xl {
+  border-radius: 1.25rem !important;
+}
+
+.faith-dashboard .bg-white\/\[0\.03\],
+.faith-dashboard .bg-black\/30,
+.faith-dashboard .bg-black\/40 {
+  background: rgba(2,6,23,0.62) !important;
+}
