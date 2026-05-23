@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useMemo, useState } from "react";
 import { ethers } from "ethers";
@@ -67,7 +67,7 @@ export default function Home() {
   const [collateral, setCollateral] = useState("0");
   const [debt, setDebt] = useState("0");
   const [vaultActive, setVaultActive] = useState(false);
-  const [healthFactor, setHealthFactor] = useState("∞");
+  const [healthFactor, setHealthFactor] = useState("âˆž");
   const [borrowLimit, setBorrowLimit] = useState("0");
   const [availableBorrow, setAvailableBorrow] = useState("0");
   const [oraclePrice, setOraclePrice] = useState("1");
@@ -86,7 +86,7 @@ export default function Home() {
   const [demoProgress, setDemoProgress] = useState<DemoProgress>(DEFAULT_DEMO_PROGRESS);
   const [status, setStatus] = useState("");
 
-  const healthNumber = healthFactor === "∞" ? Number.POSITIVE_INFINITY : Number(healthFactor);
+  const healthNumber = healthFactor === "âˆž" ? Number.POSITIVE_INFINITY : Number(healthFactor);
 
   useEffect(() => {
     const saved = window.localStorage.getItem(DEMO_PROGRESS_STORAGE_KEY);
@@ -125,7 +125,7 @@ export default function Home() {
   }, [wallet, walletProvider]);
 
   const riskStatus = useMemo(() => {
-    if (healthFactor === "∞") {
+    if (healthFactor === "âˆž") {
       return { label: "No Debt", color: "text-sky-300", bg: "bg-sky-500/10", border: "border-sky-500/30" };
     }
     if (healthNumber < 1.1) {
@@ -179,7 +179,7 @@ export default function Home() {
     if (!demoProgress.borrow) return "Next: Borrow 5 tfUSD.";
     if (!demoProgress.crash) return "Next: Crash tFAITH price to $0.40.";
     if (!demoProgress.liquidation) return "Next: Liquidate the unsafe tVault.";
-    return "Demo completed successfully ✔";
+    return "Demo completed successfully âœ”";
   }, [wallet, demoProgress]);
 
   function shortAddress(address: string) {
@@ -343,10 +343,10 @@ export default function Home() {
       setOraclePrice(formattedOraclePrice);
       setProtocolCollateral(formattedProtocolCollateral);
       setProtocolDebtSupply(formattedProtocolDebt);
-      setHealthFactor(healthRaw === ethers.MaxUint256 ? "∞" : (Number(healthRaw) / 100).toFixed(2));
+      setHealthFactor(healthRaw === ethers.MaxUint256 ? "âˆž" : (Number(healthRaw) / 100).toFixed(2));
     } catch (error) {
       console.error(error);
-      setStatus("Loading protocol data failed ❌");
+      setStatus("Loading protocol data failed âŒ");
     }
   }
 
@@ -402,7 +402,7 @@ export default function Home() {
         const liquidator = event.args.liquidator;
         const debtRepaid = Number(ethers.formatEther(event.args.debtRepaid));
         const collateralSeized = Number(ethers.formatEther(event.args.collateralSeized));
-        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Liquidation", title: "tVault Liquidated", description: `${shortAddress(liquidator)} liquidated ${shortAddress(user)} — ${debtRepaid} tfUSD repaid, ${collateralSeized} tFAITH seized`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, liquidator, debtRepaid, collateralSeized });
+        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Liquidation", title: "tVault Liquidated", description: `${shortAddress(liquidator)} liquidated ${shortAddress(user)} â€” ${debtRepaid} tfUSD repaid, ${collateralSeized} tFAITH seized`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, liquidator, debtRepaid, collateralSeized });
       }
       for (const event of oracleEvents as any[]) {
         const previousPrice = Number(ethers.formatEther(event.args.previousPrice));
@@ -414,7 +414,7 @@ export default function Home() {
       setActivity(items.slice(0, 50));
     } catch (error) {
       console.error(error);
-      setStatus("Loading on-chain activity failed ❌");
+      setStatus("Loading on-chain activity failed âŒ");
     } finally {
       setActivityLoading(false);
     }
@@ -436,32 +436,45 @@ export default function Home() {
       }
 
       setWalletProvider(activeProvider);
-      setStatus("Switching to MegaETH Testnet...");
 
-      const provider = await ensureMegaETHProvider(activeProvider);
-      let accounts = await provider.send("eth_requestAccounts", []);
-
-      if (!accounts?.length) {
-        accounts = await provider.send("eth_accounts", []);
-      }
+      const accounts = await activeProvider.request({
+        method: "eth_requestAccounts",
+      });
 
       if (!accounts?.[0]) {
         throw new Error("No wallet account returned");
       }
 
+      setStatus("Switching to MegaETH Testnet...");
+
+      try {
+        await switchToMegaETH(activeProvider);
+      } catch (switchError) {
+        console.warn("Network switch failed:", switchError);
+      }
+
+      const provider = new ethers.BrowserProvider(activeProvider);
+      const network = await provider.getNetwork();
+
+      if (Number(network.chainId) !== MEGAETH_CHAIN_ID_DECIMAL) {
+        setWallet(accounts[0]);
+        setStatus("Wallet connected, but please switch manually to MegaETH Testnet.");
+        return;
+      }
+
       setWallet(accounts[0]);
-      setStatus("Wallet connected on MegaETH ✔");
+      setStatus("Wallet connected on MegaETH âœ”");
       await refreshEverything(accounts[0], activeProvider);
     } catch (error) {
       console.error(error);
-      setStatus("Wallet connection failed ❌ Use MetaMask, Rabby, or WalletConnect and switch to MegaETH Testnet.");
+      setStatus("Wallet connection failed âœ– Open in MetaMask browser or use desktop MetaMask.");
     }
   }
 
   async function resetDemoFlow() {
     setDemoProgress(DEFAULT_DEMO_PROGRESS);
     window.localStorage.setItem(DEMO_PROGRESS_STORAGE_KEY, JSON.stringify(DEFAULT_DEMO_PROGRESS));
-    setStatus("Demo Flow reset to 0/5 ✔");
+    setStatus("Demo Flow reset to 0/5 âœ”");
   }
 
   async function claimTestFaith() {
@@ -474,18 +487,18 @@ export default function Home() {
       const tx = await faucet.claim();
       await tx.wait();
       updateDemoProgress({ claim: true });
-      setStatus("1000 tFAITH claimed successfully ✔");
+      setStatus("1000 tFAITH claimed successfully âœ”");
       await refreshEverything(wallet);
     } catch (error: any) {
       console.error(error);
       const message = String(error?.message || "").toLowerCase();
       if (message.includes("already claimed") || message.includes("execution reverted")) {
         updateDemoProgress({ claim: true });
-        setStatus("This wallet already claimed or faucet claim already completed ✔");
+        setStatus("This wallet already claimed or faucet claim already completed âœ”");
         await refreshEverything(wallet);
         return;
       }
-      setStatus("Faucet claim failed ❌ Make sure this wallet has MegaETH testnet gas and has not claimed before.");
+      setStatus("Faucet claim failed âŒ Make sure this wallet has MegaETH testnet gas and has not claimed before.");
     }
   }
 
@@ -504,12 +517,12 @@ export default function Home() {
       const tx = await vault.depositCollateral(amount);
       await tx.wait();
       updateDemoProgress({ deposit: true });
-      setStatus("tFAITH deposit successful ✔");
+      setStatus("tFAITH deposit successful âœ”");
       setDepositAmount("");
       await refreshEverything(wallet);
     } catch (error) {
       console.error(error);
-      setStatus("tFAITH deposit failed ❌");
+      setStatus("tFAITH deposit failed âŒ");
     }
   }
 
@@ -523,12 +536,12 @@ export default function Home() {
       const tx = await vault.borrow(ethers.parseEther(borrowAmount));
       await tx.wait();
       updateDemoProgress({ borrow: true });
-      setStatus("tfUSD borrow successful ✔");
+      setStatus("tfUSD borrow successful âœ”");
       setBorrowAmount("");
       await refreshEverything(wallet);
     } catch (error) {
       console.error(error);
-      setStatus("tfUSD borrow failed ❌");
+      setStatus("tfUSD borrow failed âŒ");
     }
   }
 
@@ -546,12 +559,12 @@ export default function Home() {
       setStatus("Repaying tfUSD...");
       const tx = await vault.repay(amount);
       await tx.wait();
-      setStatus("tfUSD repayment successful ✔");
+      setStatus("tfUSD repayment successful âœ”");
       setRepayAmount("");
       await refreshEverything(wallet);
     } catch (error) {
       console.error(error);
-      setStatus("tfUSD repayment failed ❌");
+      setStatus("tfUSD repayment failed âŒ");
     }
   }
 
@@ -564,12 +577,12 @@ export default function Home() {
       const vault = new ethers.Contract(VAULT_MANAGER_ADDRESS, VAULT_MANAGER_ABI, signer);
       const tx = await vault.withdrawCollateral(ethers.parseEther(withdrawAmount));
       await tx.wait();
-      setStatus("tFAITH withdrawal successful ✔");
+      setStatus("tFAITH withdrawal successful âœ”");
       setWithdrawAmount("");
       await refreshEverything(wallet);
     } catch (error) {
       console.error(error);
-      setStatus("tFAITH withdrawal failed ❌");
+      setStatus("tFAITH withdrawal failed âŒ");
     }
   }
 
@@ -584,7 +597,7 @@ export default function Home() {
       const targetVault = await vault.vaults(liquidateAddress);
       const targetDebt = targetVault.debtAmount;
       if (targetDebt.toString() === "0") {
-        setStatus("Target tVault has no tfUSD debt ❌");
+        setStatus("Target tVault has no tfUSD debt âŒ");
         return;
       }
       setStatus("Approving tfUSD for liquidation...");
@@ -594,12 +607,12 @@ export default function Home() {
       const tx = await vault.liquidate(liquidateAddress);
       await tx.wait();
       updateDemoProgress({ liquidation: true });
-      setStatus("tVault liquidation successful ✔");
+      setStatus("tVault liquidation successful âœ”");
       setLiquidateAddress("");
       await refreshEverything(wallet);
     } catch (error) {
       console.error(error);
-      setStatus("tVault liquidation failed ❌");
+      setStatus("tVault liquidation failed âŒ");
     }
   }
 
@@ -613,12 +626,12 @@ export default function Home() {
       const tx = await oracle.setPrice(ethers.parseEther(price));
       await tx.wait();
       if (Number(price) <= 0.4) updateDemoProgress({ crash: true });
-      setStatus("tMockOracle price updated ✔");
+      setStatus("tMockOracle price updated âœ”");
       setNewPrice("");
       await refreshEverything(wallet);
     } catch (error) {
       console.error(error);
-      setStatus("tMockOracle update failed ❌");
+      setStatus("tMockOracle update failed âŒ");
     }
   }
 
@@ -735,10 +748,10 @@ export default function Home() {
           <MetricCard label="Available Borrow" value={availableBorrow} />
           <div className="rounded-3xl border border-white/10 bg-black/30 p-5">
             <p className="text-sm text-zinc-400">Health Factor</p>
-            <p className={`mt-3 break-words text-2xl font-bold ${healthFactor !== "∞" && Number(healthFactor) < 1.1 ? "text-red-400" : healthFactor !== "∞" && Number(healthFactor) < 1.5 ? "text-orange-300" : "text-green-400"}`}>{healthFactor}</p>
+            <p className={`mt-3 break-words text-2xl font-bold ${healthFactor !== "âˆž" && Number(healthFactor) < 1.1 ? "text-red-400" : healthFactor !== "âˆž" && Number(healthFactor) < 1.5 ? "text-orange-300" : "text-green-400"}`}>{healthFactor}</p>
             <div className="mt-4">
               <div className="h-3 w-full overflow-hidden rounded-full bg-white/10">
-                <div className={`h-full transition-all duration-700 ${healthFactor !== "∞" && Number(healthFactor) < 1.1 ? "bg-red-500" : healthFactor !== "∞" && Number(healthFactor) < 1.5 ? "bg-orange-400" : "bg-emerald-400"}`} style={{ width: healthFactor === "∞" ? "100%" : `${Math.min(100, Number(healthFactor) * 50)}%` }} />
+                <div className={`h-full transition-all duration-700 ${healthFactor !== "âˆž" && Number(healthFactor) < 1.1 ? "bg-red-500" : healthFactor !== "âˆž" && Number(healthFactor) < 1.5 ? "bg-orange-400" : "bg-emerald-400"}`} style={{ width: healthFactor === "âˆž" ? "100%" : `${Math.min(100, Number(healthFactor) * 50)}%` }} />
               </div>
               <div className="mt-2 flex justify-between text-[10px] font-semibold tracking-wide text-zinc-500">
                 <span>DANGER</span><span>WARNING</span><span>SAFE</span>
@@ -834,3 +847,4 @@ function ActivityRow({ item, shortHash }: { item: ActivityItem; shortHash: (hash
   const badgeStyle = item.type === "Deposit" ? "border-green-500/30 bg-green-500/10 text-green-300" : item.type === "Withdraw" ? "border-red-500/30 bg-red-500/10 text-red-300" : item.type === "Borrow" ? "border-blue-500/30 bg-blue-500/10 text-blue-300" : item.type === "Repay" ? "border-yellow-500/30 bg-yellow-500/10 text-yellow-300" : item.type === "Liquidation" ? "border-rose-500/30 bg-rose-500/10 text-rose-300" : "border-purple-500/30 bg-purple-500/10 text-purple-300";
   return <div className="flex flex-col justify-between gap-4 rounded-2xl border border-white/10 bg-black/30 p-5 lg:flex-row lg:items-center"><div className="flex items-start gap-4"><div className={`rounded-full border px-3 py-1 text-xs font-bold ${badgeStyle}`}>{item.type}</div><div><p className="font-semibold text-white">{item.title}</p><p className="mt-1 text-sm text-zinc-400">{item.description}</p></div></div><div className="text-sm text-zinc-500"><p>Block #{item.blockNumber}</p><p className="font-mono">{shortHash(item.txHash)}</p></div></div>;
 }
+
