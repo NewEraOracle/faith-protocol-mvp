@@ -56,7 +56,7 @@ export default function Home() {
   const [debt, setDebt] = useState("0");
   const [vaultActive, setVaultActive] = useState(false);
 
-  const [healthFactor, setHealthFactor] = useState("∞");
+  const [healthFactor, setHealthFactor] = useState("8");
   const [borrowLimit, setBorrowLimit] = useState("0");
   const [availableBorrow, setAvailableBorrow] = useState("0");
 
@@ -79,7 +79,7 @@ export default function Home() {
   const [status, setStatus] = useState("");
 
   const healthNumber =
-    healthFactor === "∞" ? Number.POSITIVE_INFINITY : Number(healthFactor);
+    healthFactor === "8" ? Number.POSITIVE_INFINITY : Number(healthFactor);
 
   useEffect(() => {
     const storedResetBlock = window.localStorage.getItem(
@@ -92,7 +92,7 @@ export default function Home() {
   }, []);
 
   const riskStatus = useMemo(() => {
-    if (healthFactor === "∞") {
+    if (healthFactor === "8") {
       return {
         label: "No Debt",
         color: "text-sky-300",
@@ -323,7 +323,7 @@ export default function Home() {
       setProtocolDebtSupply(formattedProtocolDebt);
 
       if (healthRaw === ethers.MaxUint256) {
-        setHealthFactor("∞");
+        setHealthFactor("8");
       } else {
         setHealthFactor((Number(healthRaw) / 100).toFixed(2));
       }
@@ -996,9 +996,9 @@ export default function Home() {
             label="Health Factor"
             value={healthFactor}
             valueClassName={
-              healthFactor !== "∞" && Number(healthFactor) < 1.1
+              healthFactor !== "8" && Number(healthFactor) < 1.1
                 ? "text-red-400"
-                : healthFactor !== "∞" && Number(healthFactor) < 1.5
+                : healthFactor !== "8" && Number(healthFactor) < 1.5
                 ? "text-orange-300"
                 : "text-green-400"
             }
