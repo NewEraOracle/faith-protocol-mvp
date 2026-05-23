@@ -13,13 +13,35 @@ import "@openzeppelin/contracts/access/Ownable.sol";
  * It is only used to simulate future USDm settlement flows on testnet.
  */
 contract MockUSDm is ERC20, Ownable {
+    mapping(address => bool) public authorizedOperators;
+
+    event OperatorUpdated(address indexed operator, bool allowed);
+
     constructor() ERC20("Mock USDm", "MockUSDm") Ownable(msg.sender) {}
 
-    function mint(address to, uint256 amount) external onlyOwner {
+    modifier onlyOwnerOrOperator() {
+        require(
+            msg.sender == owner() || authorizedOperators[msg.sender],
+            "MockUSDm: not authorized"
+        );
+        _;
+    }
+
+    function setOperator(address operator, bool allowed) external onlyOwner {
+        require(operator != address(0), "MockUSDm: zero operator");
+        authorizedOperators[operator] = allowed;
+        emit OperatorUpdated(operator, allowed);
+    }
+
+    function mint(address to, uint256 amount) external onlyOwnerOrOperator {
+        require(to != address(0), "MockUSDm: zero recipient");
+        require(amount > 0, "MockUSDm: amount is zero");
         _mint(to, amount);
     }
 
-    function burn(address from, uint256 amount) external onlyOwner {
+    function burn(address from, uint256 amount) external onlyOwnerOrOperator {
+        require(from != address(0), "MockUSDm: zero account");
+        require(amount > 0, "MockUSDm: amount is zero");
         _burn(from, amount);
     }
 }
