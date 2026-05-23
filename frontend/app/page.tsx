@@ -12,6 +12,8 @@ import {
   MOCK_ORACLE_ADDRESS,
   VAULT_MANAGER_ABI,
   VAULT_MANAGER_ADDRESS,
+  FAUCET_ABI,
+  FAUCET_ADDRESS,
 } from "@/lib/contracts";
 
 declare global {
@@ -33,7 +35,6 @@ type ActivityItem = {
   description: string;
   blockNumber: number;
   txHash: string;
-
   user?: string;
   liquidator?: string;
   amount?: number;
@@ -43,8 +44,24 @@ type ActivityItem = {
   newPrice?: number;
 };
 
+type DemoProgress = {
+  claim: boolean;
+  deposit: boolean;
+  borrow: boolean;
+  crash: boolean;
+  liquidation: boolean;
+};
+
 const DEPLOYMENT_BLOCK = 19416324;
-const DEMO_RESET_STORAGE_KEY = "faith-demo-reset-block";
+const DEMO_PROGRESS_STORAGE_KEY = "faith-demo-progress-v2";
+
+const DEFAULT_DEMO_PROGRESS: DemoProgress = {
+  claim: false,
+  deposit: false,
+  borrow: false,
+  crash: false,
+  liquidation: false,
+};
 
 export default function Home() {
   const [wallet, setWallet] = useState("");
@@ -56,7 +73,7 @@ export default function Home() {
   const [debt, setDebt] = useState("0");
   const [vaultActive, setVaultActive] = useState(false);
 
-  const [healthFactor, setHealthFactor] = useState("8");
+  const [healthFactor, setHealthFactor] = useState("∞");
   const [borrowLimit, setBorrowLimit] = useState("0");
   const [availableBorrow, setAvailableBorrow] = useState("0");
 
@@ -75,24 +92,69 @@ export default function Home() {
   const [activity, setActivity] = useState<ActivityItem[]>([]);
   const [activityLoading, setActivityLoading] = useState(false);
 
-  const [demoResetBlock, setDemoResetBlock] = useState(0);
+  const [demoProgress, setDemoProgress] =
+    useState<DemoProgress>(DEFAULT_DEMO_PROGRESS);
+
   const [status, setStatus] = useState("");
 
   const healthNumber =
-    healthFactor === "8" ? Number.POSITIVE_INFINITY : Number(healthFactor);
+    healthFactor === "∞" ? Number.POSITIVE_INFINITY : Number(healthFactor);
 
   useEffect(() => {
-    const storedResetBlock = window.localStorage.getItem(
-      DEMO_RESET_STORAGE_KEY
+    const savedProgress = window.localStorage.getItem(
+      DEMO_PROGRESS_STORAGE_KEY
     );
 
-    if (storedResetBlock) {
-      setDemoResetBlock(Number(storedResetBlock));
+    if (savedProgress) {
+      try {
+        setDemoProgress({
+          ...DEFAULT_DEMO_PROGRESS,
+          ...JSON.parse(savedProgress),
+        });
+      } catch {
+        setDemoProgress(DEFAULT_DEMO_PROGRESS);
+      }
     }
   }, []);
 
+  useEffect(() => {
+    if (!window.ethereum) return;
+
+    const handleAccountsChanged = (accounts: string[]) => {
+      const nextWallet = accounts?.[0] || "";
+      setWallet(nextWallet);
+
+      if (nextWallet) {
+        refreshEverything(nextWallet);
+      }
+    };
+
+    window.ethereum.on?.("accountsChanged", handleAccountsChanged);
+
+    return () => {
+      window.ethereum?.removeListener?.(
+        "accountsChanged",
+        handleAccountsChanged
+      );
+    };
+  }, []);
+
+  function updateDemoProgress(update: Partial<DemoProgress>) {
+    const nextProgress = {
+      ...demoProgress,
+      ...update,
+    };
+
+    setDemoProgress(nextProgress);
+
+    window.localStorage.setItem(
+      DEMO_PROGRESS_STORAGE_KEY,
+      JSON.stringify(nextProgress)
+    );
+  }
+
   const riskStatus = useMemo(() => {
-    if (healthFactor === "8") {
+    if (healthFactor === "∞") {
       return {
         label: "No Debt",
         color: "text-sky-300",
@@ -127,83 +189,41 @@ export default function Home() {
     };
   }, [healthFactor, healthNumber]);
 
-  const normalizedWallet = wallet.toLowerCase();
-
-  const latestDemoDeposit = useMemo(() => {
-    return activity.find(
-      (item) =>
-        item.type === "Deposit" &&
-        item.user?.toLowerCase() === normalizedWallet &&
-        Number(item.amount || 0) >= 10 &&
-        item.blockNumber > demoResetBlock
-    );
-  }, [activity, normalizedWallet, demoResetBlock]);
-
-  const latestDemoBorrow = useMemo(() => {
-    if (!latestDemoDeposit) return undefined;
-
-    return activity.find(
-      (item) =>
-        item.type === "Borrow" &&
-        item.user?.toLowerCase() === normalizedWallet &&
-        Number(item.amount || 0) >= 5 &&
-        item.blockNumber > latestDemoDeposit.blockNumber &&
-        item.blockNumber > demoResetBlock
-    );
-  }, [activity, latestDemoDeposit, normalizedWallet, demoResetBlock]);
-
-  const latestDemoCrash = useMemo(() => {
-    if (!latestDemoBorrow) return undefined;
-
-    return activity.find(
-      (item) =>
-        item.type === "Oracle" &&
-        Number(item.newPrice || 999) <= 0.4 &&
-        item.blockNumber > latestDemoBorrow.blockNumber &&
-        item.blockNumber > demoResetBlock
-    );
-  }, [activity, latestDemoBorrow, demoResetBlock]);
-
-  const latestDemoLiquidation = useMemo(() => {
-    if (!latestDemoCrash) return undefined;
-
-    return activity.find(
-      (item) =>
-        item.type === "Liquidation" &&
-        item.user?.toLowerCase() === normalizedWallet &&
-        item.blockNumber > latestDemoCrash.blockNumber &&
-        item.blockNumber > demoResetBlock
-    );
-  }, [activity, latestDemoCrash, normalizedWallet, demoResetBlock]);
-
   const demoSteps = [
     {
       number: "01",
-      title: "Deposit 10 tFAITH",
+      title: "Claim 1000 tFAITH",
       description:
-        "Create collateral inside the tVaultManager and activate a borrower position.",
-      complete: Boolean(latestDemoDeposit),
+        "Use the faucet to claim test collateral tokens for the live MegaETH demo.",
+      complete: demoProgress.claim,
     },
     {
       number: "02",
-      title: "Borrow 5 tfUSD",
+      title: "Deposit 10 tFAITH",
       description:
-        "Mint test credit against tFAITH collateral while respecting the 60% borrow limit.",
-      complete: Boolean(latestDemoBorrow),
+        "Create collateral inside the tVaultManager and activate a borrower position.",
+      complete: demoProgress.deposit,
     },
     {
       number: "03",
-      title: "Crash tFAITH to $0.40",
+      title: "Borrow 5 tfUSD",
       description:
-        "Use the test oracle to simulate a rapid market shock and create liquidation risk.",
-      complete: Boolean(latestDemoCrash),
+        "Mint test credit against tFAITH collateral while respecting the 60% borrow limit.",
+      complete: demoProgress.borrow,
     },
     {
       number: "04",
+      title: "Crash tFAITH to $0.40",
+      description:
+        "Use the test oracle to simulate a rapid market shock and create liquidation risk.",
+      complete: demoProgress.crash,
+    },
+    {
+      number: "05",
       title: "Liquidate unsafe tVault",
       description:
         "Clear bad debt and seize collateral when the health factor falls below the liquidation threshold.",
-      complete: Boolean(latestDemoLiquidation),
+      complete: demoProgress.liquidation,
     },
   ];
 
@@ -214,30 +234,28 @@ export default function Home() {
       return "Connect your wallet to begin the live demo.";
     }
 
-    if (!latestDemoDeposit) {
+    if (!demoProgress.claim) {
+      return "Next: Claim 1000 tFAITH from the faucet.";
+    }
+
+    if (!demoProgress.deposit) {
       return "Next: Deposit 10 tFAITH.";
     }
 
-    if (!latestDemoBorrow) {
+    if (!demoProgress.borrow) {
       return "Next: Borrow 5 tfUSD.";
     }
 
-    if (!latestDemoCrash) {
+    if (!demoProgress.crash) {
       return "Next: Crash tFAITH price to $0.40.";
     }
 
-    if (!latestDemoLiquidation) {
+    if (!demoProgress.liquidation) {
       return "Next: Liquidate the unsafe tVault.";
     }
 
-    return "Demo completed: FAITH Protocol proved collateralized credit, oracle risk, and liquidation execution.";
-  }, [
-    wallet,
-    latestDemoDeposit,
-    latestDemoBorrow,
-    latestDemoCrash,
-    latestDemoLiquidation,
-  ]);
+    return "Demo completed successfully ✔";
+  }, [wallet, demoProgress]);
 
   function shortAddress(address: string) {
     return `${address.slice(0, 6)}...${address.slice(-4)}`;
@@ -323,7 +341,7 @@ export default function Home() {
       setProtocolDebtSupply(formattedProtocolDebt);
 
       if (healthRaw === ethers.MaxUint256) {
-        setHealthFactor("8");
+        setHealthFactor("∞");
       } else {
         setHealthFactor((Number(healthRaw) / 100).toFixed(2));
       }
@@ -535,48 +553,57 @@ export default function Home() {
   }
 
   async function resetDemoFlow() {
+    setDemoProgress(DEFAULT_DEMO_PROGRESS);
+    window.localStorage.setItem(
+      DEMO_PROGRESS_STORAGE_KEY,
+      JSON.stringify(DEFAULT_DEMO_PROGRESS)
+    );
+
+    setStatus("Demo Flow reset to 0/5 ✔");
+  }
+
+  async function claimTestFaith() {
     try {
-      if (!window.ethereum) {
-        const latestKnownBlock = activity.reduce(
-          (highestBlock, item) => Math.max(highestBlock, item.blockNumber),
-          DEPLOYMENT_BLOCK
-        );
+      if (!wallet) return;
 
-        setDemoResetBlock(latestKnownBlock);
-        window.localStorage.setItem(
-          DEMO_RESET_STORAGE_KEY,
-          latestKnownBlock.toString()
-        );
+      setStatus("Checking tFAITH faucet status...");
 
-        setStatus("Demo Flow reset to 0/4 for presentation ✔");
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
+
+      const faith = new ethers.Contract(
+        FAITH_TOKEN_ADDRESS,
+        FAITH_TOKEN_ABI,
+        provider
+      );
+
+      const faucet = new ethers.Contract(
+        FAUCET_ADDRESS,
+        FAUCET_ABI,
+        signer
+      );
+
+      const balance = await faith.balanceOf(wallet);
+
+      if (Number(ethers.formatEther(balance)) >= 1000) {
+        updateDemoProgress({ claim: true });
+        setStatus("Wallet already has 1000+ tFAITH ✔");
+        await refreshEverything(wallet);
         return;
       }
 
-      const provider = new ethers.BrowserProvider(window.ethereum);
-      const currentBlock = await provider.getBlockNumber();
+      setStatus("Claiming 1000 tFAITH from faucet...");
 
-      setDemoResetBlock(currentBlock);
-      window.localStorage.setItem(
-        DEMO_RESET_STORAGE_KEY,
-        currentBlock.toString()
-      );
+      const tx = await faucet.claim();
+      await tx.wait();
 
-      setStatus("Demo Flow reset to 0/4 for presentation ✔");
+      updateDemoProgress({ claim: true });
+      setStatus("1000 tFAITH claimed successfully ✔");
+
+      await refreshEverything(wallet);
     } catch (error) {
       console.error(error);
-
-      const latestKnownBlock = activity.reduce(
-        (highestBlock, item) => Math.max(highestBlock, item.blockNumber),
-        DEPLOYMENT_BLOCK
-      );
-
-      setDemoResetBlock(latestKnownBlock);
-      window.localStorage.setItem(
-        DEMO_RESET_STORAGE_KEY,
-        latestKnownBlock.toString()
-      );
-
-      setStatus("Demo Flow reset to 0/4 for presentation ✔");
+      setStatus("Faucet claim failed ❌");
     }
   }
 
@@ -611,6 +638,7 @@ export default function Home() {
       const tx = await vault.depositCollateral(amount);
       await tx.wait();
 
+      updateDemoProgress({ deposit: true });
       setStatus("tFAITH deposit successful ✔");
       setDepositAmount("");
 
@@ -639,6 +667,7 @@ export default function Home() {
       const tx = await vault.borrow(ethers.parseEther(borrowAmount));
       await tx.wait();
 
+      updateDemoProgress({ borrow: true });
       setStatus("tfUSD borrow successful ✔");
       setBorrowAmount("");
 
@@ -744,11 +773,7 @@ export default function Home() {
 
       setStatus("Approving tfUSD for liquidation...");
 
-      const approveTx = await fusd.approve(
-        VAULT_MANAGER_ADDRESS,
-        targetDebt
-      );
-
+      const approveTx = await fusd.approve(VAULT_MANAGER_ADDRESS, targetDebt);
       await approveTx.wait();
 
       setStatus("Liquidating unsafe tVault...");
@@ -756,6 +781,7 @@ export default function Home() {
       const tx = await vault.liquidate(liquidateAddress);
       await tx.wait();
 
+      updateDemoProgress({ liquidation: true });
       setStatus("tVault liquidation successful ✔");
       setLiquidateAddress("");
 
@@ -783,6 +809,10 @@ export default function Home() {
 
       const tx = await oracle.setPrice(ethers.parseEther(price));
       await tx.wait();
+
+      if (Number(price) <= 0.4) {
+        updateDemoProgress({ crash: true });
+      }
 
       setStatus("tMockOracle price updated ✔");
       setNewPrice("");
@@ -835,6 +865,36 @@ export default function Home() {
         )}
       </section>
 
+      <section className="mb-8 rounded-3xl border border-yellow-500/20 bg-yellow-500/[0.06] p-6">
+        <h2 className="text-2xl font-bold text-yellow-100">
+          Tester Setup Required
+        </h2>
+
+        <p className="mt-2 max-w-4xl text-sm leading-6 text-zinc-300">
+          New testers need a small amount of MegaETH testnet gas before claiming
+          tFAITH. First fund your wallet with MegaETH testnet gas, then connect
+          your wallet here and claim 1000 tFAITH from the FAITH Faucet.
+        </p>
+
+        <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+          <a
+            href="https://testnet.megaeth.com"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-2xl bg-yellow-500 px-5 py-3 text-center font-bold text-black transition hover:bg-yellow-400"
+          >
+            Get MegaETH Testnet Gas
+          </a>
+
+          <button
+            onClick={claimTestFaith}
+            className="rounded-2xl bg-cyan-600 px-5 py-3 font-bold transition hover:bg-cyan-500"
+          >
+            Claim 1000 tFAITH
+          </button>
+        </div>
+      </section>
+
       <section className="mb-8 rounded-3xl border border-cyan-500/20 bg-cyan-500/[0.06] p-6">
         <div className="mb-6 flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
           <div>
@@ -843,7 +903,7 @@ export default function Home() {
             </div>
 
             <h2 className="text-3xl font-bold">
-              Prove the FAITH Protocol loop in 4 on-chain steps
+              Prove the FAITH Protocol loop in 5 on-chain steps
             </h2>
 
             <p className="mt-2 max-w-3xl text-zinc-300">
@@ -856,7 +916,7 @@ export default function Home() {
             <div className="rounded-2xl border border-white/10 bg-black/30 px-5 py-4">
               <p className="text-sm text-zinc-400">Demo Progress</p>
               <p className="mt-1 text-3xl font-bold text-cyan-200">
-                {completedDemoSteps}/4
+                {completedDemoSteps}/5
               </p>
             </div>
 
@@ -882,7 +942,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
           {demoSteps.map((step) => (
             <DemoStepCard
               key={step.number}
@@ -992,17 +1052,7 @@ export default function Home() {
           <MetricCard label="Borrow Limit" value={borrowLimit} />
           <MetricCard label="Available Borrow" value={availableBorrow} />
 
-          <MetricCard
-            label="Health Factor"
-            value={healthFactor}
-            valueClassName={
-              healthFactor !== "8" && Number(healthFactor) < 1.1
-                ? "text-red-400"
-                : healthFactor !== "8" && Number(healthFactor) < 1.5
-                ? "text-orange-300"
-                : "text-green-400"
-            }
-          />
+          <HealthFactorCard healthFactor={healthFactor} />
         </div>
       </section>
 
@@ -1010,6 +1060,21 @@ export default function Home() {
         <h2 className="mb-5 text-2xl font-bold">MVP Actions</h2>
 
         <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+          <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
+            <h3 className="text-2xl font-bold">FAITH Faucet</h3>
+
+            <p className="mt-2 min-h-[48px] text-sm text-zinc-400">
+              Claim 1000 test tFAITH for demo and testing.
+            </p>
+
+            <button
+              onClick={claimTestFaith}
+              className="mt-5 w-full rounded-2xl bg-cyan-600 p-4 font-bold transition hover:bg-cyan-500"
+            >
+              Claim 1000 tFAITH
+            </button>
+          </div>
+
           <ActionCard
             title="Deposit tFAITH"
             description="Lock test collateral into your tVault."
@@ -1149,6 +1214,7 @@ export default function Home() {
           <RegistryLine label="tfUSD" value={FUSD_ADDRESS} />
           <RegistryLine label="tMockOracle" value={MOCK_ORACLE_ADDRESS} />
           <RegistryLine label="tVaultManager" value={VAULT_MANAGER_ADDRESS} />
+          <RegistryLine label="FAITH Faucet" value={FAUCET_ADDRESS} />
         </div>
       </section>
 
@@ -1179,6 +1245,58 @@ function MetricCard({
         {value}
       </p>
       {helper && <p className="mt-2 text-xs text-zinc-500">{helper}</p>}
+    </div>
+  );
+}
+
+function HealthFactorCard({ healthFactor }: { healthFactor: string }) {
+  const isInfinity = healthFactor === "∞";
+  const numericHealth = Number(healthFactor);
+
+  const barClassName =
+    !isInfinity && numericHealth < 1.1
+      ? "bg-red-500"
+      : !isInfinity && numericHealth < 1.5
+      ? "bg-orange-400"
+      : "bg-emerald-400";
+
+  const textClassName =
+    !isInfinity && numericHealth < 1.1
+      ? "text-red-400"
+      : !isInfinity && numericHealth < 1.5
+      ? "text-orange-300"
+      : "text-green-400";
+
+  return (
+    <div className="rounded-3xl border border-white/10 bg-black/30 p-5">
+      <p className="text-sm text-zinc-400">Health Factor</p>
+
+      <p className={`mt-3 break-words text-2xl font-bold ${textClassName}`}>
+        {healthFactor}
+      </p>
+
+      <div className="mt-4">
+        <div className="h-3 w-full overflow-hidden rounded-full bg-white/10">
+          <div
+            className={`h-full transition-all duration-700 ${barClassName}`}
+            style={{
+              width: isInfinity
+                ? "100%"
+                : `${Math.min(100, Number(healthFactor) * 50)}%`,
+            }}
+          />
+        </div>
+
+        <div className="mt-2 flex justify-between text-[10px] font-semibold tracking-wide text-zinc-500">
+          <span>DANGER</span>
+          <span>WARNING</span>
+          <span>SAFE</span>
+        </div>
+      </div>
+
+      <p className="mt-2 text-xs text-zinc-500">
+        Live solvency monitoring powered by PCSMonitor.
+      </p>
     </div>
   );
 }
@@ -1222,13 +1340,7 @@ function DemoStepCard({
   );
 }
 
-function NarrativeCard({
-  title,
-  body,
-}: {
-  title: string;
-  body: string;
-}) {
+function NarrativeCard({ title, body }: { title: string; body: string }) {
   return (
     <div className="rounded-3xl border border-white/10 bg-black/30 p-5">
       <h3 className="text-xl font-bold text-white">{title}</h3>
@@ -1281,13 +1393,7 @@ function ActionCard({
   );
 }
 
-function RegistryLine({
-  label,
-  value,
-}: {
-  label: string;
-  value: string;
-}) {
+function RegistryLine({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-2xl border border-white/10 bg-black/30 p-4">
       <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500">

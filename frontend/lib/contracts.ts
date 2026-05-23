@@ -10,358 +10,45 @@ export const MOCK_ORACLE_ADDRESS =
 export const VAULT_MANAGER_ADDRESS =
   "0x76849F654906F4956fff0d3B2b10eE97ce4d0d4B";
 
+export const FAUCET_ADDRESS =
+  "0x4bC22b996631ff28617ed5EDeA17f741Ff466c14";
+
 export const FAITH_TOKEN_ABI = [
-  {
-    inputs: [{ internalType: "address", name: "account", type: "address" }],
-    name: "balanceOf",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      { internalType: "address", name: "spender", type: "address" },
-      { internalType: "uint256", name: "amount", type: "uint256" },
-    ],
-    name: "approve",
-    outputs: [{ internalType: "bool", name: "", type: "bool" }],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
+  "function balanceOf(address account) view returns (uint256)",
+  "function approve(address spender, uint256 amount) returns (bool)",
 ];
 
 export const FUSD_ABI = [
-  {
-    inputs: [{ internalType: "address", name: "account", type: "address" }],
-    name: "balanceOf",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "totalSupply",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      { internalType: "address", name: "spender", type: "address" },
-      { internalType: "uint256", name: "amount", type: "uint256" },
-    ],
-    name: "approve",
-    outputs: [{ internalType: "bool", name: "", type: "bool" }],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
+  "function balanceOf(address account) view returns (uint256)",
+  "function totalSupply() view returns (uint256)",
+  "function approve(address spender, uint256 amount) returns (bool)",
 ];
 
 export const MOCK_ORACLE_ABI = [
-  {
-    inputs: [],
-    name: "getPrice",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_price",
-        type: "uint256",
-      },
-    ],
-    name: "setPrice",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "previousPrice",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "newPrice",
-        type: "uint256",
-      },
-    ],
-    name: "PriceUpdated",
-    type: "event",
-  },
+  "function getPrice() view returns (uint256)",
+  "function setPrice(uint256 _price)",
+  "event PriceUpdated(uint256 previousPrice, uint256 newPrice)",
 ];
 
 export const VAULT_MANAGER_ABI = [
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
-    ],
-    name: "depositCollateral",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
-    ],
-    name: "withdrawCollateral",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
-    ],
-    name: "borrow",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
-    ],
-    name: "repay",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "user",
-        type: "address",
-      },
-    ],
-    name: "liquidate",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "user",
-        type: "address",
-      },
-    ],
-    name: "getHealthFactor",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "user",
-        type: "address",
-      },
-    ],
-    name: "getBorrowLimit",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "address", name: "", type: "address" }],
-    name: "vaults",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "collateralAmount",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "debtAmount",
-        type: "uint256",
-      },
-      {
-        internalType: "bool",
-        name: "active",
-        type: "bool",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
+  "function depositCollateral(uint256 amount)",
+  "function withdrawCollateral(uint256 amount)",
+  "function borrow(uint256 amount)",
+  "function repay(uint256 amount)",
+  "function liquidate(address user)",
+  "function getHealthFactor(address user) view returns (uint256)",
+  "function getBorrowLimit(address user) view returns (uint256)",
+  "function vaults(address user) view returns (uint256 collateralAmount, uint256 debtAmount, bool active)",
 
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "user",
-        type: "address",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "newCollateralAmount",
-        type: "uint256",
-      },
-    ],
-    name: "CollateralDeposited",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "user",
-        type: "address",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "remainingCollateralAmount",
-        type: "uint256",
-      },
-    ],
-    name: "CollateralWithdrawn",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "user",
-        type: "address",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "newDebtAmount",
-        type: "uint256",
-      },
-    ],
-    name: "TfUSDBorrowed",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "user",
-        type: "address",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "remainingDebtAmount",
-        type: "uint256",
-      },
-    ],
-    name: "TfUSDRepaid",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "user",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "liquidator",
-        type: "address",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "debtRepaid",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "collateralSeized",
-        type: "uint256",
-      },
-    ],
-    name: "VaultLiquidated",
-    type: "event",
-  },
+  "event CollateralDeposited(address indexed user, uint256 amount, uint256 newCollateralAmount)",
+  "event CollateralWithdrawn(address indexed user, uint256 amount, uint256 remainingCollateralAmount)",
+  "event TfUSDBorrowed(address indexed user, uint256 amount, uint256 newDebtAmount)",
+  "event TfUSDRepaid(address indexed user, uint256 amount, uint256 remainingDebtAmount)",
+  "event VaultLiquidated(address indexed user, address indexed liquidator, uint256 debtRepaid, uint256 collateralSeized)",
+];
+
+export const FAUCET_ABI = [
+  "function claim()",
+  "function faucetBalance() view returns (uint256)",
+  "function hasClaimed(address user) view returns (bool)",
 ];
