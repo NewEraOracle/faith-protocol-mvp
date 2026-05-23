@@ -61,6 +61,7 @@ const DEFAULT_DEMO_PROGRESS: DemoProgress = {
 
 export default function Home() {
   const [wallet, setWallet] = useState("");
+  const [walletProvider, setWalletProvider] = useState<any>(null);
   const [faithBalance, setFaithBalance] = useState("0");
   const [fusdBalance, setFusdBalance] = useState("0");
   const [collateral, setCollateral] = useState("0");
@@ -99,28 +100,29 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (!window.ethereum) return;
+    const activeProvider = walletProvider || window.ethereum;
+    if (!activeProvider) return;
 
     const handleAccountsChanged = (accounts: string[]) => {
       const nextWallet = accounts?.[0] || "";
       setWallet(nextWallet);
-      if (nextWallet) refreshEverything(nextWallet);
+      if (nextWallet) refreshEverything(nextWallet, activeProvider);
     };
 
     const handleChainChanged = () => window.location.reload();
 
-    window.ethereum.on?.("accountsChanged", handleAccountsChanged);
-    window.ethereum.on?.("chainChanged", handleChainChanged);
+    activeProvider.on?.("accountsChanged", handleAccountsChanged);
+    activeProvider.on?.("chainChanged", handleChainChanged);
 
     return () => {
-      window.ethereum?.removeListener?.("accountsChanged", handleAccountsChanged);
-      window.ethereum?.removeListener?.("chainChanged", handleChainChanged);
+      activeProvider.removeListener?.("accountsChanged", handleAccountsChanged);
+      activeProvider.removeListener?.("chainChanged", handleChainChanged);
     };
-  }, []);
+  }, [walletProvider]);
 
   useEffect(() => {
     if (wallet) refreshEverything(wallet);
-  }, [wallet]);
+  }, [wallet, walletProvider]);
 
   const riskStatus = useMemo(() => {
     if (healthFactor === "∞") {
@@ -194,17 +196,17 @@ export default function Home() {
     window.localStorage.setItem(DEMO_PROGRESS_STORAGE_KEY, JSON.stringify(next));
   }
 
-  async function switchToMegaETH() {
-    if (!window.ethereum) throw new Error("MetaMask not found");
+  async function switchToMegaETH(activeProvider: any) {
+    if (!activeProvider?.request) throw new Error("Wallet provider not found");
 
     try {
-      await window.ethereum.request({
+      await activeProvider.request({
         method: "wallet_switchEthereumChain",
         params: [{ chainId: MEGAETH_CHAIN_ID_HEX }],
       });
     } catch (switchError: any) {
       if (switchError?.code === 4902) {
-        await window.ethereum.request({
+        await activeProvider.request({
           method: "wallet_addEthereumChain",
           params: [
             {
@@ -212,6 +214,7 @@ export default function Home() {
               chainName: "MegaETH Testnet",
               nativeCurrency: { name: "ETH", symbol: "ETH", decimals: 18 },
               rpcUrls: ["https://carrot.megaeth.com/rpc"],
+              blockExplorerUrls: [],
             },
           ],
         });
@@ -221,10 +224,62 @@ export default function Home() {
     }
   }
 
-  async function ensureMegaETHProvider() {
-    if (!window.ethereum) throw new Error("Wallet not detected");
-    await switchToMegaETH();
-    const provider = new ethers.BrowserProvider(window.ethereum);
+  async function createWalletConnectProvider() {
+    const projectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID;
+
+    if (!projectId) {
+      throw new Error("Missing NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID");
+    }
+
+    const EthereumProvider = (
+      await import("@walletconnect/ethereum-provider")
+    ).default;
+
+    const provider = await EthereumProvider.init({
+      projectId,
+      chains: [MEGAETH_CHAIN_ID_DECIMAL],
+      optionalChains: [MEGAETH_CHAIN_ID_DECIMAL],
+      rpcMap: {
+        [MEGAETH_CHAIN_ID_DECIMAL]: "https://carrot.megaeth.com/rpc",
+      },
+      showQrModal: true,
+      methods: [
+        "eth_sendTransaction",
+        "eth_signTransaction",
+        "eth_sign",
+        "personal_sign",
+        "eth_signTypedData",
+        "wallet_switchEthereumChain",
+        "wallet_addEthereumChain",
+      ],
+      events: ["chainChanged", "accountsChanged", "disconnect"],
+      metadata: {
+        name: "FAITH Protocol",
+        description: "MegaETH testnet collateralized credit demo",
+        url: typeof window !== "undefined" ? window.location.origin : "https://faith-protocol-mvp.vercel.app",
+        icons: [],
+      },
+    });
+
+    await provider.connect({ chains: [MEGAETH_CHAIN_ID_DECIMAL] });
+    return provider;
+  }
+
+  async function getActiveProvider() {
+    return walletProvider || window.ethereum || null;
+  }
+
+  async function ensureMegaETHProvider(providerOverride?: any) {
+    const activeProvider = providerOverride || (await getActiveProvider());
+    if (!activeProvider) throw new Error("Wallet not detected");
+
+    try {
+      await switchToMegaETH(activeProvider);
+    } catch (error) {
+      console.warn("Network switch request failed or was not supported", error);
+    }
+
+    const provider = new ethers.BrowserProvider(activeProvider);
     const network = await provider.getNetwork();
     if (Number(network.chainId) !== MEGAETH_CHAIN_ID_DECIMAL) {
       throw new Error("Wrong network");
@@ -232,10 +287,11 @@ export default function Home() {
     return provider;
   }
 
-  async function loadData(address: string) {
+  async function loadData(address: string, providerOverride?: any) {
     try {
-      if (!window.ethereum) return;
-      const provider = new ethers.BrowserProvider(window.ethereum);
+      const activeProvider = providerOverride || (await getActiveProvider());
+      if (!activeProvider) return;
+      const provider = new ethers.BrowserProvider(activeProvider);
       const network = await provider.getNetwork();
       if (Number(network.chainId) !== MEGAETH_CHAIN_ID_DECIMAL) {
         setStatus("Please switch to MegaETH Testnet to load live protocol data.");
@@ -294,12 +350,13 @@ export default function Home() {
     }
   }
 
-  async function loadActivity() {
+  async function loadActivity(providerOverride?: any) {
     try {
-      if (!window.ethereum) return;
+      const activeProvider = providerOverride || (await getActiveProvider());
+      if (!activeProvider) return;
       setActivityLoading(true);
 
-      const provider = new ethers.BrowserProvider(window.ethereum);
+      const provider = new ethers.BrowserProvider(activeProvider);
       const network = await provider.getNetwork();
       if (Number(network.chainId) !== MEGAETH_CHAIN_ID_DECIMAL) {
         setStatus("Please switch to MegaETH Testnet to load activity.");
@@ -363,25 +420,41 @@ export default function Home() {
     }
   }
 
-  async function refreshEverything(address: string) {
-    await Promise.all([loadData(address), loadActivity()]);
+  async function refreshEverything(address: string, providerOverride?: any) {
+    await Promise.all([loadData(address, providerOverride), loadActivity(providerOverride)]);
   }
 
   async function connectWallet() {
     try {
-      if (!window.ethereum) {
-        alert("Wallet not detected. On mobile, open this site inside MetaMask Browser. WalletConnect support is the next upgrade.");
-        return;
+      setStatus("Connecting wallet...");
+
+      let activeProvider = window.ethereum || null;
+
+      if (!activeProvider) {
+        setStatus("Opening WalletConnect...");
+        activeProvider = await createWalletConnectProvider();
       }
+
+      setWalletProvider(activeProvider);
       setStatus("Switching to MegaETH Testnet...");
-      const provider = await ensureMegaETHProvider();
-      const accounts = await provider.send("eth_requestAccounts", []);
+
+      const provider = await ensureMegaETHProvider(activeProvider);
+      let accounts = await provider.send("eth_requestAccounts", []);
+
+      if (!accounts?.length) {
+        accounts = await provider.send("eth_accounts", []);
+      }
+
+      if (!accounts?.[0]) {
+        throw new Error("No wallet account returned");
+      }
+
       setWallet(accounts[0]);
       setStatus("Wallet connected on MegaETH ✔");
-      await refreshEverything(accounts[0]);
+      await refreshEverything(accounts[0], activeProvider);
     } catch (error) {
       console.error(error);
-      setStatus("Wallet connection failed ❌ Make sure MegaETH Testnet is added and selected.");
+      setStatus("Wallet connection failed ❌ Use MetaMask, Rabby, or WalletConnect and switch to MegaETH Testnet.");
     }
   }
 
@@ -579,10 +652,10 @@ export default function Home() {
         </div>
         <h2 className="text-2xl font-bold">Before testing, get MegaETH testnet gas</h2>
         <p className="mt-2 max-w-4xl text-zinc-300">
-          Testers need a small amount of MegaETH testnet ETH to pay gas before claiming tFAITH or using the protocol. The Connect Wallet button now asks MetaMask to add/switch MegaETH automatically.
+          Testers need a small amount of MegaETH testnet ETH to pay gas before claiming tFAITH or using the protocol. The Connect Wallet button supports MetaMask desktop, MetaMask mobile browser, and WalletConnect on mobile Safari/Chrome.
         </p>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
-          <SetupCard title="1. Open wallet" body="On mobile, open the app inside MetaMask Browser. On desktop, use MetaMask extension." />
+          <SetupCard title="1. Open wallet" body="On mobile Safari/Chrome, use WalletConnect when prompted. MetaMask mobile browser also works." />
           <SetupCard title="2. Get gas" body="Fund the wallet with MegaETH testnet ETH before transactions." />
           <SetupCard title="3. Run demo" body="Claim 1000 tFAITH, deposit, borrow, crash the oracle, and liquidate." />
         </div>
