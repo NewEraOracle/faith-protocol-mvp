@@ -1,411 +1,138 @@
-FAITH Protocol is a testnet DeFi lending MVP built on MegaETH.
+# FAITH Protocol
 
-## Autonomous Credit for the Real-Time Internet
+## Human-Built. Machine-Regulated.
 
-FAITH Protocol is an early MegaETH testnet MVP exploring real-time collateralized credit, oracle-based risk simulation, vault health tracking, and liquidation logic.
+**FAITH Protocol is a human-built, machine-regulated capital operating system for productive economies.**
 
-The current MVP demonstrates a simple credit loop:
+FAITH Protocol bridges real-world assets, productive infrastructure, and autonomous on-chain credit through vaults, treasury reserves, oracle systems, and PCS.
+
+**Motto:** Bridging RWA to an autonomous digital economy.
+
+---
+
+## Core Vision
+
+FAITH Protocol is not a meme token, yield farm, or simple lending app.
+
+FAITH Protocol is being built as institutional infrastructure for:
+
+- Collateralized credit
+- Vault-based borrowing
+- Treasury reserves
+- Oracle shock simulation
+- Liquidation risk monitoring
+- PCS risk controls
+- Future RWA capital routing
+
+The core thesis:
 
 ```text
-Deposit tFAITH as collateral
-→ Borrow tfUSD
-→ Simulate an oracle price shock
-→ Trigger liquidation if the vault becomes unsafe
-```
+Humans build real-world value.
+FAITH transforms that value into programmable credit.
+PCS monitors, regulates, and protects the digital economy.
+Treasury strength compounds the system.
 
-The long-term thesis is that FAITH can become MegaETH-native autonomous credit infrastructure that helps activate USDm velocity by turning settlement liquidity into structured borrow, repay, treasury, and risk-management flows.
+---
+
+## Current MVP
+
+The current MVP demonstrates the digital financial engine before any future real-world capital routing layer.
+
+Core MVP features:
+
+- Vault creation
+- Collateral deposit
+- tfUSD / stable credit borrowing
+- Repayment flow
+- Vault health tracking
+- Oracle shock simulation
+- Liquidation risk visibility
+- Treasury-related architecture
+- PCS-related architecture
+- Institutional frontend direction
+
+The MVP is experimental testnet infrastructure. It is not a production financial system.
+
+---
+
+## Core Architecture
+
+### 1. Vault Layer
+
+Vaults act as on-chain balance sheets.
+
+They track collateral, debt, borrowing power, health factor, liquidation risk, and vault status.
+
+### 2. Credit Layer
+
+The credit layer allows stable credit to be issued against collateral.
+
+In the MVP, this may use testnet or mock stable assets such as tfUSD or MockUSDm.
+
+### 3. PCS � Parameter Control System
+
+PCS is the signature feature of FAITH Protocol.
+
+PCS is designed to monitor protocol health and eventually recommend or adjust system parameters based on risk.
+
+PCS may monitor:
+
+- Vault health
+- Collateral ratios
+- Borrow utilization
+- Treasury reserves
+- Oracle stability
+- Liquidation pressure
+- Liquidity conditions
+- System solvency
+
+PCS creates the path toward a machine-regulated digital economy.
+
+### 4. Treasury Layer
+
+The Treasury is the reserve engine of FAITH Protocol.
+
+It supports protocol reserves, risk buffers, liquidity protection, development funding, future capital routing, and ecosystem expansion.
+
+### 5. Oracle Layer
+
+The Oracle Layer supports pricing, collateral valuation, liquidation logic, and shock simulation.
+
+Example MVP loop:
+
+```text
+Deposit collateral
+? Borrow stable credit
+? Simulate oracle price shock
+? Vault health changes
+? Liquidation risk becomes visible
+? Unsafe positions can be liquidated
 
 ---
 
 ## Live MVP
 
-[https://faith-protocol-mvp.vercel.app/](https://faith-protocol-mvp.vercel.app/)
+https://faith-protocol-mvp.vercel.app
 
 ---
 
 ## Important Notice
 
-This project is experimental software.
+This project is experimental.
 
-The current deployment is:
+FAITH Protocol is not financial advice, legal advice, investment advice, or an offer to sell securities.
 
-- testnet only
-- not audited
-- not intended for real financial use
-- not a public mainnet launch
-- not using real USDm settlement yet
-
-`tFAITH` and `tfUSD` are testnet assets with no real monetary value.
-
-FAITH mainnet token is not deployed.
+Any future connection to real-world assets, capital pools, real estate, energy, ventures, or productive economies must require legal structure, compliance review, audits, and risk controls.
 
 ---
 
-## Current Status
+## North Star
 
-The MVP currently focuses on:
+FAITH Protocol bridges RWA to an autonomous digital economy.
 
-- tFAITH collateral deposits
-- tfUSD borrowing
-- oracle price-shock simulation
-- vault health tracking
-- liquidation testing
-- MegaETH testnet execution
+Humans build real-world value.
+FAITH transforms that value into programmable credit.
+PCS protects and regulates the digital economy.
+Treasury strength compounds the system.
+Capital flows back toward productive growth.
 
-The current version is designed to prove the first credit logic loop before expanding into deeper USDm settlement, treasury tracking, and PCS-based monetary coordination.
-
----
-
-## Core Thesis
-
-Most DeFi systems are built around speculation, emissions, or passive liquidity.
-
-FAITH explores a different model:
-
-```text
-Collateral → Credit → Risk Monitoring → Repayment → Treasury Flow → System Stability
-```
-
-The long-term goal is to build a MegaETH-native autonomous credit economy where capital becomes productive through structured borrowing, repayment, treasury flows, and real-time risk coordination.
-
----
-
-## Asset Model
-
-The current and future FAITH architecture separates each asset role clearly:
-
-```text
-tFAITH = testnet collateral asset
-tfUSD = Test fUSD stablecoin / test credit accounting token
-FAITH = future mainnet collateral and access asset
-fUSD = future internal credit / debt accounting layer
-USDm = future settlement and liquidity asset
-PCS = autonomous monetary coordination layer
-```
-
-Important clarification:
-
-```text
-tfUSD is not the final public stablecoin.
-tfUSD is a testnet credit accounting token used to simulate borrowing behavior.
-```
-
-The long-term model is:
-
-```text
-fUSD tracks internal debt.
-USDm settles liquidity.
-```
-
----
-
-## USDm Velocity Thesis
-
-FAITH is not designed to compete with USDm.
-
-The long-term goal is to activate USDm by creating structured credit activity around it.
-
-Future FAITH credit flows may include:
-
-```text
-User locks FAITH
-→ Protocol records internal fUSD debt
-→ User receives USDm settlement liquidity
-→ User repays in USDm
-→ Debt is reduced or cleared
-→ Treasury and PCS update system state
-```
-
-This creates the core MegaETH thesis:
-
-```text
-FAITH activates USDm through autonomous credit.
-```
-
----
-
-## Why MegaETH
-
-MegaETH’s real-time execution environment is well suited for applications where financial state changes matter immediately.
-
-FAITH is designed to make real-time blockchain infrastructure visible through:
-
-- live vault health changes
-- borrow capacity updates
-- oracle price shocks
-- liquidation risk
-- credit state changes
-- future PCS monitoring
-- treasury flow visibility
-
-The frontend should feel as fast as the chain.
-
----
-
-## MVP Demo Flow
-
-The current MVP can be tested with this simple flow:
-
-### 1. Deposit tFAITH
-
-Users deposit tFAITH as testnet collateral into the vault system.
-
-### 2. Borrow tfUSD
-
-Users borrow tfUSD against their collateral.
-
-### 3. Simulate Price Shock
-
-The mock oracle can simulate a tFAITH price crash.
-
-### 4. Trigger Liquidation
-
-If the vault becomes unsafe, liquidation logic can be tested.
-
----
-
-## Current MegaETH Testnet Deployment
-
-| Contract      | Address                                      |
-| ------------- | -------------------------------------------- |
-| tFAITH        | `0x25131C5655DBB24B768bEb8cE4A135E0ED3836FA` |
-| tfUSD         | `0x35Ac0De590E8C2280464027aBdab93e6b0E199a0` |
-| tMockOracle   | `0x7125fe3424Ba0796B2A45b450e295c93a18224c7` |
-| tVaultManager | `0x76849F654906F4956fff0d3B2b10eE97ce4d0d4B` |
-
-Network:
-
-```text
-MegaETH Testnet
-Chain ID: 6343
-```
-
----
-
-## Testnet Asset Naming
-
-To avoid confusing future mainnet assets with current testnet assets, the testnet contracts use a `t` prefix:
-
-- `tFAITH` = Test FAITH collateral token
-- `tfUSD` = Test fUSD stablecoin / test credit accounting token
-- `tMockOracle` = Test oracle contract
-- `tVaultManager` = Test vault and lending engine
-
----
-
-## Architecture Overview
-
-Current MVP architecture:
-
-```text
-User
- ↓
-tFAITH Collateral
- ↓
-tVaultManager
- ↓
-tfUSD Borrowing
- ↓
-tMockOracle Risk Simulation
- ↓
-Vault Health / Liquidation Logic
-```
-
-Future architecture:
-
-```text
-FAITH / tFAITH Collateral
- ↓
-fUSD Internal Debt Accounting
- ↓
-USDm Settlement Liquidity
- ↓
-Treasury Flows
- ↓
-PCS Monetary Coordination
- ↓
-Autonomous Credit Economy
-```
-
----
-
-## Contracts
-
-### tFAITH
-
-Testnet collateral token used to open vault positions.
-
-### tfUSD
-
-Test fUSD stablecoin / test credit accounting token used to simulate borrowing activity.
-
-### tMockOracle
-
-Mock oracle used to simulate collateral price changes and risk events.
-
-### tVaultManager
-
-Core vault contract handling collateral deposits, borrowing, health checks, and liquidation logic.
-
----
-
-## Roadmap
-
-### Phase 1 — Current MVP
-
-Status: active on MegaETH testnet.
-
-Current features:
-
-- tFAITH collateral
-- tfUSD borrow flow
-- mock oracle price shock
-- liquidation testing
-- live frontend demo
-- public GitHub repository
-
-Goal:
-
-```text
-Prove the first collateralized credit logic loop on MegaETH testnet.
-```
-
----
-
-### Phase 2 — Testnet v1
-
-Planned next additions:
-
-- CreditEngine
-- Treasury
-- PCS monitor
-- MockUSDm settlement layer
-- improved vault dashboard
-- real-time vault state updates
-- clearer health factor display
-- better demo video and documentation
-
-Goal:
-
-```text
-Move from basic borrow/liquidation demo to a fuller autonomous credit system prototype.
-```
-
-Target future testnet loop:
-
-```text
-Deposit tFAITH
-→ Create internal tfUSD / fUSD debt
-→ Receive MockUSDm settlement
-→ Treasury records activity
-→ PCS monitors system state
-→ Repay MockUSDm
-→ Debt clears
-```
-
----
-
-### Phase 3 — Controlled Mainnet MVP
-
-The mainnet MVP should only happen after testnet validation, security review, and ecosystem feedback.
-
-Expected requirements:
-
-- limited launch scope
-- strict vault caps
-- conservative LTV parameters
-- multisig ownership
-- emergency pause controls
-- oracle review
-- liquidation testing
-- treasury protection
-- audit preparation
-
-Goal:
-
-```text
-Deploy a controlled mainnet MVP with limited risk and clear operational safeguards.
-```
-
-This should not be treated as a full public launch.
-
----
-
-## Suggested Testing Checklist
-
-When testing the MVP:
-
-```text
-1. Connect wallet
-2. Confirm MegaETH testnet
-3. Deposit tFAITH
-4. Borrow tfUSD
-5. Simulate oracle price shock
-6. Check vault health
-7. Trigger liquidation if unsafe
-```
-
----
-
-## Repository Setup
-
-Clone the repository:
-
-```bash
-git clone https://github.com/NewEraOracle/faith-protocol-mvp.git
-cd faith-protocol-mvp
-```
-
-Install dependencies:
-
-```bash
-pnpm install
-```
-
-Run locally:
-
-```bash
-pnpm dev
-```
-
----
-
-## Brand Positioning
-
-FAITH is not positioned as a simple lending app.
-
-FAITH is being built as:
-
-```text
-MegaETH-native autonomous credit infrastructure
-```
-
-Core positioning:
-
-```text
-FAITH activates USDm through autonomous credit.
-```
-
-Tagline:
-
-```text
-Autonomous Credit for the Real-Time Internet
-```
-
----
-
-## Links
-
-Live MVP:
-
-[https://faith-protocol-mvp.vercel.app/](https://faith-protocol-mvp.vercel.app/)
-
-GitHub:
-
-[https://github.com/NewEraOracle/faith-protocol-mvp](https://github.com/NewEraOracle/faith-protocol-mvp)
-
----
-
-## License
-
-MIT
