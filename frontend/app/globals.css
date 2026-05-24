@@ -214,3 +214,233 @@ body {
 .faith-dashboard .bg-black\/40 {
   background: rgba(2,6,23,0.62) !important;
 }
+
+/* Temporary fix for AI assets with baked white/checker backgrounds */
+.faith-cutout {
+  mix-blend-mode: screen;
+  filter: contrast(1.15) brightness(1.05);
+}
+
+.faith-cutout-dark {
+  mix-blend-mode: multiply;
+  filter: contrast(1.25) brightness(1.15);
+}
+
+.faith-logo-clean {
+  mix-blend-mode: multiply;
+  filter: contrast(1.35) brightness(1.25);
+}
+
+.faith-icon-clean {
+  mix-blend-mode: multiply;
+  filter: contrast(1.3) brightness(1.2);
+}
+
+/* Remove baked white/checker backgrounds from FAITH assets */
+img[src*="logo-faith-metal"],
+img[src*="emblem-wings-eye"],
+img[src*="icon-vaults"],
+img[src*="icon-pcs"],
+img[src*="icon-treasury"],
+img[src*="icon-tfusd"],
+img[src*="token-faith"],
+img[src*="token-fusd"] {
+  mix-blend-mode: multiply;
+  filter: contrast(1.55) brightness(1.35) saturate(1.15);
+}
+
+/* Make icon containers dark/glass instead of white-box feeling */
+.faith-frame img[src*="icon-"],
+.faith-frame img[src*="token-"],
+.faith-frame img[src*="emblem-wings-eye"] {
+  background: transparent !important;
+}
+
+/* Stronger premium icon frame */
+.faith-frame .asset-shell {
+  background:
+    radial-gradient(circle at center, rgba(125, 211, 252, 0.18), rgba(2, 6, 23, 0.72) 62%),
+    rgba(2, 6, 23, 0.78) !important;
+  border: 1px solid rgba(191, 219, 254, 0.26) !important;
+  box-shadow:
+    inset 0 0 22px rgba(255,255,255,0.04),
+    0 0 32px rgba(125,211,252,0.18) !important;
+}
+
+/* Reset temporary blend-mode experiment */
+.faith-logo-clean,
+.faith-icon-clean,
+.faith-cutout,
+.faith-cutout-dark,
+img[src*="logo-faith-metal"],
+img[src*="emblem-wings-eye"],
+img[src*="icon-vaults"],
+img[src*="icon-pcs"],
+img[src*="icon-treasury"],
+img[src*="icon-tfusd"],
+img[src*="token-faith"],
+img[src*="token-fusd"] {
+  mix-blend-mode: normal !important;
+  filter: none !important;
+}
+
+/* === FAITH CLEAN FINAL OVERRIDES === */
+
+.faith-shell {
+  border: 1px solid rgba(191, 219, 254, 0.16);
+  background: rgba(2, 6, 23, 0.18);
+  box-shadow:
+    inset 0 0 30px rgba(255,255,255,0.025),
+    0 0 50px rgba(56,189,248,0.08);
+}
+
+.faith-card {
+  position: relative;
+  border: 1px solid rgba(191, 219, 254, 0.16);
+  background:
+    radial-gradient(circle at 20% 10%, rgba(125,211,252,0.09), transparent 35%),
+    linear-gradient(180deg, rgba(2, 6, 23, 0.58), rgba(2, 6, 23, 0.78));
+  box-shadow:
+    inset 0 0 24px rgba(255,255,255,0.025),
+    0 0 28px rgba(56,189,248,0.06);
+  backdrop-filter: blur(6px);
+}
+
+.faith-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(191,219,254,0.32);
+  background: rgba(2,6,23,0.42);
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: .26em;
+  font-weight: 900;
+  box-shadow:
+    inset 0 0 18px rgba(255,255,255,0.04),
+    0 0 24px rgba(125,211,252,0.12);
+}
+
+.faith-button:hover {
+  border-color: rgba(207,250,254,0.7);
+  box-shadow:
+    inset 0 0 20px rgba(255,255,255,0.07),
+    0 0 34px rgba(125,211,252,0.24);
+}
+
+.faith-logo-top {
+  filter:
+    brightness(1.08)
+    contrast(1.08)
+    drop-shadow(0 0 12px rgba(191,219,254,.35));
+}
+
+.faith-logo-main {
+  filter:
+    brightness(1.08)
+    contrast(1.08)
+    drop-shadow(0 0 20px rgba(191,219,254,.28))
+    drop-shadow(0 0 44px rgba(56,189,248,.14));
+}
+
+.faith-emblem {
+  filter:
+    brightness(1.08)
+    contrast(1.08)
+    drop-shadow(0 0 22px rgba(191,219,254,.28))
+    drop-shadow(0 0 54px rgba(56,189,248,.18));
+}
+
+.faith-icon-box {
+  display: grid;
+  height: 96px;
+  width: 96px;
+  flex-shrink: 0;
+  place-items: center;
+  border: 1px solid rgba(191,219,254,0.2);
+  background:
+    radial-gradient(circle at center, rgba(125,211,252,0.13), rgba(2,6,23,0.78) 62%),
+    rgba(2,6,23,0.45);
+  box-shadow:
+    inset 0 0 18px rgba(255,255,255,0.035),
+    0 0 28px rgba(125,211,252,0.12);
+}
+
+.faith-loop-icon {
+  display: grid;
+  height: 96px;
+  width: 96px;
+  margin-inline: auto;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(191,219,254,0.17);
+  background: radial-gradient(circle at center, rgba(125,211,252,0.12), rgba(2,6,23,0.2) 64%);
+}
+
+.faith-asset {
+  height: 82px;
+  width: 82px;
+  object-fit: contain;
+  filter:
+    brightness(1.14)
+    contrast(1.12)
+    saturate(1.08)
+    drop-shadow(0 0 16px rgba(125,211,252,.22));
+}
+
+.tfusd-bright {
+  filter:
+    brightness(1.38)
+    contrast(1.14)
+    saturate(1.12)
+    drop-shadow(0 0 18px rgba(125,211,252,.32)) !important;
+}
+
+.faith-token-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(2,6,23,0.36);
+  padding: 1.25rem;
+}
+
+.faith-token {
+  height: 110px;
+  width: 110px;
+  object-fit: contain;
+  filter:
+    brightness(1.16)
+    contrast(1.12)
+    saturate(1.08)
+    drop-shadow(0 0 20px rgba(125,211,252,.24));
+}
+
+/* undo old destructive experiments if they exist */
+.faith-logo-clean,
+.faith-icon-clean,
+.faith-cutout,
+.faith-cutout-dark {
+  mix-blend-mode: normal !important;
+}
+
+@media (max-width: 768px) {
+  .faith-logo-main {
+    height: 150px;
+  }
+
+  .faith-emblem {
+    height: 180px;
+  }
+
+  .faith-icon-box,
+  .faith-loop-icon {
+    height: 82px;
+    width: 82px;
+  }
+
+  .faith-asset {
+    height: 70px;
+    width: 70px;
+  }
+}
