@@ -75,31 +75,37 @@ export default function Home() {
 
           <section className="relative px-6 pb-14 pt-12 text-center">
             <div className="pointer-events-none absolute left-1/2 top-2 h-[560px] w-[920px] -translate-x-1/2 rounded-full bg-cyan-300/10 blur-3xl" />
-
-            <img
-              src="/faith/design/emblem-wings-eye.png"
-              alt="FAITH emblem"
-              className="faith-emblem relative z-10 mx-auto h-52 w-auto object-contain md:h-64"
-            />
-
             <img
               src="/faith/design/logo-faith-metal.png"
               alt="FAITH"
-              className="faith-logo-main relative z-10 mx-auto -mt-4 h-40 w-auto max-w-[92%] object-contain md:h-56 lg:h-64"
+              className="mx-auto w-[430px] max-w-[88vw] object-contain drop-shadow-[0_0_28px_rgba(125,211,252,0.28)]"
             />
 
-            <p className="relative z-10 mt-2 text-sm font-black uppercase tracking-[0.62em] text-cyan-100 md:text-base">
-              Autonomous Credit
+            <p className="relative z-10 mt-2 text-sm font-black uppercase tracking-[0.52em] text-cyan-100 md:text-base">
+              FAITH Protocol
             </p>
 
-            <p className="relative z-10 mt-2 text-xs font-black uppercase tracking-[0.43em] text-slate-300 md:text-sm">
-              For The Real-Time Internet
+            <p className="relative z-10 mt-2 text-xs font-black uppercase tracking-[0.30em] text-slate-300 md:text-sm">
+              Bridging RWA to an Autonomous Digital Economy
             </p>
 
             <p className="relative z-10 mx-auto mt-7 max-w-3xl text-sm leading-7 text-slate-300 md:text-base">
-              MegaETH-native autonomous credit infrastructure that activates tfUSD across vaults,
-              PCS risk monitoring, treasury reserves, oracle shocks, and real-time settlement.
+              FAITH connects real-world assets and productive infrastructure to autonomous on-chain credit,
+              treasury, and risk systems.
             </p>
+
+            <div className="relative z-10 mx-auto mt-7 max-w-4xl border border-cyan-100/15 bg-black/25 p-5 text-center backdrop-blur-sm">
+              <p className="text-sm leading-7 text-slate-300">
+                FAITH is building a self-growing economy where real-world infrastructure, autonomous digital finance, and virtual worlds reinforce each other.
+              </p>
+
+              <div className="mt-5 grid gap-2 text-[10px] font-black uppercase tracking-[0.20em] text-cyan-100 md:grid-cols-2">
+                <p>Humans build the world.</p>
+                <p>Technology regulates the economy.</p>
+                <p>FAITH connects the physical and digital layers.</p>
+                <p>Utopia gives people a world to experience it.</p>
+              </div>
+            </div>
 
             <div className="relative z-10 mt-8 flex flex-col justify-center gap-4 sm:flex-row">
               <a href="#protocol" className="faith-button px-8 py-4 text-[11px]">
@@ -186,29 +192,59 @@ export default function Home() {
             ))}
           </section>
 
+          
           <section className="mx-6 mb-8 lg:mx-10">
-            <div className="faith-card p-6">
-              <div className="grid gap-6 lg:grid-cols-[.7fr_1fr_1fr] lg:items-center">
-                <p className="text-sm font-black uppercase tracking-[0.38em] text-slate-300">
-                  Token Identity
+            <div className="faith-token-system">
+              <div className="text-center">
+                <p className="text-[11px] font-black uppercase tracking-[0.45em] text-cyan-100/80">
+                  Faith Token System
                 </p>
+                <p className="mt-2 text-sm uppercase tracking-[0.28em] text-slate-400">
+                  Autonomous Credit for the Real-Time Internet
+                </p>
+              </div>
 
-                <div className="faith-token-card">
-                  <img src="/faith/design/token-faith.png" alt="FAITH token" className="faith-token" />
-                  <div>
-                    <h3 className="text-2xl font-black">FAITH</h3>
-                    <p className="mt-1 text-sm text-slate-400">
+              <div className="mt-8 grid gap-8 lg:grid-cols-2">
+                <div className="faith-token-orb">
+                  <div className="faith-token-ring">
+                    <img
+                      src="/faith/design/token-faith.png"
+                      alt="FAITH token"
+                      className="faith-token-large"
+                    />
+                  </div>
+
+                  <div className="mt-6 text-center">
+                    <h3 className="text-3xl font-black uppercase tracking-[0.16em] text-white">
+                      FAITH
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-400">
                       Protocol collateral identity and future governance coordination layer.
+                    </p>
+                    <p className="mt-5 text-[10px] font-black uppercase tracking-[0.32em] text-cyan-300">
+                      Faith Token
                     </p>
                   </div>
                 </div>
 
-                <div className="faith-token-card">
-                  <img src="/faith/design/token-fusd.png" alt="tfUSD token" className="faith-token tfusd-bright" />
-                  <div>
-                    <h3 className="text-2xl font-black">tfUSD</h3>
-                    <p className="mt-1 text-sm text-slate-400">
+                <div className="faith-token-orb">
+                  <div className="faith-token-ring">
+                    <img
+                      src="/faith/design/token-fusd.png"
+                      alt="tfUSD token"
+                      className="faith-token-large tfusd-bright"
+                    />
+                  </div>
+
+                  <div className="mt-6 text-center">
+                    <h3 className="text-3xl font-black uppercase tracking-[0.16em] text-white">
+                      tfUSD
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-400">
                       Autonomous credit asset minted by FAITH vaults on MegaETH testnet.
+                    </p>
+                    <p className="mt-5 text-[10px] font-black uppercase tracking-[0.32em] text-cyan-300">
+                      tfUSD Token
                     </p>
                   </div>
                 </div>
@@ -220,3 +256,6 @@ export default function Home() {
     </main>
   );
 }
+
+
+

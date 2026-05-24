@@ -1,334 +1,94 @@
 @import "tailwindcss";
 
+/* =========================
+   FAITH CLEAN GLOBAL SYSTEM
+   ========================= */
+
+:root {
+  --faith-bg: #02040a;
+  --faith-panel: rgba(2, 6, 23, 0.46);
+  --faith-border: rgba(191, 219, 254, 0.16);
+  --faith-cyan: #8ff4ff;
+  --faith-text: #f8fbff;
+  --faith-muted: #9aa8bd;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--faith-bg);
+}
+
 body {
-  background: linear-gradient(
-    to bottom right,
-    #020617,
-    #0f172a,
-    #000000
-  );
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
-}
-/* FAITH cinematic premium UI */
-.faith-shell {
-  background:
-    radial-gradient(circle at 50% 0%, rgba(147,197,253,0.34), transparent 24%),
-    radial-gradient(circle at 20% 28%, rgba(56,189,248,0.16), transparent 22%),
-    radial-gradient(circle at 80% 32%, rgba(148,163,184,0.14), transparent 24%),
-    linear-gradient(180deg, #02040a 0%, #050b16 45%, #02040a 100%);
+  margin: 0;
+  background: var(--faith-bg);
+  color: var(--faith-text);
+  overflow-x: hidden;
 }
 
-.faith-stars {
-  background-image:
-    radial-gradient(circle, rgba(255,255,255,0.75) 1px, transparent 1px),
-    radial-gradient(circle, rgba(125,211,252,0.45) 1px, transparent 1px);
-  background-size: 120px 120px, 220px 220px;
-  background-position: 0 0, 40px 80px;
+/* Main shell */
+.faith-home {
+  background: #02040a;
 }
-
-.faith-panel {
-  position: relative;
-  border: 1px solid rgba(191, 219, 254, 0.18);
-  background:
-    linear-gradient(180deg, rgba(15,23,42,0.72), rgba(2,6,23,0.82)),
-    radial-gradient(circle at top, rgba(125,211,252,0.08), transparent 55%);
-  box-shadow:
-    inset 0 0 30px rgba(148,163,184,0.06),
-    0 0 45px rgba(14,165,233,0.08);
-}
-
-.faith-panel::before,
-.faith-panel::after {
-  content: "";
-  position: absolute;
-  width: 32px;
-  height: 32px;
-  pointer-events: none;
-}
-
-.faith-panel::before {
-  left: -1px;
-  top: -1px;
-  border-left: 1px solid rgba(207,250,254,0.75);
-  border-top: 1px solid rgba(207,250,254,0.75);
-}
-
-.faith-panel::after {
-  right: -1px;
-  bottom: -1px;
-  border-right: 1px solid rgba(207,250,254,0.75);
-  border-bottom: 1px solid rgba(207,250,254,0.75);
-}
-
-.faith-chrome-text {
-  background: linear-gradient(180deg, #ffffff 0%, #dbeafe 35%, #64748b 76%, #f8fafc 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow:
-    0 0 18px rgba(191,219,254,0.35),
-    0 0 46px rgba(56,189,248,0.18);
-}
-
-.faith-gothic {
-  font-family: Georgia, "Times New Roman", serif;
-  letter-spacing: -0.08em;
-}
-
-.faith-button {
-  border: 1px solid rgba(207,250,254,0.42);
-  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(15,23,42,0.38));
-  box-shadow:
-    inset 0 0 18px rgba(255,255,255,0.06),
-    0 0 24px rgba(125,211,252,0.18);
-}
-
-.faith-button:hover {
-  background: rgba(207,250,254,0.9);
-  color: #020617;
-}
-
-.faith-divider {
-  background: linear-gradient(90deg, transparent, rgba(207,250,254,0.45), transparent);
-}
-
-.faith-orb {
-  background:
-    radial-gradient(circle at 50% 35%, rgba(255,255,255,0.9), rgba(125,211,252,0.18) 26%, rgba(2,6,23,0.8) 62%),
-    linear-gradient(180deg, rgba(148,163,184,0.18), rgba(2,6,23,0.92));
-}
-
-@keyframes faithPulse {
-  0%, 100% { opacity: 0.55; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.04); }
-}
-
-.faith-pulse {
-  animation: faithPulse 3.8s ease-in-out infinite;
-}
-
-/* FAITH dashboard cinematic layer */
-.faith-dashboard {
-  background:
-    radial-gradient(circle at 50% 0%, rgba(147,197,253,0.22), transparent 24%),
-    radial-gradient(circle at 18% 22%, rgba(56,189,248,0.12), transparent 24%),
-    radial-gradient(circle at 82% 18%, rgba(148,163,184,0.10), transparent 24%),
-    linear-gradient(180deg, #02040a 0%, #050b16 46%, #02040a 100%) !important;
-  color: white;
-}
-
-.faith-dashboard::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.22;
-  background-image:
-    radial-gradient(circle, rgba(255,255,255,0.72) 1px, transparent 1px),
-    radial-gradient(circle, rgba(125,211,252,0.38) 1px, transparent 1px);
-  background-size: 130px 130px, 230px 230px;
-  background-position: 0 0, 50px 90px;
-}
-
-.faith-dashboard section {
-  position: relative;
-  border: 1px solid rgba(191,219,254,0.18) !important;
-  background:
-    linear-gradient(180deg, rgba(15,23,42,0.72), rgba(2,6,23,0.84)),
-    radial-gradient(circle at top, rgba(125,211,252,0.08), transparent 58%) !important;
-  box-shadow:
-    inset 0 0 30px rgba(148,163,184,0.06),
-    0 0 45px rgba(14,165,233,0.08) !important;
-  backdrop-filter: blur(18px);
-}
-
-.faith-dashboard section::before,
-.faith-dashboard section::after {
-  content: "";
-  position: absolute;
-  width: 34px;
-  height: 34px;
-  pointer-events: none;
-}
-
-.faith-dashboard section::before {
-  left: -1px;
-  top: -1px;
-  border-left: 1px solid rgba(207,250,254,0.72);
-  border-top: 1px solid rgba(207,250,254,0.72);
-}
-
-.faith-dashboard section::after {
-  right: -1px;
-  bottom: -1px;
-  border-right: 1px solid rgba(207,250,254,0.72);
-  border-bottom: 1px solid rgba(207,250,254,0.72);
-}
-
-.faith-dashboard h1,
-.faith-dashboard h2 {
-  letter-spacing: -0.04em;
-  text-shadow:
-    0 0 18px rgba(191,219,254,0.22),
-    0 0 42px rgba(56,189,248,0.12);
-}
-
-.faith-dashboard button,
-.faith-dashboard a {
-  transition: all 0.2s ease;
-}
-
-.faith-dashboard button {
-  border: 1px solid rgba(207,250,254,0.26) !important;
-  box-shadow:
-    inset 0 0 18px rgba(255,255,255,0.04),
-    0 0 22px rgba(125,211,252,0.10);
-}
-
-.faith-dashboard button:hover {
-  transform: translateY(-1px);
-  box-shadow:
-    inset 0 0 18px rgba(255,255,255,0.07),
-    0 0 32px rgba(125,211,252,0.22);
-}
-
-.faith-dashboard input {
-  border: 1px solid rgba(191,219,254,0.18) !important;
-  background: rgba(2,6,23,0.78) !important;
-  color: white !important;
-}
-
-.faith-dashboard input:focus {
-  outline: none;
-  border-color: rgba(125,211,252,0.6) !important;
-  box-shadow: 0 0 24px rgba(125,211,252,0.16);
-}
-
-.faith-dashboard .rounded-3xl {
-  border-radius: 1.25rem !important;
-}
-
-.faith-dashboard .bg-white\/\[0\.03\],
-.faith-dashboard .bg-black\/30,
-.faith-dashboard .bg-black\/40 {
-  background: rgba(2,6,23,0.62) !important;
-}
-
-/* Temporary fix for AI assets with baked white/checker backgrounds */
-.faith-cutout {
-  mix-blend-mode: screen;
-  filter: contrast(1.15) brightness(1.05);
-}
-
-.faith-cutout-dark {
-  mix-blend-mode: multiply;
-  filter: contrast(1.25) brightness(1.15);
-}
-
-.faith-logo-clean {
-  mix-blend-mode: multiply;
-  filter: contrast(1.35) brightness(1.25);
-}
-
-.faith-icon-clean {
-  mix-blend-mode: multiply;
-  filter: contrast(1.3) brightness(1.2);
-}
-
-/* Remove baked white/checker backgrounds from FAITH assets */
-img[src*="logo-faith-metal"],
-img[src*="emblem-wings-eye"],
-img[src*="icon-vaults"],
-img[src*="icon-pcs"],
-img[src*="icon-treasury"],
-img[src*="icon-tfusd"],
-img[src*="token-faith"],
-img[src*="token-fusd"] {
-  mix-blend-mode: multiply;
-  filter: contrast(1.55) brightness(1.35) saturate(1.15);
-}
-
-/* Make icon containers dark/glass instead of white-box feeling */
-.faith-frame img[src*="icon-"],
-.faith-frame img[src*="token-"],
-.faith-frame img[src*="emblem-wings-eye"] {
-  background: transparent !important;
-}
-
-/* Stronger premium icon frame */
-.faith-frame .asset-shell {
-  background:
-    radial-gradient(circle at center, rgba(125, 211, 252, 0.18), rgba(2, 6, 23, 0.72) 62%),
-    rgba(2, 6, 23, 0.78) !important;
-  border: 1px solid rgba(191, 219, 254, 0.26) !important;
-  box-shadow:
-    inset 0 0 22px rgba(255,255,255,0.04),
-    0 0 32px rgba(125,211,252,0.18) !important;
-}
-
-/* Reset temporary blend-mode experiment */
-.faith-logo-clean,
-.faith-icon-clean,
-.faith-cutout,
-.faith-cutout-dark,
-img[src*="logo-faith-metal"],
-img[src*="emblem-wings-eye"],
-img[src*="icon-vaults"],
-img[src*="icon-pcs"],
-img[src*="icon-treasury"],
-img[src*="icon-tfusd"],
-img[src*="token-faith"],
-img[src*="token-fusd"] {
-  mix-blend-mode: normal !important;
-  filter: none !important;
-}
-
-/* === FAITH CLEAN FINAL OVERRIDES === */
 
 .faith-shell {
-  border: 1px solid rgba(191, 219, 254, 0.16);
-  background: rgba(2, 6, 23, 0.18);
+  border: 1px solid var(--faith-border);
+  background: rgba(2, 6, 23, 0.10);
   box-shadow:
-    inset 0 0 30px rgba(255,255,255,0.025),
-    0 0 50px rgba(56,189,248,0.08);
+    inset 0 0 32px rgba(255,255,255,0.018),
+    0 0 52px rgba(56,189,248,0.06);
 }
 
-.faith-card {
-  position: relative;
-  border: 1px solid rgba(191, 219, 254, 0.16);
-  background:
-    radial-gradient(circle at 20% 10%, rgba(125,211,252,0.09), transparent 35%),
-    linear-gradient(180deg, rgba(2, 6, 23, 0.58), rgba(2, 6, 23, 0.78));
-  box-shadow:
-    inset 0 0 24px rgba(255,255,255,0.025),
-    0 0 28px rgba(56,189,248,0.06);
-  backdrop-filter: blur(6px);
+/* Navigation */
+.faith-home nav {
+  background: rgba(2, 6, 23, 0.42);
+  backdrop-filter: blur(12px);
 }
 
+.faith-home nav a {
+  color: rgba(248, 251, 255, 0.92);
+  text-decoration: none;
+  text-shadow: 0 0 14px rgba(191,219,254,0.16);
+}
+
+.faith-home nav a:hover {
+  color: var(--faith-cyan);
+}
+
+/* Buttons */
 .faith-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(191,219,254,0.32);
-  background: rgba(2,6,23,0.42);
+  border: 1px solid rgba(191,219,254,0.34);
+  background: linear-gradient(180deg, rgba(15,23,42,0.54), rgba(2,6,23,0.78));
   color: white;
   text-transform: uppercase;
   letter-spacing: .26em;
   font-weight: 900;
+  text-decoration: none;
   box-shadow:
     inset 0 0 18px rgba(255,255,255,0.04),
-    0 0 24px rgba(125,211,252,0.12);
+    0 0 24px rgba(125,211,252,0.10);
+  transition: all .2s ease;
 }
 
 .faith-button:hover {
-  border-color: rgba(207,250,254,0.7);
+  border-color: rgba(207,250,254,0.72);
   box-shadow:
     inset 0 0 20px rgba(255,255,255,0.07),
-    0 0 34px rgba(125,211,252,0.24);
+    0 0 34px rgba(125,211,252,0.22);
+  transform: translateY(-1px);
 }
 
+/* Hero assets */
 .faith-logo-top {
+  height: 54px;
+  width: auto;
+  object-fit: contain;
   filter:
     brightness(1.08)
     contrast(1.08)
@@ -337,33 +97,54 @@ img[src*="token-fusd"] {
 
 .faith-logo-main {
   filter:
-    brightness(1.08)
-    contrast(1.08)
-    drop-shadow(0 0 20px rgba(191,219,254,.28))
-    drop-shadow(0 0 44px rgba(56,189,248,.14));
+    brightness(1.06)
+    contrast(1.06)
+    drop-shadow(0 0 20px rgba(191,219,254,.24))
+    drop-shadow(0 0 44px rgba(56,189,248,.12));
 }
 
 .faith-emblem {
   filter:
     brightness(1.08)
     contrast(1.08)
-    drop-shadow(0 0 22px rgba(191,219,254,.28))
-    drop-shadow(0 0 54px rgba(56,189,248,.18));
+    drop-shadow(0 0 22px rgba(191,219,254,.24))
+    drop-shadow(0 0 52px rgba(56,189,248,.14));
 }
 
+/* Panels / cards */
+.faith-card {
+  position: relative;
+  border: 1px solid rgba(191, 219, 254, 0.14);
+  background:
+    radial-gradient(circle at 18% 10%, rgba(125,211,252,0.08), transparent 38%),
+    linear-gradient(180deg, rgba(2,6,23,0.42), rgba(2,6,23,0.68));
+  box-shadow:
+    inset 0 0 24px rgba(255,255,255,0.018),
+    0 0 28px rgba(56,189,248,0.045);
+  backdrop-filter: blur(5px);
+}
+
+.faith-card:hover {
+  border-color: rgba(207,250,254,0.28);
+  box-shadow:
+    inset 0 0 26px rgba(255,255,255,0.024),
+    0 0 34px rgba(56,189,248,0.08);
+}
+
+/* Asset boxes */
 .faith-icon-box {
   display: grid;
   height: 96px;
   width: 96px;
   flex-shrink: 0;
   place-items: center;
-  border: 1px solid rgba(191,219,254,0.2);
+  border: 1px solid rgba(191,219,254,0.17);
   background:
-    radial-gradient(circle at center, rgba(125,211,252,0.13), rgba(2,6,23,0.78) 62%),
-    rgba(2,6,23,0.45);
+    radial-gradient(circle at center, rgba(125,211,252,0.10), rgba(2,6,23,0.50) 62%),
+    rgba(2,6,23,0.35);
   box-shadow:
-    inset 0 0 18px rgba(255,255,255,0.035),
-    0 0 28px rgba(125,211,252,0.12);
+    inset 0 0 18px rgba(255,255,255,0.025),
+    0 0 24px rgba(125,211,252,0.08);
 }
 
 .faith-loop-icon {
@@ -373,8 +154,8 @@ img[src*="token-fusd"] {
   margin-inline: auto;
   place-items: center;
   border-radius: 999px;
-  border: 1px solid rgba(191,219,254,0.17);
-  background: radial-gradient(circle at center, rgba(125,211,252,0.12), rgba(2,6,23,0.2) 64%);
+  border: 1px solid rgba(191,219,254,0.15);
+  background: radial-gradient(circle at center, rgba(125,211,252,0.10), rgba(2,6,23,0.18) 64%);
 }
 
 .faith-asset {
@@ -385,52 +166,59 @@ img[src*="token-fusd"] {
     brightness(1.14)
     contrast(1.12)
     saturate(1.08)
-    drop-shadow(0 0 16px rgba(125,211,252,.22));
+    drop-shadow(0 0 12px rgba(125,211,252,.16));
 }
 
 .tfusd-bright {
   filter:
-    brightness(1.38)
-    contrast(1.14)
-    saturate(1.12)
-    drop-shadow(0 0 18px rgba(125,211,252,.32)) !important;
+    brightness(1.42)
+    contrast(1.16)
+    saturate(1.15)
+    drop-shadow(0 0 18px rgba(125,211,252,.30)) !important;
 }
 
+/* Tokens */
 .faith-token-card {
   display: flex;
   align-items: center;
   gap: 1.25rem;
   border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(2,6,23,0.36);
+  background: rgba(2,6,23,0.34);
   padding: 1.25rem;
 }
 
 .faith-token {
-  height: 110px;
-  width: 110px;
+  height: 100px;
+  width: 100px;
   object-fit: contain;
   filter:
-    brightness(1.16)
+    brightness(1.18)
     contrast(1.12)
     saturate(1.08)
-    drop-shadow(0 0 20px rgba(125,211,252,.24));
+    drop-shadow(0 0 20px rgba(125,211,252,.22));
 }
 
-/* undo old destructive experiments if they exist */
-.faith-logo-clean,
-.faith-icon-clean,
-.faith-cutout,
-.faith-cutout-dark {
-  mix-blend-mode: normal !important;
+/* Typography */
+.faith-home h1,
+.faith-home h2,
+.faith-home h3 {
+  text-shadow:
+    0 0 18px rgba(191,219,254,0.14),
+    0 0 34px rgba(56,189,248,0.07);
 }
 
+/* Mobile */
 @media (max-width: 768px) {
+  .faith-logo-top {
+    height: 42px;
+  }
+
   .faith-logo-main {
-    height: 150px;
+    height: 145px !important;
   }
 
   .faith-emblem {
-    height: 180px;
+    height: 165px !important;
   }
 
   .faith-icon-box,
@@ -443,4 +231,343 @@ img[src*="token-fusd"] {
     height: 70px;
     width: 70px;
   }
+
+  .faith-token {
+    height: 82px;
+    width: 82px;
+  }
+}
+
+/* === PREMIUM TOKEN SYSTEM SECTION === */
+
+.faith-token-system {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(191, 219, 254, 0.18);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(125,211,252,0.10), transparent 42%),
+    linear-gradient(180deg, rgba(2,6,23,0.58), rgba(2,6,23,0.86));
+  padding: 3rem 2rem;
+  box-shadow:
+    inset 0 0 34px rgba(255,255,255,0.022),
+    0 0 42px rgba(56,189,248,0.07);
+  backdrop-filter: blur(6px);
+}
+
+.faith-token-system::before {
+  content: "";
+  position: absolute;
+  inset: 1rem;
+  pointer-events: none;
+  border: 1px solid rgba(191,219,254,0.10);
+}
+
+.faith-token-system::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 5rem;
+  bottom: 2rem;
+  width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(191,219,254,0.32),
+    transparent
+  );
+  opacity: 0.7;
+}
+
+.faith-token-orb {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  min-height: 430px;
+  border: 1px solid rgba(191,219,254,0.12);
+  background:
+    radial-gradient(circle at center, rgba(125,211,252,0.09), transparent 48%),
+    rgba(2,6,23,0.30);
+}
+
+.faith-token-ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 260px;
+  height: 260px;
+  border-radius: 999px;
+  border: 1px solid rgba(207,250,254,0.38);
+  background:
+    radial-gradient(circle at center, rgba(125,211,252,0.10), rgba(2,6,23,0.42) 58%, rgba(2,6,23,0.82));
+  box-shadow:
+    inset 0 0 36px rgba(255,255,255,0.04),
+    0 0 46px rgba(125,211,252,0.18);
+}
+
+.faith-token-ring::before,
+.faith-token-ring::after {
+  content: "";
+  position: absolute;
+  inset: -16px;
+  border-radius: inherit;
+  border: 1px solid rgba(191,219,254,0.14);
+}
+
+.faith-token-ring::after {
+  inset: -30px;
+  border-color: rgba(125,211,252,0.08);
+}
+
+.faith-token-large {
+  width: 205px;
+  height: 205px;
+  object-fit: contain;
+  filter:
+    brightness(1.25)
+    contrast(1.16)
+    saturate(1.1)
+    drop-shadow(0 0 24px rgba(125,211,252,.28));
+}
+
+.faith-token-large.tfusd-bright {
+  filter:
+    brightness(1.58)
+    contrast(1.18)
+    saturate(1.16)
+    drop-shadow(0 0 30px rgba(125,211,252,.42)) !important;
+}
+
+@media (max-width: 1024px) {
+  .faith-token-system::after {
+    display: none;
+  }
+
+  .faith-token-ring {
+    width: 220px;
+    height: 220px;
+  }
+
+  .faith-token-large {
+    width: 170px;
+    height: 170px;
+  }
+}
+
+/* === FINAL ICON BRIGHTNESS FIX === */
+
+img[src*="icon-vaults"],
+img[src*="icon-pcs"],
+img[src*="icon-treasury"],
+img[src*="icon-tfusd"] {
+  opacity: 1 !important;
+  filter: brightness(1.65) contrast(1.22) saturate(1.18) drop-shadow(0 0 18px rgba(125,211,252,0.28)) !important;
+  mix-blend-mode: normal !important;
+}
+
+img[src*="token-faith"],
+img[src*="token-fusd"] {
+  opacity: 1 !important;
+  filter: brightness(1.35) contrast(1.15) saturate(1.12) drop-shadow(0 0 22px rgba(125,211,252,0.25)) !important;
+  mix-blend-mode: normal !important;
+}
+
+.protocol-card img,
+.feature-card img,
+.loop-icon img,
+.token-card img {
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+}
+
+.protocol-card,
+.feature-card,
+.token-card,
+.loop-card {
+  background: rgba(3, 8, 22, 0.50) !important;
+}
+
+.protocol-card .image-frame,
+.feature-card .image-frame,
+.token-card .image-frame,
+.loop-icon {
+  background: rgba(5, 14, 32, 0.18) !important;
+}
+
+/* === GLOBAL FIX: HIDE WHITE SQUARE AROUND FUSD TOKEN EVERYWHERE === */
+
+img[src*="token-fusd"],
+img[src*="fusd-web-icon"],
+img[alt*="fUSD"],
+img[alt*="FUSD"],
+img[alt*="tfUSD"],
+img[alt*="TFUSD"] {
+  clip-path: circle(39% at 50% 50%) !important;
+  border-radius: 9999px !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  background: transparent !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+  filter:
+    brightness(1.18)
+    contrast(1.14)
+    saturate(1.05)
+    drop-shadow(0 0 18px rgba(125,211,252,0.22)) !important;
+}
+
+/* Force all FUSD image containers to not show white/box background */
+div:has(> img[src*="token-fusd"]),
+div:has(> img[src*="fusd-web-icon"]),
+div:has(> img[alt*="fUSD"]),
+div:has(> img[alt*="FUSD"]),
+div:has(> img[alt*="tfUSD"]),
+div:has(> img[alt*="TFUSD"]) {
+  background:
+    radial-gradient(circle at center, rgba(90,170,255,0.12), rgba(2,6,18,0.02) 62%, transparent 72%) !important;
+  border-radius: 9999px !important;
+  overflow: hidden !important;
+}
+
+/* If the token is inside loop/card boxes, keep it circular */
+.loop-icon img[src*="token-fusd"],
+.token-card img[src*="token-fusd"],
+.protocol-card img[src*="token-fusd"],
+.feature-card img[src*="token-fusd"] {
+  clip-path: circle(39% at 50% 50%) !important;
+  border-radius: 9999px !important;
+}
+
+/* === REMOVE WHITE SQUARES AROUND WEB ICONS === */
+
+img[src*="icon-vaults"],
+img[src*="icon-pcs"],
+img[src*="icon-treasury"],
+img[src*="icon-tfusd"],
+img[src*="token-fusd"],
+img[src*="token-faith"] {
+  background: transparent !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  mix-blend-mode: normal !important;
+}
+
+img[src*="icon-pcs"],
+img[src*="icon-treasury"],
+img[src*="icon-tfusd"],
+img[src*="token-fusd"],
+img[src*="token-faith"] {
+  clip-path: circle(45% at 50% 50%) !important;
+  border-radius: 9999px !important;
+}
+
+img[src*="icon-vaults"] {
+  clip-path: inset(8% round 8px) !important;
+  border-radius: 10px !important;
+}
+
+div:has(> img[src*="icon-vaults"]),
+div:has(> img[src*="icon-pcs"]),
+div:has(> img[src*="icon-treasury"]),
+div:has(> img[src*="icon-tfusd"]),
+div:has(> img[src*="token-fusd"]),
+div:has(> img[src*="token-faith"]) {
+  background: transparent !important;
+  overflow: hidden !important;
+}
+
+/* === CLEAN WEB ICONS LIKE FUSD - HIDE WHITE BACKGROUND === */
+
+/* Dark circular container around all protocol icons */
+div:has(> img[src*="icon-vaults"]),
+div:has(> img[src*="icon-pcs"]),
+div:has(> img[src*="icon-treasury"]) {
+  width: 104px !important;
+  height: 104px !important;
+  border-radius: 9999px !important;
+  background:
+    radial-gradient(circle at center, rgba(8, 18, 38, 0.96), rgba(1, 5, 14, 0.98)) !important;
+  border: 1px solid rgba(148, 197, 255, 0.22) !important;
+  box-shadow:
+    inset 0 0 26px rgba(125, 211, 252, 0.08),
+    0 0 26px rgba(80, 160, 255, 0.10) !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Make white pixels disappear into dark background */
+img[src*="icon-vaults"],
+img[src*="icon-pcs"],
+img[src*="icon-treasury"] {
+  width: 86px !important;
+  height: 86px !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  background: transparent !important;
+  mix-blend-mode: multiply !important;
+  opacity: 1 !important;
+  filter:
+    brightness(1.55)
+    contrast(1.32)
+    saturate(1.22)
+    drop-shadow(0 0 12px rgba(125, 211, 252, 0.25)) !important;
+}
+
+/* Keep fUSD clean and round */
+img[src*="icon-tfusd"],
+img[src*="token-fusd"] {
+  clip-path: circle(45% at 50% 50%) !important;
+  border-radius: 9999px !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  background: transparent !important;
+}
+
+/* === FIX AFTER MULTIPLY: RESTORE ICON VISIBILITY === */
+
+img[src*="icon-vaults"],
+img[src*="icon-pcs"],
+img[src*="icon-treasury"] {
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+  width: 92px !important;
+  height: 92px !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  filter:
+    brightness(1.45)
+    contrast(1.16)
+    saturate(1.08)
+    drop-shadow(0 0 14px rgba(125,211,252,0.25)) !important;
+}
+
+div:has(> img[src*="icon-vaults"]),
+div:has(> img[src*="icon-pcs"]),
+div:has(> img[src*="icon-treasury"]) {
+  background: transparent !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+}
+
+/* remove the ugly visible white by cropping only the image edges */
+img[src*="icon-vaults"] {
+  clip-path: inset(10% round 10px) !important;
+}
+
+img[src*="icon-pcs"],
+img[src*="icon-treasury"] {
+  clip-path: circle(42% at 50% 50%) !important;
+  border-radius: 9999px !important;
+}
+
+/* keep tfUSD clean */
+img[src*="icon-tfusd"],
+img[src*="token-fusd"] {
+  mix-blend-mode: normal !important;
+  clip-path: circle(45% at 50% 50%) !important;
+  border-radius: 9999px !important;
+  opacity: 1 !important;
 }
