@@ -22,6 +22,11 @@ export type PCSRiskOutput = {
   debtCoverageRatio: number | null;
   suggestedParameterResponse: string;
   riskRationale: string;
+  currentLTV: number;
+  suggestedLTV: number;
+  liquidationThreshold: number;
+  treasuryReserveTarget: number;
+  emergencyMode: boolean;
 };
 
 function clampScore(score: number): number {
@@ -121,14 +126,28 @@ export function calculatePCSRisk(input: PCSRiskInput): PCSRiskOutput {
   else if (pcsRiskScore >= 61) pcsRiskLevel = "High Risk";
   else if (pcsRiskScore >= 31 || oracleRisk === "High" || oracleRisk === "Critical") pcsRiskLevel = "Warning";
 
+  const currentLTV = 60;
+  const liquidationThreshold = 110;
+
+  let suggestedLTV = 60;
+  let treasuryReserveTarget = 15;
+  let emergencyMode = false;
+
   let suggestedParameterResponse = "Maintain LTV";
 
   if (pcsRiskLevel === "Critical") {
     suggestedParameterResponse = "Pause Borrowing / Allow Liquidation";
+    suggestedLTV = 35;
+    treasuryReserveTarget = 30;
+    emergencyMode = true;
   } else if (pcsRiskLevel === "High Risk") {
     suggestedParameterResponse = "Reduce LTV / Increase Reserves";
+    suggestedLTV = 45;
+    treasuryReserveTarget = 25;
   } else if (pcsRiskLevel === "Warning" || oracleRisk === "High" || oracleRisk === "Critical") {
     suggestedParameterResponse = "Tighten Risk Parameters";
+    suggestedLTV = 50;
+    treasuryReserveTarget = 20;
   }
 
   let riskRationale =
@@ -161,6 +180,11 @@ export function calculatePCSRisk(input: PCSRiskInput): PCSRiskOutput {
     debtCoverageRatio,
     suggestedParameterResponse,
     riskRationale,
+    currentLTV,
+    suggestedLTV,
+    liquidationThreshold,
+    treasuryReserveTarget,
+    emergencyMode,
   };
 }
 
