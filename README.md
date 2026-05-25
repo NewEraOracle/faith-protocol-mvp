@@ -136,3 +136,26 @@ PCS protects and regulates the digital economy.
 Treasury strength compounds the system.
 Capital flows back toward productive growth.
 
+
+---
+
+## Documentation
+
+- [FAITH Protocol Whitepaper](docs/FAITH_PROTOCOL_WHITEPAPER.md)
+- [Pitch Summary](docs/PITCH_SUMMARY.md)
+- [MegaETH Project Description](docs/MEGAETH_PROJECT_DESCRIPTION.md)
+- [FAITH Ecosystem Map](docs/ECOSYSTEM_MAP.md)
+- [UtopiaByFaith Whitepaper](utopia-by-faith/UTOPIA_BY_FAITH_WHITEPAPER.md)
+- [UtopiaByFaith Economy Summary](utopia-by-faith/ECONOMY_SUMMARY.md)
+- [UtopiaByFaith Roadmap](utopia-by-faith/ROADMAP.md)
+
+---
+
+## Live Links
+
+Website: https://faith-protocol-mvp.vercel.app
+
+Dashboard: https://faith-protocol-mvp.vercel.app/dashboard
+
+GitHub: https://github.com/NewEraOracle/faith-protocol-mvp
+
