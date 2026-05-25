@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { ethers } from "ethers";
+import { calculatePCSRisk } from "@/lib/pcs";
 
 import {
   FAITH_TOKEN_ABI,
@@ -160,6 +161,16 @@ export default function Home() {
     }
     return { label: "Healthy", color: "text-green-300", bg: "bg-green-500/10", border: "border-green-500/30" };
   }, [healthFactor, healthNumber]);
+  const pcsRisk = useMemo(() => {
+    return calculatePCSRisk({
+      oraclePrice: Number(oraclePrice),
+      healthFactor: healthFactor === "∞" ? null : Number(healthFactor),
+      protocolCollateral: Number(protocolCollateral),
+      protocolDebtSupply: Number(protocolDebtSupply),
+      vaultActive,
+    });
+  }, [healthFactor, oraclePrice, protocolCollateral, protocolDebtSupply, vaultActive]);
+
 
   const demoSteps = [
     {
@@ -864,31 +875,31 @@ export default function Home() {
             </p>
           </div>
           <div className={`rounded-full border px-4 py-2 text-sm font-bold ${riskStatus.bg} ${riskStatus.border} ${riskStatus.color}`}>
-            System Risk: {riskStatus.label}
+            System Risk: {pcsRisk.pcsRiskLevel} · {pcsRisk.pcsRiskScore}/100
           </div>
         </div>
 
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           <div className="rounded-3xl border border-white/10 bg-black/30 p-5">
             <p className="text-xs font-black uppercase tracking-[0.20em] text-zinc-400">Oracle Risk</p>
-            <h3 className={`mt-3 text-2xl font-black ${Number(oraclePrice) < 0.75 ? "text-orange-300" : "text-emerald-300"}`}>
-              {Number(oraclePrice) < 0.75 ? "Elevated" : "Low"}
+            <h3 className={`mt-3 text-2xl font-black ${pcsRisk.oracleRisk === "Critical" || pcsRisk.oracleRisk === "High" ? "text-red-300" : pcsRisk.oracleRisk === "Elevated" ? "text-orange-300" : "text-emerald-300"}`}>
+              {pcsRisk.oracleRisk}
             </h3>
             <p className="mt-2 text-sm text-zinc-500">Oracle price shock sensitivity.</p>
           </div>
 
           <div className="rounded-3xl border border-white/10 bg-black/30 p-5">
             <p className="text-xs font-black uppercase tracking-[0.20em] text-zinc-400">Treasury Coverage</p>
-            <h3 className="mt-3 text-2xl font-black text-emerald-300">
-              {Number(protocolCollateral) > 0 ? "Active" : "Standby"}
+            <h3 className={`mt-3 text-2xl font-black ${pcsRisk.treasuryCoverage === "Weak" ? "text-red-300" : pcsRisk.treasuryCoverage === "Moderate" ? "text-orange-300" : "text-emerald-300"}`}>
+              {pcsRisk.treasuryCoverage}
             </h3>
             <p className="mt-2 text-sm text-zinc-500">Reserve visibility for credit risk protection.</p>
           </div>
 
           <div className="rounded-3xl border border-white/10 bg-black/30 p-5">
             <p className="text-xs font-black uppercase tracking-[0.20em] text-zinc-400">Liquidation Pressure</p>
-            <h3 className={`mt-3 text-2xl font-black ${riskStatus.label === "Liquidatable" ? "text-red-300" : riskStatus.label === "Warning" ? "text-orange-300" : "text-emerald-300"}`}>
-              {riskStatus.label === "Liquidatable" ? "Critical" : riskStatus.label === "Warning" ? "Rising" : "Controlled"}
+            <h3 className={`mt-3 text-2xl font-black ${pcsRisk.liquidationPressure === "Critical" || pcsRisk.liquidationPressure === "High" ? "text-red-300" : pcsRisk.liquidationPressure === "Rising" ? "text-orange-300" : "text-emerald-300"}`}>
+              {pcsRisk.liquidationPressure}
             </h3>
             <p className="mt-2 text-sm text-zinc-500">Vault safety pressure from debt and collateral changes.</p>
           </div>
@@ -896,7 +907,7 @@ export default function Home() {
           <div className="rounded-3xl border border-white/10 bg-black/30 p-5">
             <p className="text-xs font-black uppercase tracking-[0.20em] text-zinc-400">Suggested Parameter Response</p>
             <h3 className="mt-3 text-xl font-black text-cyan-100">
-              {riskStatus.label === "Liquidatable" ? "Pause / Liquidate" : riskStatus.label === "Warning" ? "Reduce LTV" : Number(oraclePrice) < 0.75 ? "Tighten Risk" : "Maintain LTV"}
+              {pcsRisk.suggestedParameterResponse}
             </h3>
             <p className="mt-2 text-sm text-zinc-500">Protocol-level response for the current testnet state.</p>
           </div>
@@ -905,13 +916,7 @@ export default function Home() {
         <div className="mt-6 rounded-2xl border border-cyan-300/20 bg-black/30 p-5">
           <p className="text-xs font-black uppercase tracking-[0.22em] text-cyan-200">Risk Rationale</p>
           <p className="mt-3 text-sm leading-7 text-zinc-300">
-            {riskStatus.label === "Liquidatable"
-              ? "Vault conditions are critical. PCS suggests protecting protocol solvency by allowing liquidation logic and preventing additional risk expansion."
-              : riskStatus.label === "Warning"
-                ? "Vault health is weakening. PCS suggests reducing protocol risk exposure, monitoring liquidation pressure, and tightening credit parameters."
-                : Number(oraclePrice) < 0.75
-                  ? "Oracle conditions are stressed. PCS suggests tightening protocol risk parameters until collateral conditions stabilize."
-                  : "Collateral conditions are stable, oracle risk is low, treasury coverage is active, and liquidation pressure remains controlled. PCS suggests maintaining current protocol parameters."}
+            {pcsRisk.riskRationale}
           </p>
         </div>
       </section>

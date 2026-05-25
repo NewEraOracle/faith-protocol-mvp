@@ -119,7 +119,7 @@ export function calculatePCSRisk(input: PCSRiskInput): PCSRiskOutput {
 
   if (pcsRiskScore >= 81) pcsRiskLevel = "Critical";
   else if (pcsRiskScore >= 61) pcsRiskLevel = "High Risk";
-  else if (pcsRiskScore >= 31) pcsRiskLevel = "Warning";
+  else if (pcsRiskScore >= 31 || oracleRisk === "High" || oracleRisk === "Critical") pcsRiskLevel = "Warning";
 
   let suggestedParameterResponse = "Maintain LTV";
 
@@ -127,7 +127,7 @@ export function calculatePCSRisk(input: PCSRiskInput): PCSRiskOutput {
     suggestedParameterResponse = "Pause Borrowing / Allow Liquidation";
   } else if (pcsRiskLevel === "High Risk") {
     suggestedParameterResponse = "Reduce LTV / Increase Reserves";
-  } else if (pcsRiskLevel === "Warning") {
+  } else if (pcsRiskLevel === "Warning" || oracleRisk === "High" || oracleRisk === "Critical") {
     suggestedParameterResponse = "Tighten Risk Parameters";
   }
 
@@ -136,7 +136,9 @@ export function calculatePCSRisk(input: PCSRiskInput): PCSRiskOutput {
 
   if (pcsRiskLevel === "Warning") {
     riskRationale =
-      "PCS detected early risk signals from oracle conditions, vault health, borrow utilization, or treasury coverage. PCS suggests closer monitoring and tighter risk parameters.";
+      oracleRisk === "High" || oracleRisk === "Critical"
+        ? "PCS detected elevated oracle risk. Even with controlled liquidation pressure, PCS suggests tighter protocol risk parameters until collateral pricing conditions stabilize."
+        : "PCS detected early risk signals from oracle conditions, vault health, borrow utilization, or treasury coverage. PCS suggests closer monitoring and tighter risk parameters.";
   }
 
   if (pcsRiskLevel === "High Risk") {
