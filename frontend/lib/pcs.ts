@@ -3,6 +3,7 @@ export type PCSRiskLevel = "Healthy" | "Warning" | "High Risk" | "Critical";
 export type PCSOracleRisk = "Low" | "Elevated" | "High" | "Critical";
 export type PCSTreasuryCoverage = "No Debt" | "Strong" | "Moderate" | "Weak";
 export type PCSLiquidationPressure = "Controlled" | "Rising" | "High" | "Critical";
+export type PCSVaultHealthRisk = "No Debt" | "Low" | "Moderate" | "High" | "Critical";
 
 export type PCSRiskInput = {
   oraclePrice: number;
@@ -16,6 +17,7 @@ export type PCSRiskOutput = {
   pcsRiskScore: number;
   pcsRiskLevel: PCSRiskLevel;
   oracleRisk: PCSOracleRisk;
+  vaultHealthRisk: PCSVaultHealthRisk;
   treasuryCoverage: PCSTreasuryCoverage;
   liquidationPressure: PCSLiquidationPressure;
   borrowUtilization: number;
@@ -62,11 +64,24 @@ export function calculatePCSRisk(input: PCSRiskInput): PCSRiskOutput {
   }
 
   // Vault Health Risk: max 25 points
+  let vaultHealthRisk: PCSVaultHealthRisk = "No Debt";
+
   if (vaultActive && healthFactor !== null && Number.isFinite(healthFactor)) {
-    if (healthFactor < 1.05) score += 25;
-    else if (healthFactor < 1.2) score += 20;
-    else if (healthFactor < 1.5) score += 12;
-    else if (healthFactor < 2.0) score += 6;
+    if (healthFactor < 1.05) {
+      score += 25;
+      vaultHealthRisk = "Critical";
+    } else if (healthFactor < 1.2) {
+      score += 20;
+      vaultHealthRisk = "High";
+    } else if (healthFactor < 1.5) {
+      score += 12;
+      vaultHealthRisk = "Moderate";
+    } else if (healthFactor < 2.0) {
+      score += 6;
+      vaultHealthRisk = "Moderate";
+    } else {
+      vaultHealthRisk = "Low";
+    }
   }
 
   let liquidationPressure: PCSLiquidationPressure = "Controlled";
@@ -174,6 +189,7 @@ export function calculatePCSRisk(input: PCSRiskInput): PCSRiskOutput {
     pcsRiskScore,
     pcsRiskLevel,
     oracleRisk,
+    vaultHealthRisk,
     treasuryCoverage,
     liquidationPressure,
     borrowUtilization,
