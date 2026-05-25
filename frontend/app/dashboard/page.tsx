@@ -887,8 +887,39 @@ export default function Home() {
           <ActionCard title="Withdraw tFAITH" description="Withdraw collateral while preserving solvency." inputValue={withdrawAmount} onInputChange={setWithdrawAmount} placeholder="Amount" buttonLabel="Withdraw tFAITH" buttonClassName="bg-red-600 hover:bg-red-500" onClick={withdrawCollateral} />
           <ActionCard title="Liquidate tVault" description="Liquidate an unsafe vault using tfUSD." inputValue={liquidateAddress} onInputChange={setLiquidateAddress} placeholder="User wallet address" buttonLabel="Liquidate tVault" buttonClassName="bg-rose-700 hover:bg-rose-600" onClick={liquidateVault} />
           <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
-            <h3 className="text-2xl font-bold">tMockOracle Controls</h3>
-            <p className="mt-2 min-h-[48px] text-sm text-zinc-400">Simulate tFAITH price movement and test liquidation behavior.</p>
+            <h3 className="text-2xl font-bold">Oracle Shock Simulator</h3>
+            <p className="mt-2 min-h-[48px] text-sm text-zinc-400">
+              Simulate collateral price shocks and observe how vault health, liquidation risk, and PCS monitoring respond.
+            </p>
+
+            <div className="mt-5 rounded-2xl border border-purple-400/20 bg-purple-400/10 p-4">
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-purple-200">Risk Control Panel</p>
+
+              <div className="mt-4 space-y-2 text-xs">
+                <div className="flex justify-between gap-3">
+                  <span className="text-zinc-500">Current Oracle Price</span>
+                  <span className="text-white">${oraclePrice}</span>
+                </div>
+                <div className="flex justify-between gap-3">
+                  <span className="text-zinc-500">Shock Scenario</span>
+                  <span className={Number(oraclePrice) < 0.75 ? "text-orange-300" : "text-emerald-300"}>
+                    {Number(oraclePrice) < 0.75 ? "tFAITH crash active" : "Stable baseline"}
+                  </span>
+                </div>
+                <div className="flex justify-between gap-3">
+                  <span className="text-zinc-500">Risk Effect</span>
+                  <span className={Number(oraclePrice) < 0.75 ? "text-orange-300" : "text-emerald-300"}>
+                    {Number(oraclePrice) < 0.75 ? "Liquidation pressure elevated" : "Normal collateral conditions"}
+                  </span>
+                </div>
+                <div className="flex justify-between gap-3">
+                  <span className="text-zinc-500">PCS Response</span>
+                  <span className="text-cyan-100">
+                    {Number(oraclePrice) < 0.75 ? "Monitor unsafe vaults" : "Maintain parameters"}
+                  </span>
+                </div>
+              </div>
+            </div>
             <input value={newPrice} onChange={(e) => setNewPrice(e.target.value)} placeholder="New tFAITH price, ex: 0.4" className="mt-5 w-full rounded-2xl border border-white/10 bg-black/30 p-4 outline-none placeholder:text-zinc-600 focus:border-purple-400/70" />
             <div className="mt-4 grid gap-3">
               <button onClick={() => setOraclePriceOnchain(newPrice)} className="w-full rounded-2xl bg-purple-600 p-4 font-bold transition hover:bg-purple-500">Set tFAITH Price</button>
