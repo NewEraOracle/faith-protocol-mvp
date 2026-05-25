@@ -425,34 +425,34 @@ export default function Home() {
       for (const event of depositEvents as any[]) {
         const user = event.args.user;
         const amount = Number(ethers.formatEther(event.args.amount));
-        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Deposit", title: "tFAITH Deposited", description: `${shortAddress(user)} deposited ${amount} tFAITH`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, amount });
+        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Deposit", title: "Collateral Deposited", description: `${shortAddress(user)} added ${amount} tFAITH collateral to the credit system`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, amount });
       }
       for (const event of withdrawEvents as any[]) {
         const user = event.args.user;
         const amount = Number(ethers.formatEther(event.args.amount));
-        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Withdraw", title: "tFAITH Withdrawn", description: `${shortAddress(user)} withdrew ${amount} tFAITH`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, amount });
+        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Withdraw", title: "Collateral Withdrawn", description: `${shortAddress(user)} withdrew ${amount} tFAITH collateral from the vault system`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, amount });
       }
       for (const event of borrowEvents as any[]) {
         const user = event.args.user;
         const amount = Number(ethers.formatEther(event.args.amount));
-        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Borrow", title: "tfUSD Borrowed", description: `${shortAddress(user)} borrowed ${amount} tfUSD`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, amount });
+        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Borrow", title: "Stable Credit Borrowed", description: `${shortAddress(user)} minted ${amount} tfUSD against collateral`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, amount });
       }
       for (const event of repayEvents as any[]) {
         const user = event.args.user;
         const amount = Number(ethers.formatEther(event.args.amount));
-        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Repay", title: "tfUSD Repaid", description: `${shortAddress(user)} repaid ${amount} tfUSD`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, amount });
+        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Repay", title: "Debt Repaid", description: `${shortAddress(user)} repaid ${amount} tfUSD and reduced system debt`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, amount });
       }
       for (const event of liquidationEvents as any[]) {
         const user = event.args.user;
         const liquidator = event.args.liquidator;
         const debtRepaid = Number(ethers.formatEther(event.args.debtRepaid));
         const collateralSeized = Number(ethers.formatEther(event.args.collateralSeized));
-        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Liquidation", title: "tVault Liquidated", description: `${shortAddress(liquidator)} liquidated ${shortAddress(user)} — ${debtRepaid} tfUSD repaid, ${collateralSeized} tFAITH seized`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, liquidator, debtRepaid, collateralSeized });
+        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Liquidation", title: "Liquidation Executed", description: `${shortAddress(liquidator)} cleared unsafe debt for ${shortAddress(user)} — ${debtRepaid} tfUSD repaid, ${collateralSeized} tFAITH collateral seized`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, liquidator, debtRepaid, collateralSeized });
       }
       for (const event of oracleEvents as any[]) {
         const previousPrice = Number(ethers.formatEther(event.args.previousPrice));
         const newOraclePrice = Number(ethers.formatEther(event.args.newPrice));
-        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Oracle", title: "tMockOracle Updated", description: `tFAITH price changed from $${previousPrice} to $${newOraclePrice}`, blockNumber: event.blockNumber, txHash: event.transactionHash, previousPrice, newPrice: newOraclePrice });
+        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Oracle", title: "Oracle Shock Recorded", description: `tFAITH oracle moved from $${previousPrice} to $${newOraclePrice}; PCS risk conditions should update from this signal`, blockNumber: event.blockNumber, txHash: event.transactionHash, previousPrice, newPrice: newOraclePrice });
       }
 
       items.sort((a, b) => b.blockNumber - a.blockNumber);
@@ -1294,12 +1294,12 @@ export default function Home() {
         <div className="mb-5 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
           <div>
             <h2 className="text-2xl font-bold">Recent Protocol Activity</h2>
-            <p className="mt-1 text-zinc-400">Live events emitted from tVaultManager and tMockOracle.</p>
+            <p className="mt-1 text-zinc-400">Live on-chain events from the credit, collateral, oracle, liquidation, and PCS risk flow.</p>
           </div>
           <button onClick={loadActivity} className="rounded-2xl border border-white/10 bg-black/30 px-5 py-3 font-semibold transition hover:bg-white/10">{activityLoading ? "Loading..." : "Refresh Activity"}</button>
         </div>
         {activity.length === 0 ? (
-          <div className="rounded-2xl border border-white/10 bg-black/30 p-6 text-zinc-400">No protocol activity found yet.</div>
+          <div className="rounded-2xl border border-white/10 bg-black/30 p-6 text-zinc-400">No protocol activity found yet. Run the demo flow to generate collateral, credit, oracle, and liquidation events.</div>
         ) : (
           <div className="space-y-3">{activity.map((item) => <ActivityRow key={item.id} item={item} shortHash={shortHash} />)}</div>
         )}
