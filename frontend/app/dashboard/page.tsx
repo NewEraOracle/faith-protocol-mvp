@@ -689,11 +689,11 @@ export default function Home() {
       <section className="mb-8 flex flex-col justify-between gap-6 rounded-3xl border border-white/10 bg-white/[0.03] p-8 lg:flex-row lg:items-center">
         <div>
           <div className="mb-3 inline-flex rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-sm font-semibold text-blue-300">
-            Institutional Credit Infrastructure
+            MegaETH-Native Institutional Credit Infrastructure
           </div>
           <h1 className="text-5xl font-bold tracking-tight">FAITH Protocol</h1>
           <p className="mt-3 max-w-2xl text-lg text-zinc-400">
-            Institutional credit, treasury, and risk infrastructure for an autonomous digital economy on MegaETH. Built around vaults, stable credit, PCS monitoring, oracle shock simulation, treasury health, and future capital routing.
+            FAITH Protocol is building MegaETH-native credit, treasury, and risk infrastructure for an autonomous digital economy. Built around vaults, stable credit, PCS monitoring, oracle shock simulation, treasury health, and future capital routing.
           </p>
         </div>
         {!wallet ? (
@@ -1082,6 +1082,7 @@ function ActivityRow({ item, shortHash }: { item: ActivityItem; shortHash: (hash
   const badgeStyle = item.type === "Deposit" ? "border-green-500/30 bg-green-500/10 text-green-300" : item.type === "Withdraw" ? "border-red-500/30 bg-red-500/10 text-red-300" : item.type === "Borrow" ? "border-blue-500/30 bg-blue-500/10 text-blue-300" : item.type === "Repay" ? "border-yellow-500/30 bg-yellow-500/10 text-yellow-300" : item.type === "Liquidation" ? "border-rose-500/30 bg-rose-500/10 text-rose-300" : "border-purple-500/30 bg-purple-500/10 text-purple-300";
   return <div className="flex flex-col justify-between gap-4 rounded-2xl border border-white/10 bg-black/30 p-5 lg:flex-row lg:items-center"><div className="flex items-start gap-4"><div className={`rounded-full border px-3 py-1 text-xs font-bold ${badgeStyle}`}>{item.type}</div><div><p className="font-semibold text-white">{item.title}</p><p className="mt-1 text-sm text-zinc-400">{item.description}</p></div></div><div className="text-sm text-zinc-500"><p>Block #{item.blockNumber}</p><p className="font-mono">{shortHash(item.txHash)}</p></div></div>;
 }
+
 
 
 
