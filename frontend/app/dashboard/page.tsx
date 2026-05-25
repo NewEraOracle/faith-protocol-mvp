@@ -850,13 +850,48 @@ export default function Home() {
             {vaultActive ? "Vault Active" : "Vault Inactive"}
           </div>
         </div>
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-7">
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           <MetricCard label="tFAITH Balance" value={Number(faithBalance).toLocaleString()} />
           <MetricCard label="tfUSD Balance" value={Number(fusdBalance).toLocaleString()} />
           <MetricCard label="Collateral (FAITH)" value={collateral} />
           <MetricCard label="Debt (fUSD)" value={debt} />
           <MetricCard label="Borrow Limit (fUSD)" value={borrowLimit} />
           <MetricCard label="Available Borrow (fUSD)" value={availableBorrow} />
+          <div className="rounded-3xl border border-rose-400/20 bg-rose-400/10 p-5 shadow-[0_0_45px_rgba(244,63,94,0.08)]">
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-rose-200">Liquidation Risk</p>
+            <h3 className={`mt-3 text-2xl font-black ${riskStatus.label === "Liquidatable" ? "text-red-300" : riskStatus.label === "Warning" ? "text-orange-300" : "text-white"}`}>
+              {riskStatus.label === "Liquidatable" ? "Critical" : riskStatus.label === "Warning" ? "Warning" : "Controlled"}
+            </h3>
+            <p className="mt-2 text-xs text-zinc-400">Vault safety and liquidation monitor</p>
+
+            <div className="mt-5 space-y-2 text-xs">
+              <div className="flex justify-between gap-3">
+                <span className="text-zinc-500">Current Status</span>
+                <span className={riskStatus.color}>{riskStatus.label}</span>
+              </div>
+              <div className="flex justify-between gap-3">
+                <span className="text-zinc-500">Health Factor</span>
+                <span className="text-white">{healthFactor}</span>
+              </div>
+              <div className="flex justify-between gap-3">
+                <span className="text-zinc-500">Debt Position</span>
+                <span className="text-white">{Number(debt).toLocaleString()} tfUSD</span>
+              </div>
+              <div className="flex justify-between gap-3">
+                <span className="text-zinc-500">Collateral at Risk</span>
+                <span className={riskStatus.label === "Liquidatable" ? "text-red-300" : riskStatus.label === "Warning" ? "text-orange-300" : "text-emerald-300"}>
+                  {riskStatus.label === "No Debt" ? "None" : `${Number(collateral).toLocaleString()} tFAITH`}
+                </span>
+              </div>
+              <div className="flex justify-between gap-3">
+                <span className="text-zinc-500">Protocol Response</span>
+                <span className="text-cyan-100">
+                  {riskStatus.label === "Liquidatable" ? "Allow liquidation" : riskStatus.label === "Warning" ? "Monitor vault" : "No action"}
+                </span>
+              </div>
+            </div>
+          </div>
+
           <div className="rounded-3xl border border-white/10 bg-black/30 p-5">
             <p className="text-sm text-zinc-400">Health Factor</p>
             <p className={`mt-3 break-words text-2xl font-bold ${healthFactor !== "∞" && Number(healthFactor) < 1.1 ? "text-red-400" : healthFactor !== "∞" && Number(healthFactor) < 1.5 ? "text-orange-300" : "text-green-400"}`}>{healthFactor}</p>
@@ -989,5 +1024,6 @@ function ActivityRow({ item, shortHash }: { item: ActivityItem; shortHash: (hash
   const badgeStyle = item.type === "Deposit" ? "border-green-500/30 bg-green-500/10 text-green-300" : item.type === "Withdraw" ? "border-red-500/30 bg-red-500/10 text-red-300" : item.type === "Borrow" ? "border-blue-500/30 bg-blue-500/10 text-blue-300" : item.type === "Repay" ? "border-yellow-500/30 bg-yellow-500/10 text-yellow-300" : item.type === "Liquidation" ? "border-rose-500/30 bg-rose-500/10 text-rose-300" : "border-purple-500/30 bg-purple-500/10 text-purple-300";
   return <div className="flex flex-col justify-between gap-4 rounded-2xl border border-white/10 bg-black/30 p-5 lg:flex-row lg:items-center"><div className="flex items-start gap-4"><div className={`rounded-full border px-3 py-1 text-xs font-bold ${badgeStyle}`}>{item.type}</div><div><p className="font-semibold text-white">{item.title}</p><p className="mt-1 text-sm text-zinc-400">{item.description}</p></div></div><div className="text-sm text-zinc-500"><p>Block #{item.blockNumber}</p><p className="font-mono">{shortHash(item.txHash)}</p></div></div>;
 }
+
 
 
