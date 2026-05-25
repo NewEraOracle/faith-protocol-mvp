@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 const modules = [
   {
@@ -28,7 +28,7 @@ const loop = [
   ["Credit", "Minted", "/faith/design/token-fusd.png"],
   ["PCS", "Monitor", "/faith/design/icon-pcs.png"],
   ["tfUSD", "Activated", "/faith/design/icon-tfusd.png"],
-  ["Real-Time", "Utilization", "/faith/design/emblem-wings-eye.png"],
+  ["Real-Time", "Utilization", "/faith/design/icon-real-time-execution.png"],
 ];
 
 const stats = [
@@ -325,6 +325,7 @@ export default function Home() {
 </main>
   );
 }
+
 
 
 
