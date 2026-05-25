@@ -1,10 +1,10 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 export default function DevelopersPage() {
   return (
     <main className="min-h-screen bg-black px-6 py-16 text-white lg:px-10">
       <Link href="/" className="text-xs font-black uppercase tracking-[0.28em] text-cyan-300">
-        ? Back to FAITH
+        Back to FAITH
       </Link>
 
       <section className="mx-auto mt-12 max-w-5xl">
@@ -43,3 +43,4 @@ export default function DevelopersPage() {
     </main>
   );
 }
+
