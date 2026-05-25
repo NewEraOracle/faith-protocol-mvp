@@ -808,19 +808,19 @@ export default function Home() {
           <div className="rounded-3xl border border-cyan-400/20 bg-cyan-400/10 p-5 shadow-[0_0_45px_rgba(34,211,238,0.08)]">
             <p className="text-xs font-black uppercase tracking-[0.25em] text-cyan-200">PCS Status</p>
             <h3 className="mt-3 text-2xl font-black text-white">
-              {riskStatus.label === "Liquidatable" ? "Critical" : riskStatus.label === "Warning" ? "Watch" : "Healthy"}
+              {pcsRisk.pcsRiskLevel}
             </h3>
             <p className="mt-2 text-xs text-zinc-400">Parameter Control System monitor</p>
 
             <div className="mt-5 space-y-2 text-xs">
               <div className="flex justify-between gap-3">
                 <span className="text-zinc-500">System Risk</span>
-                <span className={riskStatus.color}>{riskStatus.label}</span>
+                <span className="text-cyan-100">{pcsRisk.pcsRiskLevel} · {pcsRisk.pcsRiskScore}/100</span>
               </div>
               <div className="flex justify-between gap-3">
                 <span className="text-zinc-500">Oracle Risk</span>
-                <span className={Number(oraclePrice) < 0.75 ? "text-orange-300" : "text-emerald-300"}>
-                  {Number(oraclePrice) < 0.75 ? "Elevated" : "Low"}
+                <span className={pcsRisk.oracleRisk === "Critical" || pcsRisk.oracleRisk === "High" ? "text-red-300" : pcsRisk.oracleRisk === "Elevated" ? "text-orange-300" : "text-emerald-300"}>
+                  {pcsRisk.oracleRisk}
                 </span>
               </div>
               <div className="flex justify-between gap-3">
@@ -830,7 +830,7 @@ export default function Home() {
               <div className="flex justify-between gap-3">
                 <span className="text-zinc-500">PCS Action</span>
                 <span className="text-cyan-100">
-                  {riskStatus.label === "Liquidatable" ? "Liquidate" : riskStatus.label === "Warning" ? "Reduce Risk" : "Maintain LTV"}
+                  {pcsRisk.suggestedParameterResponse}
                 </span>
               </div>
             </div>
@@ -838,15 +838,23 @@ export default function Home() {
 
           <div className="rounded-3xl border border-emerald-400/20 bg-emerald-400/10 p-5 shadow-[0_0_45px_rgba(16,185,129,0.08)]">
             <p className="text-xs font-black uppercase tracking-[0.25em] text-emerald-200">Treasury Health</p>
-            <h3 className="mt-3 text-2xl font-black text-white">
-              {Number(protocolCollateral) > 0 ? "Active" : "Standby"}
+            <h3 className={`mt-3 text-2xl font-black ${
+              pcsRisk.treasuryCoverage === "Weak"
+                ? "text-red-300"
+                : pcsRisk.treasuryCoverage === "Moderate"
+                  ? "text-orange-300"
+                  : "text-emerald-300"
+            }`}>
+              {pcsRisk.treasuryCoverage}
             </h3>
-            <p className="mt-2 text-xs text-zinc-400">Protocol reserve and coverage monitor</p>
+            <p className="mt-2 text-xs text-zinc-400">PCS reserve coverage and risk buffer monitor</p>
 
             <div className="mt-5 space-y-2 text-xs">
               <div className="flex justify-between gap-3">
                 <span className="text-zinc-500">Reserve Status</span>
-                <span className="text-emerald-300">{Number(protocolCollateral) > 0 ? "Active" : "Empty"}</span>
+                <span className={Number(protocolCollateral) > 0 ? "text-emerald-300" : "text-zinc-400"}>
+                  {Number(protocolCollateral) > 0 ? "Active" : "Empty"}
+                </span>
               </div>
               <div className="flex justify-between gap-3">
                 <span className="text-zinc-500">Collateral</span>
@@ -855,13 +863,21 @@ export default function Home() {
               <div className="flex justify-between gap-3">
                 <span className="text-zinc-500">Debt Coverage</span>
                 <span className="text-cyan-100">
-                  {Number(protocolDebtSupply) > 0 ? `${(Number(protocolCollateral) / Number(protocolDebtSupply)).toFixed(2)}x` : "No Debt"}
+                  {pcsRisk.debtCoverageRatio === null ? "No Debt" : `${pcsRisk.debtCoverageRatio.toFixed(2)}x`}
                 </span>
               </div>
               <div className="flex justify-between gap-3">
+                <span className="text-zinc-500">Reserve Target</span>
+                <span className="text-blue-100">{pcsRisk.treasuryReserveTarget}%</span>
+              </div>
+              <div className="flex justify-between gap-3">
                 <span className="text-zinc-500">Treasury Action</span>
-                <span className="text-emerald-300">
-                  {Number(protocolDebtSupply) > 0 && Number(protocolCollateral) / Number(protocolDebtSupply) < 1.5 ? "Increase reserves" : "Maintain reserves"}
+                <span className={pcsRisk.treasuryCoverage === "Weak" || pcsRisk.treasuryCoverage === "Moderate" ? "text-orange-300" : "text-emerald-300"}>
+                  {pcsRisk.treasuryCoverage === "Weak"
+                    ? "Increase reserves"
+                    : pcsRisk.treasuryCoverage === "Moderate"
+                      ? "Monitor reserves"
+                      : "Maintain reserves"}
                 </span>
               </div>
             </div>
@@ -1071,7 +1087,7 @@ export default function Home() {
             <div className="mt-5 space-y-2 text-xs">
               <div className="flex justify-between gap-3">
                 <span className="text-zinc-500">Current Status</span>
-                <span className={riskStatus.color}>{riskStatus.label}</span>
+                <span className="text-cyan-100">{pcsRisk.pcsRiskLevel} · {pcsRisk.pcsRiskScore}/100</span>
               </div>
               <div className="flex justify-between gap-3">
                 <span className="text-zinc-500">Health Factor</span>
@@ -1333,6 +1349,8 @@ function ActivityRow({ item, shortHash }: { item: ActivityItem; shortHash: (hash
   const badgeStyle = item.type === "Deposit" ? "border-green-500/30 bg-green-500/10 text-green-300" : item.type === "Withdraw" ? "border-red-500/30 bg-red-500/10 text-red-300" : item.type === "Borrow" ? "border-blue-500/30 bg-blue-500/10 text-blue-300" : item.type === "Repay" ? "border-yellow-500/30 bg-yellow-500/10 text-yellow-300" : item.type === "Liquidation" ? "border-rose-500/30 bg-rose-500/10 text-rose-300" : "border-purple-500/30 bg-purple-500/10 text-purple-300";
   return <div className="flex flex-col justify-between gap-4 rounded-2xl border border-white/10 bg-black/30 p-5 lg:flex-row lg:items-center"><div className="flex items-start gap-4"><div className={`rounded-full border px-3 py-1 text-xs font-bold ${badgeStyle}`}>{item.type}</div><div><p className="font-semibold text-white">{item.title}</p><p className="mt-1 text-sm text-zinc-400">{item.description}</p></div></div><div className="text-sm text-zinc-500"><p>Block #{item.blockNumber}</p><p className="font-mono">{shortHash(item.txHash)}</p></div></div>;
 }
+
+
 
 
 
