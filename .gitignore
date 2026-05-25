@@ -82,3 +82,8 @@ erscryptOneDriveImagesFaith protocol*
 
 # Temporary unused component folder
 frontend/components/faith/
+
+# UtopiaByFaith local build/dependency folders
+utopia-by-faith/node_modules/
+utopia-by-faith/dist/
+utopia-by-faith/artifacts/
