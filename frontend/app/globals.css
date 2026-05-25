@@ -571,3 +571,129 @@ img[src*="token-fusd"] {
   border-radius: 9999px !important;
   opacity: 1 !important;
 }
+
+/* Premium FAITH icon effects - visual-only upgrade */
+.faith-icon-box,
+.faith-loop-icon {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  box-shadow:
+    inset 0 0 22px rgba(34, 211, 238, 0.08),
+    0 0 28px rgba(14, 165, 233, 0.08);
+}
+
+.faith-icon-box::before,
+.faith-loop-icon::before {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  z-index: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(125, 211, 252, 0.16);
+  box-shadow:
+    0 0 22px rgba(34, 211, 238, 0.12),
+    inset 0 0 18px rgba(34, 211, 238, 0.08);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.faith-icon-box::after,
+.faith-loop-icon::after {
+  content: "";
+  position: absolute;
+  inset: -35%;
+  z-index: 0;
+  background: conic-gradient(
+    from 180deg,
+    transparent,
+    rgba(34, 211, 238, 0.14),
+    transparent,
+    rgba(59, 130, 246, 0.12),
+    transparent
+  );
+  opacity: 0.28;
+  animation: faithIconOrbit 16s linear infinite;
+  pointer-events: none;
+}
+
+.faith-icon-box img,
+.faith-loop-icon img {
+  position: relative;
+  z-index: 1;
+  filter:
+    drop-shadow(0 0 10px rgba(34, 211, 238, 0.28))
+    drop-shadow(0 0 22px rgba(59, 130, 246, 0.14));
+  transition: transform 260ms ease, filter 260ms ease;
+}
+
+.faith-card:hover .faith-icon-box img,
+.faith-loop-icon:hover img {
+  transform: translateY(-2px) scale(1.04);
+  filter:
+    drop-shadow(0 0 14px rgba(34, 211, 238, 0.48))
+    drop-shadow(0 0 30px rgba(59, 130, 246, 0.22));
+}
+
+@keyframes faithIconOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* Stronger FAITH icon glow - visual only */
+.faith-icon-box,
+.faith-loop-icon {
+  border-color: rgba(103, 232, 249, 0.28) !important;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(34, 211, 238, 0.22), rgba(15, 23, 42, 0.45) 48%, rgba(2, 6, 23, 0.72) 100%) !important;
+  box-shadow:
+    inset 0 0 26px rgba(34, 211, 238, 0.16),
+    0 0 22px rgba(34, 211, 238, 0.18),
+    0 0 48px rgba(59, 130, 246, 0.12) !important;
+}
+
+.faith-loop-icon {
+  transform: translateZ(0);
+}
+
+.faith-icon-box::before,
+.faith-loop-icon::before {
+  inset: 8% !important;
+  border: 1px solid rgba(125, 211, 252, 0.28) !important;
+  box-shadow:
+    0 0 18px rgba(34, 211, 238, 0.28),
+    inset 0 0 22px rgba(34, 211, 238, 0.14) !important;
+}
+
+.faith-icon-box img,
+.faith-loop-icon img {
+  filter:
+    drop-shadow(0 0 10px rgba(34, 211, 238, 0.55))
+    drop-shadow(0 0 26px rgba(59, 130, 246, 0.35))
+    contrast(1.08)
+    saturate(1.12) !important;
+}
+
+.faith-card:hover,
+.faith-loop-icon:hover {
+  border-color: rgba(103, 232, 249, 0.38);
+}
+
+.faith-card:hover .faith-icon-box,
+.faith-loop-icon:hover {
+  box-shadow:
+    inset 0 0 30px rgba(34, 211, 238, 0.22),
+    0 0 30px rgba(34, 211, 238, 0.25),
+    0 0 70px rgba(59, 130, 246, 0.18) !important;
+}
+
+.faith-card:hover .faith-icon-box img,
+.faith-loop-icon:hover img {
+  transform: translateY(-2px) scale(1.06);
+}
+
