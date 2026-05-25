@@ -290,15 +290,40 @@ export function simulatePCSStress(
       oraclePrice: projectedOraclePrice,
     });
 
+    // Stress projection overlay:
+    // The simulator adds an explicit shock penalty so the timeline shows
+    // how risk escalates as collateral deterioration continues.
+    const shockPenalty =
+      dropPercent >= 30 ? 60 :
+      dropPercent >= 20 ? 40 :
+      dropPercent >= 10 ? 20 :
+      0;
+
+    const projectedRiskScore = clampScore(projected.pcsRiskScore + shockPenalty);
+
+    let projectedRiskLevel: PCSRiskLevel = "Healthy";
+    if (projectedRiskScore >= 81) projectedRiskLevel = "Critical";
+    else if (projectedRiskScore >= 61) projectedRiskLevel = "High Risk";
+    else if (projectedRiskScore >= 31) projectedRiskLevel = "Warning";
+
+    let projectedParameterResponse = "Maintain LTV";
+    if (projectedRiskLevel === "Critical") {
+      projectedParameterResponse = "Emergency Mode / Pause Borrowing";
+    } else if (projectedRiskLevel === "High Risk") {
+      projectedParameterResponse = "Reduce LTV / Increase Reserves";
+    } else if (projectedRiskLevel === "Warning") {
+      projectedParameterResponse = "Tighten Risk Parameters";
+    }
+
     let projectedRationale = "";
 
-    if (projected.pcsRiskLevel === "Critical") {
+    if (projectedRiskLevel === "Critical") {
       projectedRationale =
-        `If collateral drops another ${dropPercent}%, PCS projects critical protocol risk and suggests emergency risk controls.`;
-    } else if (projected.pcsRiskLevel === "High Risk") {
+        `If collateral drops another ${dropPercent}%, PCS projects critical protocol risk and suggests emergency controls, borrowing restrictions, and solvency protection.`;
+    } else if (projectedRiskLevel === "High Risk") {
       projectedRationale =
-        `If collateral drops another ${dropPercent}%, PCS projects high protocol risk and suggests reducing LTV or increasing reserves.`;
-    } else if (projected.pcsRiskLevel === "Warning") {
+        `If collateral drops another ${dropPercent}%, PCS projects high protocol risk and suggests reducing LTV, increasing reserve targets, and limiting new risk expansion.`;
+    } else if (projectedRiskLevel === "Warning") {
       projectedRationale =
         `If collateral drops another ${dropPercent}%, PCS projects elevated risk and suggests tightening protocol parameters.`;
     } else {
@@ -309,9 +334,9 @@ export function simulatePCSStress(
     return {
       dropPercent,
       projectedOraclePrice,
-      projectedRiskScore: projected.pcsRiskScore,
-      projectedRiskLevel: projected.pcsRiskLevel,
-      projectedParameterResponse: projected.suggestedParameterResponse,
+      projectedRiskScore,
+      projectedRiskLevel,
+      projectedParameterResponse,
       projectedRationale,
     };
   });
