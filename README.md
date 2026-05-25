@@ -162,3 +162,30 @@ GitHub: https://github.com/NewEraOracle/faith-protocol-mvp
 
 ---
 
+
+---
+
+## Core Positioning: Disciplined Economic Growth
+
+FAITH Protocol is not only a lending protocol.
+
+FAITH is building a growing and flourishing machine-regulated economy designed to grow through productive value, programmable credit, treasury resilience, PCS risk regulation, and real utility — not through speculation.
+
+Traditional financial products are usually linear:
+
+User deposits ? user borrows ? user repays ? protocol earns fees
+
+FAITH is different because it is circular:
+
+Vaults create credit ? credit creates activity ? activity strengthens the treasury ? treasury protects the system ? PCS regulates risk ? stronger infrastructure attracts more usage ? the economy grows.
+
+This is the FAITH economic flywheel.
+
+FAITH is not trying to create artificial growth through token hype, emissions, or speculation. FAITH is trying to create disciplined economic growth.
+
+FAITH is a capital operating system for disciplined economic growth, where credit expansion is balanced by treasury strength and PCS risk control.
+
+Humans build. PCS regulates. Treasury protects. MegaETH executes. The economy grows.
+
+FAITH is not only about borrowing. It is about designing an economy that can grow without losing discipline.
+
