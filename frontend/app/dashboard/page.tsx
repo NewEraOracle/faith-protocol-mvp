@@ -729,7 +729,7 @@ export default function Home() {
             <div className="mb-2 inline-flex rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-sm font-bold text-cyan-200">
               Investor Demo Flow
             </div>
-            <h2 className="text-3xl font-bold">Prove the FAITH Protocol loop in 5 on-chain steps</h2>
+            <h2 className="text-3xl font-bold">Demo Flow: Prove the FAITH Protocol Risk Loop</h2>
             <p className="mt-2 max-w-3xl text-zinc-300">This tracker stays complete after liquidation until you reset it.</p>
           </div>
           <div className="flex flex-col gap-3">
@@ -743,9 +743,9 @@ export default function Home() {
           </div>
         </div>
         <div className="mb-5 rounded-2xl border border-white/10 bg-black/30 p-5">
-          <p className="text-sm font-semibold uppercase tracking-wide text-zinc-500">Recommended Next Action</p>
+          <p className="text-sm font-semibold uppercase tracking-wide text-zinc-500">Recommended Demo Action</p>
           <p className="mt-2 text-lg font-semibold text-white">{recommendedAction}</p>
-          <p className="mt-2 text-sm text-zinc-500">Reset Demo Flow only resets the presentation tracker. It does not change your wallet, balances, or protocol state.</p>
+          <p className="mt-2 text-sm text-zinc-500">This guided demo shows the full credit and risk cycle: connect wallet, claim test collateral, deposit, borrow, simulate an oracle shock, monitor liquidation risk, and reset the presentation tracker. Reset does not change your wallet, balances, or protocol state.</p>
         </div>
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
           {demoSteps.map((step) => (
@@ -1129,6 +1129,7 @@ function ActivityRow({ item, shortHash }: { item: ActivityItem; shortHash: (hash
   const badgeStyle = item.type === "Deposit" ? "border-green-500/30 bg-green-500/10 text-green-300" : item.type === "Withdraw" ? "border-red-500/30 bg-red-500/10 text-red-300" : item.type === "Borrow" ? "border-blue-500/30 bg-blue-500/10 text-blue-300" : item.type === "Repay" ? "border-yellow-500/30 bg-yellow-500/10 text-yellow-300" : item.type === "Liquidation" ? "border-rose-500/30 bg-rose-500/10 text-rose-300" : "border-purple-500/30 bg-purple-500/10 text-purple-300";
   return <div className="flex flex-col justify-between gap-4 rounded-2xl border border-white/10 bg-black/30 p-5 lg:flex-row lg:items-center"><div className="flex items-start gap-4"><div className={`rounded-full border px-3 py-1 text-xs font-bold ${badgeStyle}`}>{item.type}</div><div><p className="font-semibold text-white">{item.title}</p><p className="mt-1 text-sm text-zinc-400">{item.description}</p></div></div><div className="text-sm text-zinc-500"><p>Block #{item.blockNumber}</p><p className="font-mono">{shortHash(item.txHash)}</p></div></div>;
 }
+
 
 
 
