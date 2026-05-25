@@ -43,70 +43,6 @@ const stats = [
 export default function Home() {
   return (
     <main className="faith-home relative min-h-screen overflow-hidden bg-black text-white">
-
-      <section className="relative overflow-hidden border-y border-emerald-400/10 bg-black px-6 py-24 text-white">
-        <div className="mx-auto max-w-7xl">
-          <p className="mb-4 text-sm font-medium uppercase tracking-[0.35em] text-emerald-300">
-            Core FAITH Positioning
-          </p>
-
-          <h2 className="max-w-5xl text-4xl font-semibold tracking-tight md:text-6xl">
-            A machine-regulated economy designed to grow without losing discipline.
-          </h2>
-
-          <p className="mt-6 max-w-4xl text-lg leading-8 text-white/70">
-            FAITH is not only a lending protocol. It is a capital operating system for
-            disciplined economic growth, where programmable credit, treasury resilience,
-            PCS risk control, and real utility work together to create a stronger
-            autonomous economy.
-          </p>
-
-          <div className="mt-12 grid gap-8 lg:grid-cols-2">
-            <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-8">
-              <p className="text-sm uppercase tracking-[0.25em] text-white/40">
-                Traditional Finance
-              </p>
-
-              <h3 className="mt-4 text-2xl font-semibold">Linear Growth</h3>
-
-              <p className="mt-6 text-white/70">
-                User deposits ? user borrows ? user repays ? protocol earns fees
-              </p>
-            </div>
-
-            <div className="rounded-3xl border border-emerald-400/20 bg-emerald-400/[0.06] p-8">
-              <p className="text-sm uppercase tracking-[0.25em] text-emerald-300">
-                FAITH Economy
-              </p>
-
-              <h3 className="mt-4 text-2xl font-semibold">
-                Circular Economic Flywheel
-              </h3>
-
-              <p className="mt-6 text-white/80">
-                Vaults create credit ? credit creates activity ? activity strengthens
-                the treasury ? treasury protects the system ? PCS regulates risk ?
-                stronger infrastructure attracts more usage ? the economy grows.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-12 rounded-3xl border border-white/10 bg-white/[0.04] p-8 text-center">
-            <p className="text-2xl font-semibold md:text-4xl">
-              Humans build. PCS regulates. Treasury protects. MegaETH executes. The
-              economy grows.
-            </p>
-
-            <p className="mx-auto mt-6 max-w-3xl text-white/60">
-              FAITH is not designed to grow through speculation, token hype, or
-              artificial emissions. It is designed to grow through productive value,
-              programmable credit, treasury resilience, PCS risk regulation, and real
-              utility.
-            </p>
-          </div>
-        </div>
-      </section>
-
       <img
         src="/faith/design/background-cosmic.png"
         alt=""
@@ -321,7 +257,72 @@ export default function Home() {
           </section>
         </div>
       </div>
-    </main>
+    
+          <section id="developers" className="mx-6 mb-6 lg:mx-10">
+            <div className="faith-card p-6">
+              <p className="text-sm font-black uppercase tracking-[0.38em] text-cyan-300">
+                Developers
+              </p>
+              <h2 className="mt-4 text-3xl font-black uppercase tracking-[0.16em] text-white">
+                Build on the FAITH Economy
+              </h2>
+              <p className="mt-5 max-w-4xl text-sm leading-7 text-slate-400">
+                FAITH is designed as a machine-regulated economy where developers can build
+                around vaults, programmable credit, PCS risk monitoring, treasury resilience,
+                and real-time MegaETH execution.
+              </p>
+            </div>
+          </section>
+
+          <section id="docs" className="mx-6 mb-6 lg:mx-10">
+            <div className="faith-card p-6">
+              <p className="text-sm font-black uppercase tracking-[0.38em] text-cyan-300">
+                Docs
+              </p>
+              <h2 className="mt-4 text-3xl font-black uppercase tracking-[0.16em] text-white">
+                Protocol Documentation
+              </h2>
+              <p className="mt-5 max-w-4xl text-sm leading-7 text-slate-400">
+                The FAITH documentation explains the protocol architecture, vault system,
+                CreditEngine, Treasury, PCS Monitor, SettlementAdapter, MockUSDm, and the
+                long-term disciplined economic growth thesis.
+              </p>
+            </div>
+          </section>
+
+          <section id="governance" className="mx-6 mb-6 lg:mx-10">
+            <div className="faith-card p-6">
+              <p className="text-sm font-black uppercase tracking-[0.38em] text-cyan-300">
+                Governance
+              </p>
+              <h2 className="mt-4 text-3xl font-black uppercase tracking-[0.16em] text-white">
+                PCS-Regulated Governance Direction
+              </h2>
+              <p className="mt-5 max-w-4xl text-sm leading-7 text-slate-400">
+                Governance in FAITH is designed to evolve around transparent system health,
+                treasury coverage, credit expansion, risk parameters, and PCS recommendations.
+                The goal is not blind growth, but disciplined growth.
+              </p>
+            </div>
+          </section>
+
+          <section id="about" className="mx-6 mb-10 lg:mx-10">
+            <div className="faith-card p-6">
+              <p className="text-sm font-black uppercase tracking-[0.38em] text-cyan-300">
+                About
+              </p>
+              <h2 className="mt-4 text-3xl font-black uppercase tracking-[0.16em] text-white">
+                A Machine-Regulated Economy
+              </h2>
+              <p className="mt-5 max-w-4xl text-sm leading-7 text-slate-400">
+                FAITH is not only about borrowing. It is about designing an economy that can
+                grow without losing discipline. Humans build. PCS regulates. Treasury protects.
+                MegaETH executes. The economy grows.
+              </p>
+            </div>
+          </section>
+
+</main>
   );
 }
 
