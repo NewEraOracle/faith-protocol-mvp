@@ -714,10 +714,10 @@ export default function Home() {
         </div>
         <h2 className="text-2xl font-bold">Before testing, get MegaETH testnet gas</h2>
         <p className="mt-2 max-w-4xl text-zinc-300">
-          Testers need a small amount of MegaETH testnet ETH to pay gas before claiming tFAITH or using the protocol. The Connect Wallet button supports MetaMask desktop, MetaMask mobile browser, and WalletConnect on mobile Safari/Chrome.
+          Testers need a small amount of MegaETH testnet ETH to pay gas before claiming tFAITH or using the protocol. For mobile testing, the most reliable option is currently the MetaMask mobile browser. Safari and Chrome mobile may not connect consistently during the MVP testnet phase.
         </p>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
-          <SetupCard title="1. Open wallet" body="On mobile Safari/Chrome, use WalletConnect when prompted. MetaMask mobile browser also works." />
+          <SetupCard title="1. Open wallet" body="Best mobile option: use the MetaMask mobile browser. Safari/Chrome mobile may not connect consistently during MVP testing." />
           <SetupCard title="2. Get gas" body="Fund the wallet with MegaETH testnet ETH before transactions." />
           <SetupCard title="3. Run demo" body="Claim 1000 tFAITH, deposit, borrow, crash the oracle, and liquidate." />
         </div>
@@ -1129,6 +1129,7 @@ function ActivityRow({ item, shortHash }: { item: ActivityItem; shortHash: (hash
   const badgeStyle = item.type === "Deposit" ? "border-green-500/30 bg-green-500/10 text-green-300" : item.type === "Withdraw" ? "border-red-500/30 bg-red-500/10 text-red-300" : item.type === "Borrow" ? "border-blue-500/30 bg-blue-500/10 text-blue-300" : item.type === "Repay" ? "border-yellow-500/30 bg-yellow-500/10 text-yellow-300" : item.type === "Liquidation" ? "border-rose-500/30 bg-rose-500/10 text-rose-300" : "border-purple-500/30 bg-purple-500/10 text-purple-300";
   return <div className="flex flex-col justify-between gap-4 rounded-2xl border border-white/10 bg-black/30 p-5 lg:flex-row lg:items-center"><div className="flex items-start gap-4"><div className={`rounded-full border px-3 py-1 text-xs font-bold ${badgeStyle}`}>{item.type}</div><div><p className="font-semibold text-white">{item.title}</p><p className="mt-1 text-sm text-zinc-400">{item.description}</p></div></div><div className="text-sm text-zinc-500"><p>Block #{item.blockNumber}</p><p className="font-mono">{shortHash(item.txHash)}</p></div></div>;
 }
+
 
 
 
