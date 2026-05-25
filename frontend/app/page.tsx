@@ -89,6 +89,10 @@ export default function Home() {
               Bridging RWA to an Autonomous Digital Economy
             </p>
 
+            <p className="relative z-10 mx-auto mt-4 inline-flex rounded-full border border-cyan-300/30 bg-cyan-300/10 px-5 py-2 text-center text-[10px] font-black uppercase tracking-[0.22em] text-cyan-100 shadow-[0_0_24px_rgba(34,211,238,0.18)] md:text-xs">
+              MegaETH-Native Credit, Treasury & Risk Infrastructure
+            </p>
+
             <p className="relative z-10 mx-auto mt-7 max-w-3xl text-sm leading-7 text-slate-300 md:text-base">
               FAITH connects real-world assets and productive infrastructure to autonomous on-chain credit,
               treasury, and risk systems.
@@ -256,6 +260,9 @@ export default function Home() {
     </main>
   );
 }
+
+
+
 
 
 
