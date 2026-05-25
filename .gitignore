@@ -50,3 +50,36 @@ Thumbs.db
 .vscode/
 
 .env
+
+# Local backups / temporary files
+*.backup*
+*backup*
+README.backup-before-new-vision.md
+fix-dashboard-labels.js
+remove-last-polish.js
+replace-token-section.js
+
+# Local design backups
+frontend/public/faith/design-backup*/
+frontend/public/faith/design-broken-backup/
+frontend/public/faith/design-backup-new/
+
+# Broken / temporary CSS
+frontend/app/globals-broken-backup.css
+frontend/app/globals.css.backup-final-polish
+
+# Old page backups
+frontend/app/page-before-logo-fix.tsx
+frontend/app/page.tsx.backup-*
+
+# Temporary generated scripts
+tools/add-pcs-status.py
+
+# Keep Utopia separate for later
+utopia-by-faith/
+
+# Strange pasted/temp file
+erscryptOneDriveImagesFaith protocol*
+
+# Temporary unused component folder
+frontend/components/faith/
