@@ -17,9 +17,9 @@ const modules = [
     body: "Protocol-owned liquidity and reserves aligned for long-term solvency.",
   },
   {
-    title: "tfUSD Activation",
-    image: "/faith/design/icon-tfusd.png",
-    body: "Activate tfUSD for payments, trading, and composable real-time applications.",
+    title: "FUSD Activation",
+    image: "/faith/design/token-fusd.png",
+    body: "Activate FUSD for payments, trading, and composable real-time applications.",
   },
 ];
 
@@ -27,13 +27,13 @@ const loop = [
   ["Collateral", "Deposited", "/faith/design/icon-vaults.png"],
   ["Credit", "Minted", "/faith/design/token-fusd.png"],
   ["PCS", "Monitor", "/faith/design/icon-pcs.png"],
-  ["tfUSD", "Activated", "/faith/design/icon-tfusd.png"],
+  ["FUSD", "Activated", "/faith/design/token-fusd.png"],
   ["Real-Time", "Utilization", "/faith/design/icon-real-time-execution.png"],
 ];
 
 const stats = [
   ["Total Value Locked", "$128.7M", "+12.3% 24H"],
-  ["tfUSD Supply", "$84.2M", "+9.7% 24H"],
+  ["FUSD Supply", "$84.2M", "+9.7% 24H"],
   ["Active Vaults", "2,431", "+8.1% 24H"],
   ["Collateral Ratio", "176%", "Healthy"],
   ["Protocol Revenue", "$312.9K", "+15.4% 24H"],
@@ -61,11 +61,12 @@ export default function Home() {
 
             <div className="hidden items-center gap-10 text-[11px] font-black uppercase tracking-[0.28em] text-slate-100 lg:flex">
               <Link href="/protocol">Protocol</Link>
-              <Link href="/tfusd">tfUSD</Link>
+              <Link href="/tfusd">FUSD</Link>
               <Link href="/developers">Developers</Link>
               <Link href="/docs">Docs</Link>
               <Link href="/governance">Governance</Link>
               <Link href="/about">About</Link>
+              <Link href="/simulation">Simulation</Link>
             </div>
 
             <Link href="/dashboard" className="faith-button px-7 py-4 text-[11px]">
@@ -129,7 +130,7 @@ export default function Home() {
                     <img
                       src={module.image}
                       alt={module.title}
-                      className={module.title.includes("tfUSD") ? "faith-asset tfusd-bright" : "faith-asset"}
+                      className={module.title.includes("FUSD") ? "faith-asset tfusd-bright" : "faith-asset"}
                     />
                   </div>
 
@@ -162,7 +163,7 @@ export default function Home() {
                       <img
                         src={image}
                         alt={top}
-                        className={top === "tfUSD" || top === "Credit" ? "faith-asset tfusd-bright" : "faith-asset"}
+                        className={top === "FUSD" || top === "Credit" ? "faith-asset tfusd-bright" : "faith-asset"}
                       />
                     </div>
                     <p className="mt-3 text-[11px] font-black uppercase tracking-[0.2em] text-white">{top}</p>
@@ -235,20 +236,20 @@ export default function Home() {
                   <div className="faith-token-ring">
                     <img
                       src="/faith/design/token-fusd.png"
-                      alt="tfUSD token"
+                      alt="FUSD token"
                       className="faith-token-large tfusd-bright"
                     />
                   </div>
 
                   <div className="mt-6 text-center">
                     <h3 className="text-3xl font-black uppercase tracking-[0.16em] text-white">
-                      tfUSD
+                      FUSD
                     </h3>
                     <p className="mt-3 text-sm leading-7 text-slate-400">
                       Autonomous credit asset minted by FAITH vaults on MegaETH testnet.
                     </p>
                     <p className="mt-5 text-[10px] font-black uppercase tracking-[0.32em] text-cyan-300">
-                      tfUSD Token
+                      FUSD Token
                     </p>
                   </div>
                 </div>
@@ -325,6 +326,11 @@ export default function Home() {
 </main>
   );
 }
+
+
+
+
+
 
 
 
