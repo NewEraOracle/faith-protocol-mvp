@@ -1,0 +1,11 @@
+{
+  "name": "utopia-by-faith-isometric",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev-server.mjs",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/dev-server.mjs dist 4173"
+  }
+}

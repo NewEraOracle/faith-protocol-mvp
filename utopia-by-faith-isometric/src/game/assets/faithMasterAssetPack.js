@@ -1,0 +1,58 @@
+export const faithMasterAssetPack = [
+  {
+    key: "characters",
+    title: "Characters",
+    path: "public/assets/faith_protocol_master_asset_pack_v1/01_characters/individual/founder_character_sheet.png",
+    installed: false,
+    fallback: "stylized player, warden, merchant, smith, shrine keeper",
+  },
+  {
+    key: "mobs",
+    title: "Mobs",
+    path: "public/assets/faith_protocol_master_asset_pack_v1/02_mobs/mobs_sheet.png",
+    installed: false,
+    fallback: "infernal ember mobs",
+  },
+  {
+    key: "bosses",
+    title: "Bosses",
+    path: "public/assets/faith_protocol_master_asset_pack_v1/03_bosses/bosses_sheet.png",
+    installed: false,
+    fallback: "infernal gate boss",
+  },
+  {
+    key: "tiles",
+    title: "Terrain Tiles",
+    path: "public/assets/faith_protocol_master_asset_pack_v1/04_tiles/world_1_fallen_outskirts/fallen_outskirts_tiles.png",
+    installed: false,
+    fallback: "painted grass, path, stone, water, dungeon floor",
+  },
+  {
+    key: "nature",
+    title: "Nature Props",
+    path: "public/assets/faith_protocol_master_asset_pack_v1/05_props/sheets/nature_props_sheet.png",
+    installed: false,
+    fallback: "trees, crystals, ore, flowers, lakes, docks",
+  },
+  {
+    key: "architecture",
+    title: "Hub Architecture",
+    path: "public/assets/faith_protocol_master_asset_pack_v1/05_props/hub/hub_architecture_sheet.png",
+    installed: false,
+    fallback: "forge, cathedral, market, gates, banners, portals",
+  },
+  {
+    key: "dungeon",
+    title: "Dungeon Interiors",
+    path: "public/assets/faith_protocol_master_asset_pack_v1/05_props/dungeon/dungeon_interiors_sheet.png",
+    installed: false,
+    fallback: "walls, chains, braziers, altars, boss arena",
+  },
+  {
+    key: "ui",
+    title: "UI and Relics",
+    path: "public/assets/faith_protocol_master_asset_pack_v1/07_ui/hud/hud_sheet.png",
+    installed: false,
+    fallback: "HUD chips, artifact cards, rarity frames",
+  },
+];
