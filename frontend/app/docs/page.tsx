@@ -53,7 +53,7 @@ export default function DocsPage() {
           <InfoCard title="Protocol Architecture">
             <p>
               FAITH is organized around vaults, CreditEngine, PCS Monitor, Treasury,
-              SettlementAdapter, and tfUSD / MockUSDm. This public version explains the
+              SettlementAdapter, and FUSD / MockUSDm. This public version explains the
               system at a high level without exposing the private engine.
             </p>
           </InfoCard>
@@ -99,3 +99,4 @@ export default function DocsPage() {
     </PublicPage>
   );
 }
+
