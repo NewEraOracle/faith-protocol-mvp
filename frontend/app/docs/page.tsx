@@ -1,4 +1,5 @@
-﻿import { InfoCard, PublicPage } from "../components/PublicPage";
+﻿import { FaithTreasuryCertificateSection } from '../components/FaithTreasuryCertificateSection';
+import { InfoCard, PublicPage } from "../components/PublicPage";
 
 const docLinks = [
   ["Core Positioning", "#core-positioning"],
@@ -88,7 +89,9 @@ export default function DocsPage() {
               public version.
             </p>
           </InfoCard>
-        </section>
+        
+      <FaithTreasuryCertificateSection />
+</section>
 
         <InfoCard title="Core Line">
           <p className="text-base font-semibold text-white md:text-lg">
@@ -99,4 +102,7 @@ export default function DocsPage() {
     </PublicPage>
   );
 }
+
+
+
 

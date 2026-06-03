@@ -1,4 +1,5 @@
-﻿import { FaithEconomicOSSection } from './FaithEconomicOSSection';
+﻿import { FaithTreasuryCertificateSection } from './FaithTreasuryCertificateSection';
+import { FaithEconomicOSSection } from './FaithEconomicOSSection';
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -60,6 +61,7 @@ export function PublicPage({ label, title, intro, children }: PublicPageProps) {
         </div>
       </section>
           <FaithEconomicOSSection />
+          <FaithTreasuryCertificateSection />
     </main>
   );
 }
@@ -82,6 +84,8 @@ export function InfoCard({
     </div>
   );
 }
+
+
 
 
 

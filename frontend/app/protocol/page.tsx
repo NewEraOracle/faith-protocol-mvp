@@ -1,29 +1,31 @@
-﻿import { InfoCard, PublicPage } from "../components/PublicPage";
-
-const modules = [
-  ["Vaults", "Collateral enters the system and supports programmable credit creation."],
-  ["CreditEngine", "Calculates borrowing power and manages credit issuance logic."],
-  ["PCS Monitor", "Monitors vault health, oracle shocks, liquidation pressure, utilization, and system stress."],
-  ["Treasury", "Protects the system through reserves, coverage, and long-term protocol resilience."],
-  ["SettlementAdapter", "Prepares system updates and settlement flows for real-time execution."],
-  ["MockUSDm / FUSD", "Represents the stable credit asset used inside the FAITH economy."],
-];
+﻿import { FaithEconomicOSSection } from "../components/FaithEconomicOSSection";
+import { FaithTreasuryCertificateSection } from "../components/FaithTreasuryCertificateSection";
+import { InfoCard, PublicPage } from "../components/PublicPage";
 
 export default function ProtocolPage() {
   return (
     <PublicPage
-      label="Protocol"
-      title="FAITH Protocol Architecture"
-      intro="FAITH is a machine-regulated capital system designed around vaults, programmable credit, PCS risk monitoring, treasury resilience, and real-time MegaETH execution."
+      label="PROTOCOL ARCHITECTURE"
+      title="FAITH is a treasury-protected, PCS-regulated economic operating system"
+      intro="PROTOCOL ARCHITECTURE represents the stable credit layer of FAITH. It shows how collateral-backed programmable credit can circulate through a real-time economy without relying on speculation as the primary growth engine."
     >
       <div className="grid gap-5 md:grid-cols-2">
-        {modules.map(([title, body]) => (
-          <InfoCard key={title} title={title}>
-            <p>{body}</p>
-          </InfoCard>
-        ))}
+        <InfoCard title="Treasury-Protected Economy">
+          <p>
+            Vaults create credit. Credit circulates. Activity strengthens the treasury.
+            PCS monitors risk. The system grows through utility, not artificial emissions.
+          </p>
+        </InfoCard>
+
+        <InfoCard title="Dual-Asset Structure">
+          <p>
+            USDm or PROTOCOL ARCHITECTURE powers stable transactions and settlement. FAITH powers
+            coordination, access, progression, risk participation, and protocol utility.
+          </p>
+        </InfoCard>
       </div>
     </PublicPage>
   );
 }
+
 
