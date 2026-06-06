@@ -110,3 +110,4 @@ FAITH is currently a testnet MVP and research-stage protocol.
 - PCS is protocol-risk monitoring, not user investment advice
 
 Future RWA, treasury, certificate, stable settlement, or productive-capital modules require legal, regulatory, compliance, accounting, audit, and risk review before any real deployment.
+

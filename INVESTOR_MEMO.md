@@ -84,3 +84,4 @@ Phase 6 — Future RWA / productive capital modules only after legal, compliance
 FAITH is looking for strategic feedback, MegaETH ecosystem alignment, grant opportunities, accelerator support, technical review, and early investor conversations.
 
 The immediate goal is to validate FAITH as a credible MegaETH-native infrastructure project for PCS-regulated credit, treasury resilience, and protocol-level risk intelligence.
+
