@@ -1,191 +1,112 @@
-# FAITH Protocol
+﻿# FAITH Protocol
 
-## Human-Built. Machine-Regulated.
+**PCS-regulated credit and treasury infrastructure for autonomous onchain economies on MegaETH.**
 
-**FAITH Protocol is a human-built, machine-regulated capital operating system for productive economies.**
+FAITH Protocol is a testnet MVP exploring machine-regulated credit, treasury resilience, vault-based borrowing, oracle shock simulation, liquidation-risk visibility, and protocol-level risk intelligence through PCS, the Protocol Control System.
 
-FAITH Protocol bridges real-world assets, productive infrastructure, and autonomous on-chain credit through vaults, treasury reserves, oracle systems, and PCS.
+## Current Stage
 
-**Motto:** Bridging RWA to an autonomous digital economy.
+**Testnet MVP**
 
----
+FAITH does not currently manage real user capital, offer guaranteed yield, issue live treasury certificates, or provide financial advice.
 
-## Core Vision
+## What the MVP Demonstrates
 
-FAITH Protocol is not a meme token, yield farm, or simple lending app.
-
-FAITH Protocol is being built as institutional infrastructure for:
-
-- Collateralized credit
-- Vault-based borrowing
-- Treasury reserves
+- tFAITH testnet collateral
+- tfUSD testnet credit
+- Vault deposit and borrow flow
 - Oracle shock simulation
-- Liquidation risk monitoring
-- PCS risk controls
-- Future RWA capital routing
+- Liquidation-risk visibility
+- Treasury mock accounting
+- PCS protocol-risk monitoring
 
-The core thesis:
+## Core Demo Flow
 
-```text
-Humans build real-world value.
-FAITH transforms that value into programmable credit.
-PCS monitors, regulates, and protects the digital economy.
-Treasury strength compounds the system.
+Connect Wallet -> Claim tFAITH -> Deposit Collateral -> Borrow tfUSD -> Simulate Oracle Shock -> PCS detects risk -> Liquidation warning appears.
 
----
+## Core Thesis
 
-## Current MVP
+FAITH is building a capital operating system where programmable credit, treasury resilience, and PCS protocol-risk intelligence help autonomous onchain economies grow with discipline.
 
-The current MVP demonstrates the digital financial engine before any future real-world capital routing layer.
+**Humans build. PCS regulates. Treasury protects. MegaETH executes. The economy grows.**
 
-Core MVP features:
+## Architecture
 
-- Vault creation
-- Collateral deposit
-- tfUSD / stable credit borrowing
-- Repayment flow
-- Vault health tracking
-- Oracle shock simulation
-- Liquidation risk visibility
-- Treasury-related architecture
-- PCS-related architecture
-- Institutional frontend direction
+User -> VaultManager -> CreditEngine -> tfUSD/fUSD Accounting -> SettlementAdapter -> Treasury -> PCSMonitor -> LiquidationEngine
 
-The MVP is experimental testnet infrastructure. It is not a production financial system.
+## Smart Contract Modules
 
----
+- FAITHToken / tFAITH
+- tfUSD / fUSD
+- VaultManager
+- CreditEngine
+- SettlementAdapter
+- Treasury
+- PCSMonitor
+- MockOracle
+- LiquidationEngine
 
-## Core Architecture
+## Current MegaETH Testnet Deployment Registry
 
-### 1. Vault Layer
+| Component | Address |
+|---|---|
+| tFAITH | 0x25131C5655DBB24B768bEb8cE4A135E0ED3836FA |
+| tfUSD | 0x35Ac0De590E8C2280464027aBdab93e6b0E199a0 |
+| tMockOracle | 0x7125fe3424Ba0796B2A45b450e295c93a18224c7 |
+| tVaultManager | 0x76849F654906F4956Ff0d3B2b10eE97ce4d0d4B |
 
-Vaults act as on-chain balance sheets.
+## Local Development
 
-They track collateral, debt, borrowing power, health factor, liquidation risk, and vault status.
+Install dependencies:
 
-### 2. Credit Layer
+    npm install
 
-The credit layer allows stable credit to be issued against collateral.
+Run the app:
 
-In the MVP, this may use testnet or mock stable assets such as tfUSD or MockUSDm.
+    npm run dev
 
-### 3. PCS � Parameter Control System
+Run tests:
 
-PCS is the signature feature of FAITH Protocol.
+    npm run test
+    npx hardhat test
 
-PCS is designed to monitor protocol health and eventually recommend or adjust system parameters based on risk.
+## Roadmap
 
-PCS may monitor:
+### Phase 1 — Testnet MVP
 
-- Vault health
-- Collateral ratios
-- Borrow utilization
-- Treasury reserves
-- Oracle stability
-- Liquidation pressure
-- Liquidity conditions
-- System solvency
+tFAITH collateral, tfUSD borrowing, mock treasury, oracle shock simulation, liquidation demo, and PCS monitoring dashboard.
 
-PCS creates the path toward a machine-regulated digital economy.
+### Phase 2 — PCS v2
 
-### 4. Treasury Layer
+Deterministic risk scoring, treasury coverage scoring, liquidation pressure scoring, borrow utilization scoring, action queue, and stress timeline.
 
-The Treasury is the reserve engine of FAITH Protocol.
+### Phase 3 — Treasury Architecture
 
-It supports protocol reserves, risk buffers, liquidity protection, development funding, future capital routing, and ecosystem expansion.
+Treasury design, controlled capital models, quarterly review concepts, PCS treasury monitoring, and legal-safe documentation.
 
-### 5. Oracle Layer
+### Phase 4 — Ecosystem Layer
 
-The Oracle Layer supports pricing, collateral valuation, liquidation logic, and shock simulation.
+UtopiaByFaith integration, project vault concept, Build-on-FAITH framework, developer modules, and future USDm marketplace support.
 
-Example MVP loop:
+### Phase 5 — Funding and Validation
 
-```text
-Deposit collateral
-? Borrow stable credit
-? Simulate oracle price shock
-? Vault health changes
-? Liquidation risk becomes visible
-? Unsafe positions can be liquidated
+Demo video, pitch deck, investor memo, MegaETH outreach, grants, strategic angels, and accelerators.
 
----
+### Phase 6 — Future RWA / Productive Capital
 
-## Live MVP
+Legal structure, compliance review, partner due diligence, audited reporting, PCS controls, and controlled capital routing.
 
-https://faith-protocol-mvp.vercel.app
+## Safety Boundary
 
----
+FAITH is currently a testnet MVP and research-stage protocol.
 
-## Important Notice
+- Testnet only
+- Not audited
+- No real user capital
+- No guaranteed yield
+- No live treasury certificates
+- No public investment product
+- No financial advice
+- PCS is protocol-risk monitoring, not user investment advice
 
-This project is experimental.
-
-FAITH Protocol is not financial advice, legal advice, investment advice, or an offer to sell securities.
-
-Any future connection to real-world assets, capital pools, real estate, energy, ventures, or productive economies must require legal structure, compliance review, audits, and risk controls.
-
----
-
-## North Star
-
-FAITH Protocol bridges RWA to an autonomous digital economy.
-
-Humans build real-world value.
-FAITH transforms that value into programmable credit.
-PCS protects and regulates the digital economy.
-Treasury strength compounds the system.
-Capital flows back toward productive growth.
-
-
----
-
-## Documentation
-
-- [FAITH Protocol Whitepaper](docs/FAITH_PROTOCOL_WHITEPAPER.md)
-- [Pitch Summary](docs/PITCH_SUMMARY.md)
-- [MegaETH Project Description](docs/MEGAETH_PROJECT_DESCRIPTION.md)
-- [FAITH Ecosystem Map](docs/ECOSYSTEM_MAP.md)
-- [UtopiaByFaith Whitepaper](utopia-by-faith/UTOPIA_BY_FAITH_WHITEPAPER.md)
-- [UtopiaByFaith Economy Summary](utopia-by-faith/ECONOMY_SUMMARY.md)
-- [UtopiaByFaith Roadmap](utopia-by-faith/ROADMAP.md)
-
----
-
-## Live Links
-
-Website: https://faith-protocol-mvp.vercel.app
-
-Dashboard: https://faith-protocol-mvp.vercel.app/dashboard
-
-GitHub: https://github.com/NewEraOracle/faith-protocol-mvp
-
-
----
-
-
----
-
-## Core Positioning: Disciplined Economic Growth
-
-FAITH Protocol is not only a lending protocol.
-
-FAITH is building a growing and flourishing machine-regulated economy designed to grow through productive value, programmable credit, treasury resilience, PCS risk regulation, and real utility � not through speculation.
-
-Traditional financial products are usually linear:
-
-User deposits ? user borrows ? user repays ? protocol earns fees
-
-FAITH is different because it is circular:
-
-Vaults create credit ? credit creates activity ? activity strengthens the treasury ? treasury protects the system ? PCS regulates risk ? stronger infrastructure attracts more usage ? the economy grows.
-
-This is the FAITH economic flywheel.
-
-FAITH is not trying to create artificial growth through token hype, emissions, or speculation. FAITH is trying to create disciplined economic growth.
-
-FAITH is a capital operating system for disciplined economic growth, where credit expansion is balanced by treasury strength and PCS risk control.
-
-Humans build. PCS regulates. Treasury protects. MegaETH executes. The economy grows.
-
-FAITH is not only about borrowing. It is about designing an economy that can grow without losing discipline.
-
+Future RWA, treasury, certificate, stable settlement, or productive-capital modules require legal, regulatory, compliance, accounting, audit, and risk review before any real deployment.
