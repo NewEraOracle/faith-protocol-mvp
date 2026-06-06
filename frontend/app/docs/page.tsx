@@ -1,108 +1,130 @@
-﻿import { FaithTreasuryCertificateSection } from '../components/FaithTreasuryCertificateSection';
-import { InfoCard, PublicPage } from "../components/PublicPage";
+﻿import Link from "next/link";
 
-const docLinks = [
-  ["Core Positioning", "#core-positioning"],
-  ["Economic Flywheel", "#economic-flywheel"],
-  ["Protocol Architecture", "#protocol-architecture"],
-  ["PCS Risk Layer", "#pcs-risk-layer"],
-  ["Treasury Layer", "#treasury-layer"],
-  ["Public Safety Boundary", "#public-safety-boundary"],
+const sections = [
+  {
+    title: "What is FAITH?",
+    body:
+      "FAITH Protocol is PCS-regulated credit and treasury infrastructure for autonomous onchain economies on MegaETH. The current product is a testnet MVP focused on vault-based borrowing, treasury visibility, oracle shock simulation, liquidation-risk visibility, and protocol-level risk monitoring.",
+  },
+  {
+    title: "What is PCS?",
+    body:
+      "PCS, the Protocol Control System, observes protocol state, scores systemic risk, explains risk drivers, simulates stress scenarios, and recommends protocol-level responses. PCS does not advise users. PCS advises the protocol.",
+  },
+  {
+    title: "Current MVP",
+    body:
+      "The current MVP demonstrates tFAITH testnet collateral, tfUSD testnet credit, vault deposits, borrowing, oracle shock simulation, liquidation-risk visibility, treasury mock accounting, and PCS monitoring.",
+  },
+  {
+    title: "Why MegaETH?",
+    body:
+      "FAITH is designed for real-time financial infrastructure. MegaETH gives the execution environment for fast state awareness, low-latency protocol monitoring, and high-performance onchain financial interactions.",
+  },
+  {
+    title: "Safety Boundary",
+    body:
+      "FAITH is currently a testnet MVP. It does not manage real user capital, offer guaranteed yield, issue live treasury certificates, provide financial advice, or operate as a public investment product. Future RWA, treasury, certificate, or productive-capital modules require legal, compliance, audit, and risk review before real deployment.",
+  },
+];
+
+const roadmap = [
+  "Phase 1 — Testnet MVP: tFAITH collateral, tfUSD borrowing, oracle shock simulation, liquidation demo, treasury mock accounting, and PCS monitoring.",
+  "Phase 2 — PCS v2: deterministic risk scoring, treasury coverage scoring, liquidation pressure scoring, borrow utilization scoring, action queue, and stress timeline.",
+  "Phase 3 — Treasury Architecture: treasury design, controlled capital models, quarterly review concepts, PCS treasury monitoring, and legal-safe documentation.",
+  "Phase 4 — Ecosystem Layer: Build-on-FAITH framework, project vault concepts, developer modules, UtopiaByFaith integration, and future USDm marketplace support.",
+  "Phase 5 — Funding and Validation: demo video, pitch deck, investor memo, MegaETH outreach, grants, strategic angels, and accelerators.",
+  "Phase 6 — Future RWA / Productive Capital: legal structure, compliance review, partner due diligence, audited reporting, PCS controls, and controlled capital routing.",
 ];
 
 export default function DocsPage() {
   return (
-    <PublicPage
-      label="Public Docs v0.1"
-      title="FAITH Public Whitepaper"
-      intro="This public documentation explains FAITH Protocol's vision, architecture, and economic thesis. Proprietary PCS scoring models, treasury parameters, advanced risk thresholds, and private economic strategy are intentionally excluded from this public version."
-    >
-      <div className="grid gap-4 md:grid-cols-2">
-        {docLinks.map(([label, href]) => (
-          <a
-            key={label}
-            href={href}
-            className="rounded-2xl border border-white/10 bg-slate-950/70 p-5 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300 transition hover:border-cyan-300/60 hover:bg-cyan-300/5 hover:text-white"
-          >
-            {label}
-          </a>
-        ))}
-      </div>
-
-      <div className="mt-10 space-y-5">
-        <section id="core-positioning" className="scroll-mt-24">
-          <InfoCard title="Core Positioning">
-            <p>
-              FAITH is building a growing and flourishing machine-regulated economy,
-              not through speculation, but through productive value, programmable credit,
-              treasury resilience, PCS risk regulation, and real utility.
-            </p>
-          </InfoCard>
-        </section>
-
-        <section id="economic-flywheel" className="scroll-mt-24">
-          <InfoCard title="Economic Flywheel">
-            <p>
-              Vaults create credit. Credit creates activity. Activity strengthens the
-              treasury. Treasury protects the system. PCS regulates risk. Stronger
-              infrastructure attracts more usage. The economy grows.
-            </p>
-          </InfoCard>
-        </section>
-
-        <section id="protocol-architecture" className="scroll-mt-24">
-          <InfoCard title="Protocol Architecture">
-            <p>
-              FAITH is organized around vaults, CreditEngine, PCS Monitor, Treasury,
-              SettlementAdapter, and FUSD / MockUSDm. This public version explains the
-              system at a high level without exposing the private engine.
-            </p>
-          </InfoCard>
-        </section>
-
-        <section id="pcs-risk-layer" className="scroll-mt-24">
-          <InfoCard title="PCS Risk Layer">
-            <p>
-              PCS monitors vault health, oracle shocks, liquidation pressure, borrow
-              utilization, treasury coverage, and system stress. PCS recommends
-              protocol-level responses so growth can remain disciplined.
-            </p>
-          </InfoCard>
-        </section>
-
-        <section id="treasury-layer" className="scroll-mt-24">
-          <InfoCard title="Treasury Layer">
-            <p>
-              The treasury is the reserve engine of the FAITH economy. Fees and reserves
-              strengthen system resilience, support development, and help protect the
-              protocol during stress.
-            </p>
-          </InfoCard>
-        </section>
-
-        <section id="public-safety-boundary" className="scroll-mt-24">
-          <InfoCard title="Public Safety Boundary">
-            <p>
-              Public docs explain the system, not the private engine. Exact PCS formulas,
-              treasury defense thresholds, advanced liquidation parameters, token
-              allocation ranges, and private strategy are intentionally kept outside this
-              public version.
-            </p>
-          </InfoCard>
-        
-      <FaithTreasuryCertificateSection />
-</section>
-
-        <InfoCard title="Core Line">
-          <p className="text-base font-semibold text-white md:text-lg">
-            Humans build. PCS regulates. Treasury protects. MegaETH executes. The economy grows.
+    <main className="min-h-screen bg-[#050505] text-white">
+      <section className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 py-20">
+        <div className="max-w-4xl">
+          <p className="mb-4 text-sm uppercase tracking-[0.35em] text-amber-300/80">
+            FAITH Protocol Docs
           </p>
-        </InfoCard>
-      </div>
-    </PublicPage>
+
+          <h1 className="text-4xl font-semibold tracking-tight text-white md:text-6xl">
+            PCS-regulated credit and treasury infrastructure for autonomous onchain economies.
+          </h1>
+
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-white/70">
+            FAITH is a MegaETH-native testnet MVP built around programmable credit,
+            treasury resilience, oracle shock simulation, liquidation-risk visibility,
+            and PCS protocol-risk intelligence.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="/dashboard"
+              className="rounded-full bg-amber-300 px-5 py-3 text-sm font-semibold text-black transition hover:bg-amber-200"
+            >
+              Enter Dashboard
+            </Link>
+
+            <Link
+              href="/whitelist"
+              className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:border-amber-300/70 hover:text-amber-200"
+            >
+              Join Whitelist
+            </Link>
+
+            <a
+              href="https://github.com/NewEraOracle/faith-protocol-mvp"
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:border-amber-300/70 hover:text-amber-200"
+            >
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2">
+          {sections.map((section) => (
+            <article
+              key={section.title}
+              className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-2xl shadow-black/20"
+            >
+              <h2 className="text-xl font-semibold text-amber-200">{section.title}</h2>
+              <p className="mt-4 text-sm leading-7 text-white/70">{section.body}</p>
+            </article>
+          ))}
+        </div>
+
+        <section className="rounded-3xl border border-amber-300/20 bg-amber-300/[0.06] p-6">
+          <h2 className="text-2xl font-semibold text-white">Roadmap</h2>
+          <div className="mt-6 grid gap-3">
+            {roadmap.map((item) => (
+              <div
+                key={item}
+                className="rounded-2xl border border-white/10 bg-black/30 p-4 text-sm leading-7 text-white/70"
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
+          <h2 className="text-2xl font-semibold text-white">Whitepaper</h2>
+          <p className="mt-4 max-w-3xl text-sm leading-7 text-white/70">
+            The Delphi submission whitepaper explains the testnet MVP, PCS risk architecture,
+            treasury direction, roadmap, and safety boundaries. Add the final PDF link here
+            when the public download path is ready.
+          </p>
+          <div className="mt-6">
+            <a
+              href="#"
+              className="inline-flex rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:border-amber-300/70 hover:text-amber-200"
+            >
+              Whitepaper download coming soon
+            </a>
+          </div>
+        </section>
+      </section>
+    </main>
   );
 }
-
-
-
-
