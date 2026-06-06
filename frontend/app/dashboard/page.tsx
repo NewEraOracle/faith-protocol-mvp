@@ -815,6 +815,100 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="mb-8 rounded-3xl border border-amber-300/20 bg-gradient-to-br from-amber-300/[0.10] via-white/[0.035] to-cyan-300/[0.06] p-6 shadow-[0_0_70px_rgba(251,191,36,0.08)]">
+        <div className="mb-6 flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.28em] text-amber-200">
+              PCS Live Risk Snapshot
+            </p>
+            <h2 className="mt-2 text-3xl font-bold">
+              Protocol Control System: Real-Time Risk Intelligence
+            </h2>
+            <p className="mt-3 max-w-3xl text-sm leading-7 text-zinc-400">
+              PCS converts vault health, oracle movement, liquidation pressure, borrow utilization,
+              and treasury coverage into a protocol-level risk view. This is testnet monitoring,
+              not user financial advice.
+            </p>
+          </div>
+
+          <div className={`rounded-full border px-5 py-3 text-sm font-black ${
+            pcsRisk.pcsRiskLevel === "Critical" || pcsRisk.pcsRiskLevel === "High Risk"
+              ? "border-red-400/30 bg-red-400/10 text-red-200"
+              : pcsRisk.pcsRiskLevel === "Warning"
+                ? "border-orange-400/30 bg-orange-400/10 text-orange-200"
+                : "border-emerald-400/30 bg-emerald-400/10 text-emerald-200"
+          }`}>
+            {pcsRisk.pcsRiskLevel} · {pcsRisk.pcsRiskScore}/100
+          </div>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-6">
+          <div className="rounded-2xl border border-white/10 bg-black/35 p-5">
+            <p className="text-xs font-black uppercase tracking-[0.20em] text-zinc-500">System Risk Score</p>
+            <h3 className="mt-3 text-3xl font-black text-white">{pcsRisk.pcsRiskScore}/100</h3>
+            <p className="mt-2 text-xs text-zinc-500">{pcsRisk.pcsRiskLevel} protocol state</p>
+          </div>
+
+          <div className="rounded-2xl border border-white/10 bg-black/35 p-5">
+            <p className="text-xs font-black uppercase tracking-[0.20em] text-zinc-500">Oracle Risk</p>
+            <h3 className={`mt-3 text-2xl font-black ${
+              pcsRisk.oracleRisk === "Critical" || pcsRisk.oracleRisk === "High"
+                ? "text-red-300"
+                : pcsRisk.oracleRisk === "Elevated"
+                  ? "text-orange-300"
+                  : "text-emerald-300"
+            }`}>
+              {pcsRisk.oracleRisk}
+            </h3>
+            <p className="mt-2 text-xs text-zinc-500">Current tFAITH oracle: ${Number(oraclePrice).toFixed(3)}</p>
+          </div>
+
+          <div className="rounded-2xl border border-white/10 bg-black/35 p-5">
+            <p className="text-xs font-black uppercase tracking-[0.20em] text-zinc-500">Liquidation Pressure</p>
+            <h3 className={`mt-3 text-2xl font-black ${
+              pcsRisk.liquidationPressure === "Critical" || pcsRisk.liquidationPressure === "High"
+                ? "text-red-300"
+                : pcsRisk.liquidationPressure === "Rising"
+                  ? "text-orange-300"
+                  : "text-emerald-300"
+            }`}>
+              {pcsRisk.liquidationPressure}
+            </h3>
+            <p className="mt-2 text-xs text-zinc-500">Vault safety pressure from debt and collateral</p>
+          </div>
+
+          <div className="rounded-2xl border border-white/10 bg-black/35 p-5">
+            <p className="text-xs font-black uppercase tracking-[0.20em] text-zinc-500">Treasury Coverage</p>
+            <h3 className={`mt-3 text-2xl font-black ${
+              pcsRisk.treasuryCoverage === "Weak"
+                ? "text-red-300"
+                : pcsRisk.treasuryCoverage === "Moderate"
+                  ? "text-orange-300"
+                  : "text-emerald-300"
+            }`}>
+              {pcsRisk.treasuryCoverage}
+            </h3>
+            <p className="mt-2 text-xs text-zinc-500">Reserve and protocol buffer monitor</p>
+          </div>
+
+          <div className="rounded-2xl border border-white/10 bg-black/35 p-5">
+            <p className="text-xs font-black uppercase tracking-[0.20em] text-zinc-500">Borrow Utilization</p>
+            <h3 className="mt-3 text-2xl font-black text-cyan-100">
+              {(pcsRisk.borrowUtilization * 100).toFixed(2)}%
+            </h3>
+            <p className="mt-2 text-xs text-zinc-500">Debt demand against testnet capacity</p>
+          </div>
+
+          <div className="rounded-2xl border border-amber-300/20 bg-amber-300/[0.08] p-5">
+            <p className="text-xs font-black uppercase tracking-[0.20em] text-amber-200">PCS Recommendation</p>
+            <h3 className="mt-3 text-lg font-black text-white">
+              {pcsRisk.suggestedParameterResponse}
+            </h3>
+            <p className="mt-2 text-xs text-zinc-400">Protocol-level response suggestion</p>
+          </div>
+        </div>
+      </section>
+
       <section className="mb-8 rounded-3xl border border-white/10 bg-white/[0.03] p-6">
         <h2 className="text-2xl font-bold">Why FAITH is built for MegaETH</h2>
         <div className="mt-5 grid gap-5 md:grid-cols-3">
