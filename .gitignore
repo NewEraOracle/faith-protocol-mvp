@@ -91,3 +91,5 @@ utopia-by-faith/artifacts/
 utopia-by-faith-isometric/package-lock.json
 
 frontend/public/faith/*.pdf
+
+_private_investor_materials/
