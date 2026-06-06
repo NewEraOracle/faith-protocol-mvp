@@ -120,11 +120,11 @@ export default function WhitelistPage() {
             {submitted ? (
               <div className="flex min-h-[480px] flex-col justify-center">
                 <p className="text-sm uppercase tracking-[0.3em] text-cyan-300">
-                  Request prepared
+                  Request submitted
                 </p>
 
                 <h2 className="mt-4 text-3xl font-semibold text-white">
-                  Your FAITH access request has been prepared.
+                  Your FAITH access request has been submitted.
                 </h2>
 
                 <p className="mt-4 text-sm leading-7 text-slate-300">
@@ -149,7 +149,7 @@ export default function WhitelistPage() {
                 </button>
               </div>
             ) : (
-              <form action="https://formsubmit.co/contact@faithdefi.com" method="POST" onSubmit={handleSubmit} className="grid gap-5">
+              <form action="https://formsubmit.co/contact@faithdefi.com" method="POST" className="grid gap-5">
                 <div>
                   <label className="text-sm font-medium text-white/80">Name</label>
                   <input
@@ -233,6 +233,7 @@ export default function WhitelistPage() {
     </main>
   );
 }
+
 
 
 
