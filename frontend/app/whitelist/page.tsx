@@ -1,41 +1,14 @@
 ﻿"use client";
 
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 
 const roles = ["Investor", "Builder", "Researcher", "Ecosystem", "Reviewer", "Other"];
 
 export default function WhitelistPage() {
   const [submitted, setSubmitted] = useState(false);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    const form = new FormData(event.currentTarget);
-    const name = String(form.get("name") || "");
-    const email = String(form.get("email") || "");
-    const role = String(form.get("role") || "");
-    const wallet = String(form.get("wallet") || "");
-    const message = String(form.get("message") || "");
-
-    const subject = encodeURIComponent("FAITH Access Request");
-    const body = encodeURIComponent(
-      [
-        "FAITH Access Request",
-        "",
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Role: ${role}`,
-        `Wallet: ${wallet || "N/A"}`,
-        "",
-        "Request / Message:",
-        message || "N/A",
-        "",
-        "Requested through the FAITH access page.",
-      ].join("\n")
-    );
-
-    window.location.href = `mailto:contact@faithdefi.com?subject=${subject}&body=${body}`;
+  function handleSubmit() {
     setSubmitted(true);
   }
 
@@ -164,7 +137,7 @@ export default function WhitelistPage() {
                   href="mailto:contact@faithdefi.com?subject=FAITH%20Access%20Request"
                   className="mt-8 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-5 py-3 text-center text-sm font-semibold text-cyan-200 transition hover:bg-cyan-300/20 hover:text-white"
                 >
-                  Email contact@faithdefi.com
+                  Contact FAITH directly
                 </a>
 
                 <button
@@ -176,7 +149,7 @@ export default function WhitelistPage() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="grid gap-5">
+              <form action="https://formsubmit.co/contact@faithdefi.com" method="POST" onSubmit={handleSubmit} className="grid gap-5">
                 <div>
                   <label className="text-sm font-medium text-white/80">Name</label>
                   <input
@@ -260,3 +233,6 @@ export default function WhitelistPage() {
     </main>
   );
 }
+
+
+
