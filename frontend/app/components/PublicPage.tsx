@@ -33,13 +33,37 @@ export function PublicPage({ label, title, intro, children }: PublicPageProps) {
           >
             Back to FAITH
           </Link>
+          <div className="hidden items-center gap-2 sm:flex">
+            <Link
+              href="/docs"
+              className="rounded-full border border-white/10 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300 backdrop-blur-md transition hover:border-cyan-300/50 hover:bg-cyan-300/10 hover:text-white"
+            >
+              Docs
+            </Link>
 
-          <Link
-            href="/dashboard"
-            className="hidden rounded-full border border-white/10 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300 backdrop-blur-md transition hover:border-cyan-300/50 hover:bg-cyan-300/10 hover:text-white sm:inline-flex"
-          >
-            Dashboard
-          </Link>
+            <Link
+              href="/whitelist"
+              className="rounded-full border border-white/10 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300 backdrop-blur-md transition hover:border-cyan-300/50 hover:bg-cyan-300/10 hover:text-white"
+            >
+              Whitelist
+            </Link>
+
+            <a
+              href="https://github.com/NewEraOracle/faith-protocol-mvp"
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-white/10 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300 backdrop-blur-md transition hover:border-cyan-300/50 hover:bg-cyan-300/10 hover:text-white"
+            >
+              GitHub
+            </a>
+
+            <Link
+              href="/dashboard"
+              className="rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-200 backdrop-blur-md transition hover:border-cyan-300/70 hover:bg-cyan-300/20 hover:text-white"
+            >
+              Dashboard
+            </Link>
+          </div>
         </div>
 
         <div className="mt-16 max-w-4xl">
@@ -84,6 +108,12 @@ export function InfoCard({
     </div>
   );
 }
+
+
+
+
+
+
 
 
 
