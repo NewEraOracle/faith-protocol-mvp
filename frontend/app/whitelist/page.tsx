@@ -22,7 +22,7 @@ export default function WhitelistPage() {
           </p>
 
           <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">
-            Join the FAITH Testnet / Builder Whitelist
+            Request FAITH Access
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg leading-8 text-white/70">
@@ -67,7 +67,7 @@ export default function WhitelistPage() {
               </p>
 
               <h2 className="mt-4 text-3xl font-semibold text-white">
-                Thank you for joining the FAITH whitelist.
+                Your FAITH access request has been received.
               </h2>
 
               <p className="mt-4 text-sm leading-7 text-white/70">
@@ -80,7 +80,7 @@ export default function WhitelistPage() {
                 onClick={() => setSubmitted(false)}
                 className="mt-8 rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:border-amber-300/70 hover:text-amber-200"
               >
-                Submit another request
+                Submit another access request
               </button>
             </div>
           ) : (
@@ -150,7 +150,7 @@ export default function WhitelistPage() {
                   name="message"
                   rows={5}
                   className="mt-2 w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-amber-300/70"
-                  placeholder="Tell us why you are interested in FAITH."
+                  placeholder="Tell us whether you are requesting testnet access, builder review, investor materials, or private whitepaper access."
                 />
               </div>
 
@@ -158,7 +158,7 @@ export default function WhitelistPage() {
                 type="submit"
                 className="rounded-full bg-amber-300 px-5 py-3 text-sm font-semibold text-black transition hover:bg-amber-200"
               >
-                Join Whitelist
+                Request Access
               </button>
 
               <p className="text-xs leading-6 text-white/45">
@@ -172,3 +172,4 @@ export default function WhitelistPage() {
     </main>
   );
 }
+
