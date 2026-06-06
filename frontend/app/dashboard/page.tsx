@@ -200,32 +200,44 @@ export default function Home() {
   const demoSteps = [
     {
       number: "01",
-      title: "Claim 1000 tFAITH",
-      description: "Use the FAITH faucet to claim test collateral tokens for the live MegaETH demo.",
-      complete: demoProgress.claim,
+      title: "Connect Wallet",
+      description: "Connect MetaMask on MegaETH testnet to begin the live protocol demo.",
+      complete: Boolean(wallet),
     },
     {
       number: "02",
-      title: "Deposit 10 tFAITH",
-      description: "Create collateral inside the tVaultManager and activate a borrower position.",
-      complete: demoProgress.deposit,
+      title: "Claim tFAITH",
+      description: "Use the faucet to claim 1000 test tFAITH collateral tokens.",
+      complete: demoProgress.claim,
     },
     {
       number: "03",
-      title: "Borrow 5 tfUSD",
-      description: "Mint test credit against tFAITH collateral while respecting the 60% borrow limit.",
-      complete: demoProgress.borrow,
+      title: "Deposit Collateral",
+      description: "Deposit 10 tFAITH into the tVaultManager to open a testnet vault.",
+      complete: demoProgress.deposit,
     },
     {
       number: "04",
-      title: "Crash tFAITH to $0.40",
-      description: "Use the test oracle to simulate a rapid market shock and create liquidation risk.",
-      complete: demoProgress.crash,
+      title: "Borrow tfUSD",
+      description: "Borrow 5 tfUSD against collateral while staying inside the borrow limit.",
+      complete: demoProgress.borrow,
     },
     {
       number: "05",
-      title: "Liquidate unsafe tVault",
-      description: "Clear bad debt and seize collateral when the health factor falls below the liquidation threshold.",
+      title: "Simulate Oracle Shock",
+      description: "Crash tFAITH to $0.40 with the test oracle to stress the vault.",
+      complete: demoProgress.crash,
+    },
+    {
+      number: "06",
+      title: "PCS Evaluates Risk",
+      description: "PCS reads oracle risk, vault health, liquidation pressure, utilization, and treasury coverage.",
+      complete: demoProgress.crash,
+    },
+    {
+      number: "07",
+      title: "Liquidation Warning",
+      description: "The dashboard exposes liquidation risk and allows unsafe vault liquidation when thresholds are breached.",
       complete: demoProgress.liquidation,
     },
   ];
@@ -778,13 +790,13 @@ export default function Home() {
             <div className="mb-2 inline-flex rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-sm font-bold text-cyan-200">
               Investor Demo Flow
             </div>
-            <h2 className="text-3xl font-bold">Demo Flow: Prove the FAITH Protocol Risk Loop</h2>
-            <p className="mt-2 max-w-3xl text-zinc-300">This tracker stays complete after liquidation until you reset it.</p>
+            <h2 className="text-3xl font-bold">Demo Flow: Prove the FAITH Credit, Treasury, and PCS Risk Loop</h2>
+            <p className="mt-2 max-w-3xl text-zinc-300">A clear investor-ready walkthrough from wallet connection to PCS risk detection and liquidation visibility.</p>
           </div>
           <div className="flex flex-col gap-3">
             <div className="rounded-2xl border border-white/10 bg-black/30 px-5 py-4">
               <p className="text-sm text-zinc-400">Demo Progress</p>
-              <p className="mt-1 text-3xl font-bold text-cyan-200">{completedDemoSteps}/5</p>
+              <p className="mt-1 text-3xl font-bold text-cyan-200">{completedDemoSteps}/7</p>
             </div>
             <button onClick={resetDemoFlow} className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-5 py-3 text-sm font-bold text-cyan-200 transition hover:bg-cyan-400/20">
               Reset Demo Flow
@@ -794,9 +806,9 @@ export default function Home() {
         <div className="mb-5 rounded-2xl border border-white/10 bg-black/30 p-5">
           <p className="text-sm font-semibold uppercase tracking-wide text-zinc-500">Recommended Demo Action</p>
           <p className="mt-2 text-lg font-semibold text-white">{recommendedAction}</p>
-          <p className="mt-2 text-sm text-zinc-500">This guided demo shows the full credit and risk cycle: connect wallet, claim test collateral, deposit, borrow, simulate an oracle shock, monitor liquidation risk, and reset the presentation tracker. Reset does not change your wallet, balances, or protocol state.</p>
+          <p className="mt-2 text-sm text-zinc-500">This guided demo shows the full testnet cycle: connect wallet, claim collateral, open a vault, borrow tfUSD, simulate an oracle shock, watch PCS evaluate protocol risk, and expose liquidation pressure. Reset only clears the presentation tracker; it does not change wallet balances or protocol state.</p>
         </div>
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-7">
           {demoSteps.map((step) => (
             <DemoStepCard key={step.number} number={step.number} title={step.title} description={step.description} complete={step.complete} />
           ))}
@@ -1404,7 +1416,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-5">
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-7">
           <div className="rounded-3xl border border-white/10 bg-black/30 p-5">
             <p className="text-xs font-black uppercase tracking-[0.20em] text-zinc-400">Capital Pool</p>
             <h3 className="mt-3 text-xl font-black text-white">Real Estate</h3>
@@ -1565,6 +1577,8 @@ function ActivityRow({ item, shortHash }: { item: ActivityItem; shortHash: (hash
   const badgeStyle = item.type === "Deposit" ? "border-green-500/30 bg-green-500/10 text-green-300" : item.type === "Withdraw" ? "border-red-500/30 bg-red-500/10 text-red-300" : item.type === "Borrow" ? "border-blue-500/30 bg-blue-500/10 text-blue-300" : item.type === "Repay" ? "border-yellow-500/30 bg-yellow-500/10 text-yellow-300" : item.type === "Liquidation" ? "border-rose-500/30 bg-rose-500/10 text-rose-300" : "border-purple-500/30 bg-purple-500/10 text-purple-300";
   return <div className="flex flex-col justify-between gap-4 rounded-2xl border border-white/10 bg-black/30 p-5 lg:flex-row lg:items-center"><div className="flex items-start gap-4"><div className={`rounded-full border px-3 py-1 text-xs font-bold ${badgeStyle}`}>{item.type}</div><div><p className="font-semibold text-white">{item.title}</p><p className="mt-1 text-sm text-zinc-400">{item.description}</p></div></div><div className="text-sm text-zinc-500"><p>Block #{item.blockNumber}</p><p className="font-mono">{shortHash(item.txHash)}</p></div></div>;
 }
+
+
 
 
 
