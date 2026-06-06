@@ -87,3 +87,7 @@ frontend/components/faith/
 utopia-by-faith/node_modules/
 utopia-by-faith/dist/
 utopia-by-faith/artifacts/
+
+utopia-by-faith-isometric/package-lock.json
+
+frontend/public/faith/*.pdf

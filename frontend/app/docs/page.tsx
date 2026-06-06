@@ -117,10 +117,10 @@ export default function DocsPage() {
           </p>
           <div className="mt-6">
             <a
-              href="#"
+              href="/whitelist"
               className="inline-flex rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:border-amber-300/70 hover:text-amber-200"
             >
-              Whitepaper download coming soon
+              Request Whitepaper Access
             </a>
           </div>
         </section>
@@ -128,3 +128,5 @@ export default function DocsPage() {
     </main>
   );
 }
+
+
