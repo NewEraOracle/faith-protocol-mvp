@@ -83,7 +83,7 @@ export default function Home() {
   const [collateral, setCollateral] = useState("0");
   const [debt, setDebt] = useState("0");
   const [vaultActive, setVaultActive] = useState(false);
-  const [healthFactor, setHealthFactor] = useState("âˆž");
+  const [healthFactor, setHealthFactor] = useState("∞");
   const [borrowLimit, setBorrowLimit] = useState("0");
   const [availableBorrow, setAvailableBorrow] = useState("0");
   const [oraclePrice, setOraclePrice] = useState("1");
@@ -102,7 +102,7 @@ export default function Home() {
   const [demoProgress, setDemoProgress] = useState<DemoProgress>(DEFAULT_DEMO_PROGRESS);
   const [status, setStatus] = useState("");
 
-  const healthNumber = healthFactor === "âˆž" ? Number.POSITIVE_INFINITY : Number(healthFactor);
+  const healthNumber = healthFactor === "∞" ? Number.POSITIVE_INFINITY : Number(healthFactor);
 
   useEffect(() => {
     const saved = window.localStorage.getItem(DEMO_PROGRESS_STORAGE_KEY);
@@ -165,7 +165,7 @@ export default function Home() {
   }, [wallet, walletProvider]);
 
   const riskStatus = useMemo(() => {
-    if (healthFactor === "âˆž") {
+    if (healthFactor === "∞") {
       return { label: "No Debt", color: "text-sky-300", bg: "bg-sky-500/10", border: "border-sky-500/30" };
     }
     if (healthNumber < 1.1) {
@@ -179,7 +179,7 @@ export default function Home() {
   const pcsRisk = useMemo(() => {
     return calculatePCSRisk({
       oraclePrice: Number(oraclePrice),
-      healthFactor: healthFactor === "âˆž" ? null : Number(healthFactor),
+      healthFactor: healthFactor === "∞" ? null : Number(healthFactor),
       protocolCollateral: Number(protocolCollateral),
       protocolDebtSupply: Number(protocolDebtSupply),
       vaultActive,
@@ -189,7 +189,7 @@ export default function Home() {
   const pcsStressScenarios = useMemo(() => {
     return simulatePCSStress({
       oraclePrice: Number(oraclePrice),
-      healthFactor: healthFactor === "âˆž" ? null : Number(healthFactor),
+      healthFactor: healthFactor === "∞" ? null : Number(healthFactor),
       protocolCollateral: Number(protocolCollateral),
       protocolDebtSupply: Number(protocolDebtSupply),
       vaultActive,
@@ -212,7 +212,7 @@ export default function Home() {
     },
     {
       number: "03",
-      title: "Borrow 5 FUSD",
+      title: "Borrow 5 tfUSD",
       description: "Mint test credit against tFAITH collateral while respecting the 60% borrow limit.",
       complete: demoProgress.borrow,
     },
@@ -236,7 +236,7 @@ export default function Home() {
     if (!wallet) return "Connect your wallet to begin the live demo.";
     if (!demoProgress.claim) return "Next: Claim 1000 tFAITH from the faucet.";
     if (!demoProgress.deposit) return "Next: Deposit 10 tFAITH.";
-    if (!demoProgress.borrow) return "Next: Borrow 5 FUSD.";
+    if (!demoProgress.borrow) return "Next: Borrow 5 tfUSD.";
     if (!demoProgress.crash) return "Next: Crash tFAITH price to $0.40.";
     if (!demoProgress.liquidation) return "Next: Liquidate the unsafe tVault.";
     return "Demo completed successfully âœ”";
@@ -403,7 +403,7 @@ export default function Home() {
       setOraclePrice(formattedOraclePrice);
       setProtocolCollateral(formattedProtocolCollateral);
       setProtocolDebtSupply(formattedProtocolDebt);
-      setHealthFactor(healthRaw === ethers.MaxUint256 ? "âˆž" : (Number(healthRaw) / 100).toFixed(2));
+      setHealthFactor(healthRaw === ethers.MaxUint256 ? "∞" : (Number(healthRaw) / 100).toFixed(2));
     } catch (error) {
       console.error(error);
       setStatus("Loading protocol data failed âŒ");
@@ -462,7 +462,7 @@ export default function Home() {
         const liquidator = event.args.liquidator;
         const debtRepaid = Number(ethers.formatEther(event.args.debtRepaid));
         const collateralSeized = Number(ethers.formatEther(event.args.collateralSeized));
-        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Liquidation", title: "Liquidation Executed", description: `${shortAddress(liquidator)} cleared unsafe debt for ${shortAddress(user)} â€” ${debtRepaid} FUSD repaid, ${collateralSeized} tFAITH collateral seized`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, liquidator, debtRepaid, collateralSeized });
+        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Liquidation", title: "Liquidation Executed", description: `${shortAddress(liquidator)} cleared unsafe debt for ${shortAddress(user)} â€” ${debtRepaid} tfUSD repaid, ${collateralSeized} tFAITH collateral seized`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, liquidator, debtRepaid, collateralSeized });
       }
       for (const event of oracleEvents as any[]) {
         const previousPrice = Number(ethers.formatEther(event.args.previousPrice));
@@ -614,14 +614,14 @@ export default function Home() {
   async function borrowFUSD() {
     try {
       if (!borrowAmount || !wallet) return;
-      setStatus("Borrowing FUSD...");
+      setStatus("Borrowing tfUSD...");
       const provider = await ensureMegaETHProvider();
       const signer = await provider.getSigner();
       const vault = new ethers.Contract(VAULT_MANAGER_ADDRESS, VAULT_MANAGER_ABI, signer);
       const tx = await vault.borrow(ethers.parseEther(borrowAmount));
       await tx.wait();
       updateDemoProgress({ borrow: true });
-      setStatus("FUSD borrow successful âœ”");
+      setStatus("tfUSD borrow successful ✔");
       setBorrowAmount("");
       await refreshEverything(wallet);
     } catch (error) {
@@ -633,7 +633,7 @@ export default function Home() {
   async function repayFUSD() {
     try {
       if (!repayAmount || !wallet) return;
-      setStatus("Approving FUSD...");
+      setStatus("Approving tfUSD...");
       const provider = await ensureMegaETHProvider();
       const signer = await provider.getSigner();
       const fusd = new ethers.Contract(FUSD_ADDRESS, FUSD_ABI, signer);
@@ -641,10 +641,10 @@ export default function Home() {
       const amount = ethers.parseEther(repayAmount);
       const approveTx = await fusd.approve(VAULT_MANAGER_ADDRESS, amount);
       await approveTx.wait();
-      setStatus("Repaying FUSD...");
+      setStatus("Repaying tfUSD...");
       const tx = await vault.repay(amount);
       await tx.wait();
-      setStatus("FUSD repayment successful âœ”");
+      setStatus("tfUSD repayment successful ✔");
       setRepayAmount("");
       await refreshEverything(wallet);
     } catch (error) {
@@ -685,7 +685,7 @@ export default function Home() {
         setStatus("Target tVault has no FUSD debt âŒ");
         return;
       }
-      setStatus("Approving FUSD for liquidation...");
+      setStatus("Approving tfUSD for liquidation...");
       const approveTx = await fusd.approve(VAULT_MANAGER_ADDRESS, targetDebt);
       await approveTx.wait();
       setStatus("Liquidating unsafe tVault...");
@@ -830,7 +830,7 @@ export default function Home() {
             <div className="mt-5 space-y-2 text-xs">
               <div className="flex justify-between gap-3">
                 <span className="text-zinc-500">System Risk</span>
-                <span className="text-cyan-100">{pcsRisk.pcsRiskLevel} Â· {pcsRisk.pcsRiskScore}/100</span>
+                <span className="text-cyan-100">{pcsRisk.pcsRiskLevel} · {pcsRisk.pcsRiskScore}/100</span>
               </div>
               <div className="flex justify-between gap-3">
                 <span className="text-zinc-500">Oracle Risk</span>
@@ -899,7 +899,7 @@ export default function Home() {
           </div>
 
           <MetricCard label="Total tFAITH Collateral" value={Number(protocolCollateral).toLocaleString()} helper="Held inside tVaultManager" />
-          <MetricCard label="Total FUSD Debt Supply" value={Number(protocolDebtSupply).toLocaleString()} helper="Outstanding test credit" />
+          <MetricCard label="Total tfUSD Debt Supply" value={Number(protocolDebtSupply).toLocaleString()} helper="Outstanding test credit" />
           <MetricCard label="tFAITH Oracle Price" value={`$${oraclePrice}`} helper="tMockOracle live value" />
           <MetricCard label="tVault Address" value={`${VAULT_MANAGER_ADDRESS.slice(0, 6)}...${VAULT_MANAGER_ADDRESS.slice(-4)}`} helper="Current test deployment" />
         </div>
@@ -916,7 +916,7 @@ export default function Home() {
             </p>
           </div>
           <div className={`rounded-full border px-4 py-2 text-sm font-bold ${riskStatus.bg} ${riskStatus.border} ${riskStatus.color}`}>
-            System Risk: {pcsRisk.pcsRiskLevel} Â· {pcsRisk.pcsRiskScore}/100
+            System Risk: {pcsRisk.pcsRiskLevel} · {pcsRisk.pcsRiskScore}/100
           </div>
         </div>
 
@@ -978,7 +978,7 @@ export default function Home() {
                 ? "border-orange-400/30 bg-orange-400/10 text-orange-200"
                 : "border-emerald-400/30 bg-emerald-400/10 text-emerald-200"
           }`}>
-            System Risk: {pcsRisk.pcsRiskLevel} Â· {pcsRisk.pcsRiskScore}/100
+            System Risk: {pcsRisk.pcsRiskLevel} · {pcsRisk.pcsRiskScore}/100
           </div>
         </div>
 
@@ -1106,7 +1106,7 @@ export default function Home() {
           </div>
 
           <div className="rounded-3xl border border-white/10 bg-black/30 p-5">
-            <p className="text-xs font-black uppercase tracking-[0.20em] text-zinc-400">Liquidation Threshold</p>
+            <p className="text-xs font-black uppercase tracking-[0.20em] text-zinc-400">Minimum Health Factor</p>
             <h3 className="mt-3 text-2xl font-black text-cyan-100">{pcsRisk.liquidationThreshold}%</h3>
             <p className="mt-2 text-sm text-zinc-500">Protocol solvency protection threshold.</p>
           </div>
@@ -1286,11 +1286,11 @@ export default function Home() {
         </div>
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           <MetricCard label="tFAITH Balance" value={Number(faithBalance).toLocaleString()} />
-          <MetricCard label="FUSD Balance" value={Number(fusdBalance).toLocaleString()} />
+          <MetricCard label="tfUSD Balance" value={Number(fusdBalance).toLocaleString()} />
           <MetricCard label="Collateral (FAITH)" value={collateral} />
-          <MetricCard label="Debt (fUSD)" value={debt} />
-          <MetricCard label="Borrow Limit (fUSD)" value={borrowLimit} />
-          <MetricCard label="Available Borrow (fUSD)" value={availableBorrow} />
+          <MetricCard label="Debt (tfUSD)" value={debt} />
+          <MetricCard label="Borrow Limit (tfUSD)" value={borrowLimit} />
+          <MetricCard label="Available Borrow (tfUSD)" value={availableBorrow} />
           <div className="rounded-3xl border border-rose-400/20 bg-rose-400/10 p-5 shadow-[0_0_45px_rgba(244,63,94,0.08)]">
             <p className="text-xs font-black uppercase tracking-[0.22em] text-rose-200">Liquidation Risk</p>
             <h3 className={`mt-3 text-2xl font-black ${riskStatus.label === "Liquidatable" ? "text-red-300" : riskStatus.label === "Warning" ? "text-orange-300" : "text-white"}`}>
@@ -1301,7 +1301,7 @@ export default function Home() {
             <div className="mt-5 space-y-2 text-xs">
               <div className="flex justify-between gap-3">
                 <span className="text-zinc-500">Current Status</span>
-                <span className="text-cyan-100">{pcsRisk.pcsRiskLevel} Â· {pcsRisk.pcsRiskScore}/100</span>
+                <span className="text-cyan-100">{pcsRisk.pcsRiskLevel} · {pcsRisk.pcsRiskScore}/100</span>
               </div>
               <div className="flex justify-between gap-3">
                 <span className="text-zinc-500">Health Factor</span>
@@ -1309,7 +1309,7 @@ export default function Home() {
               </div>
               <div className="flex justify-between gap-3">
                 <span className="text-zinc-500">Debt Position</span>
-                <span className="text-white">{Number(debt).toLocaleString()} FUSD</span>
+                <span className="text-white">{Number(debt).toLocaleString()} tfUSD</span>
               </div>
               <div className="flex justify-between gap-3">
                 <span className="text-zinc-500">Collateral at Risk</span>
@@ -1328,10 +1328,10 @@ export default function Home() {
 
           <div className="rounded-3xl border border-white/10 bg-black/30 p-5">
             <p className="text-sm text-zinc-400">Health Factor</p>
-            <p className={`mt-3 break-words text-2xl font-bold ${healthFactor !== "âˆž" && Number(healthFactor) < 1.1 ? "text-red-400" : healthFactor !== "âˆž" && Number(healthFactor) < 1.5 ? "text-orange-300" : "text-green-400"}`}>{healthFactor}</p>
+            <p className={`mt-3 break-words text-2xl font-bold ${healthFactor !== "∞" && Number(healthFactor) < 1.1 ? "text-red-400" : healthFactor !== "∞" && Number(healthFactor) < 1.5 ? "text-orange-300" : "text-green-400"}`}>{healthFactor}</p>
             <div className="mt-4">
               <div className="h-3 w-full overflow-hidden rounded-full bg-white/10">
-                <div className={`h-full transition-all duration-700 ${healthFactor !== "âˆž" && Number(healthFactor) < 1.1 ? "bg-red-500" : healthFactor !== "âˆž" && Number(healthFactor) < 1.5 ? "bg-orange-400" : "bg-emerald-400"}`} style={{ width: healthFactor === "âˆž" ? "100%" : `${Math.min(100, Number(healthFactor) * 50)}%` }} />
+                <div className={`h-full transition-all duration-700 ${healthFactor !== "∞" && Number(healthFactor) < 1.1 ? "bg-red-500" : healthFactor !== "∞" && Number(healthFactor) < 1.5 ? "bg-orange-400" : "bg-emerald-400"}`} style={{ width: healthFactor === "∞" ? "100%" : `${Math.min(100, Number(healthFactor) * 50)}%` }} />
               </div>
               <div className="mt-2 flex justify-between text-[10px] font-semibold tracking-wide text-zinc-500">
                 <span>DANGER</span><span>WARNING</span><span>SAFE</span>
@@ -1456,10 +1456,10 @@ export default function Home() {
             <button onClick={claimTestFaith} className="mt-5 w-full rounded-2xl bg-cyan-600 p-4 font-bold transition hover:bg-cyan-500">Claim 1000 tFAITH</button>
           </div>
           <ActionCard title="Deposit tFAITH" description="Lock test collateral into your tVault." inputValue={depositAmount} onInputChange={setDepositAmount} placeholder="Amount" buttonLabel="Deposit tFAITH" buttonClassName="bg-green-600 hover:bg-green-500" onClick={depositCollateral} />
-          <ActionCard title="Borrow FUSD" description="Mint FUSD against available tFAITH collateral." inputValue={borrowAmount} onInputChange={setBorrowAmount} placeholder="Amount" buttonLabel="Borrow FUSD" buttonClassName="bg-blue-600 hover:bg-blue-500" onClick={borrowFUSD} />
-          <ActionCard title="Repay FUSD" description="Repay test debt and restore vault health." inputValue={repayAmount} onInputChange={setRepayAmount} placeholder="Amount" buttonLabel="Repay FUSD" buttonClassName="bg-yellow-600 hover:bg-yellow-500" onClick={repayFUSD} />
+          <ActionCard title="Borrow tfUSD" description="Mint tfUSD against available tFAITH collateral." inputValue={borrowAmount} onInputChange={setBorrowAmount} placeholder="Amount" buttonLabel="Borrow tfUSD" buttonClassName="bg-blue-600 hover:bg-blue-500" onClick={borrowFUSD} />
+          <ActionCard title="Repay tfUSD" description="Repay test debt and restore vault health." inputValue={repayAmount} onInputChange={setRepayAmount} placeholder="Amount" buttonLabel="Repay tfUSD" buttonClassName="bg-yellow-600 hover:bg-yellow-500" onClick={repayFUSD} />
           <ActionCard title="Withdraw tFAITH" description="Withdraw collateral while preserving solvency." inputValue={withdrawAmount} onInputChange={setWithdrawAmount} placeholder="Amount" buttonLabel="Withdraw tFAITH" buttonClassName="bg-red-600 hover:bg-red-500" onClick={withdrawCollateral} />
-          <ActionCard title="Liquidate tVault" description="Liquidate an unsafe vault using FUSD." inputValue={liquidateAddress} onInputChange={setLiquidateAddress} placeholder="User wallet address" buttonLabel="Liquidate tVault" buttonClassName="bg-rose-700 hover:bg-rose-600" onClick={liquidateVault} />
+          <ActionCard title="Liquidate tVault" description="Liquidate an unsafe vault using tfUSD." inputValue={liquidateAddress} onInputChange={setLiquidateAddress} placeholder="User wallet address" buttonLabel="Liquidate tVault" buttonClassName="bg-rose-700 hover:bg-rose-600" onClick={liquidateVault} />
           <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
             <h3 className="text-2xl font-bold">Oracle Shock Simulator</h3>
             <p className="mt-2 min-h-[48px] text-sm text-zinc-400">
@@ -1523,7 +1523,7 @@ export default function Home() {
         <h2 className="text-2xl font-bold">Current Testnet Deployment Registry</h2>
         <div className="mt-5 grid gap-4 text-sm text-zinc-300 lg:grid-cols-2">
           <RegistryLine label="tFAITH" value={FAITH_TOKEN_ADDRESS} />
-          <RegistryLine label="FUSD" value={FUSD_ADDRESS} />
+          <RegistryLine label="tfUSD" value={FUSD_ADDRESS} />
           <RegistryLine label="tMockOracle" value={MOCK_ORACLE_ADDRESS} />
           <RegistryLine label="tVaultManager" value={VAULT_MANAGER_ADDRESS} />
           <RegistryLine label="FaithFaucet" value={FAUCET_ADDRESS} />
@@ -1565,6 +1565,8 @@ function ActivityRow({ item, shortHash }: { item: ActivityItem; shortHash: (hash
   const badgeStyle = item.type === "Deposit" ? "border-green-500/30 bg-green-500/10 text-green-300" : item.type === "Withdraw" ? "border-red-500/30 bg-red-500/10 text-red-300" : item.type === "Borrow" ? "border-blue-500/30 bg-blue-500/10 text-blue-300" : item.type === "Repay" ? "border-yellow-500/30 bg-yellow-500/10 text-yellow-300" : item.type === "Liquidation" ? "border-rose-500/30 bg-rose-500/10 text-rose-300" : "border-purple-500/30 bg-purple-500/10 text-purple-300";
   return <div className="flex flex-col justify-between gap-4 rounded-2xl border border-white/10 bg-black/30 p-5 lg:flex-row lg:items-center"><div className="flex items-start gap-4"><div className={`rounded-full border px-3 py-1 text-xs font-bold ${badgeStyle}`}>{item.type}</div><div><p className="font-semibold text-white">{item.title}</p><p className="mt-1 text-sm text-zinc-400">{item.description}</p></div></div><div className="text-sm text-zinc-500"><p>Block #{item.blockNumber}</p><p className="font-mono">{shortHash(item.txHash)}</p></div></div>;
 }
+
+
 
 
 

@@ -17,9 +17,9 @@ const modules = [
     body: "Protocol-owned liquidity and reserves aligned for long-term solvency.",
   },
   {
-    title: "FUSD Activation",
+    title: "tfUSD Activation",
     image: "/faith/design/token-fusd.png",
-    body: "Activate FUSD for payments, trading, and composable real-time applications.",
+    body: "Activate testnet tfUSD for internal credit simulation and future fUSD credit infrastructure.",
   },
 ];
 
@@ -27,23 +27,23 @@ const loop = [
   ["Collateral", "Deposited", "/faith/design/icon-vaults.png"],
   ["Credit", "Minted", "/faith/design/token-fusd.png"],
   ["PCS", "Monitor", "/faith/design/icon-pcs.png"],
-  ["FUSD", "Activated", "/faith/design/token-fusd.png"],
+  ["tfUSD", "Activated", "/faith/design/token-fusd.png"],
   ["Real-Time", "Utilization", "/faith/design/icon-real-time-execution.png"],
 ];
 
 const stats = [
-  ["Total Value Locked", "$128.7M", "+12.3% 24H"],
-  ["FUSD Supply", "$84.2M", "+9.7% 24H"],
-  ["Active Vaults", "2,431", "+8.1% 24H"],
+  ["Demo TVL", "$128.7M", "Simulation"],
+  ["Demo tfUSD Supply", "$84.2M", "Simulation"],
+  ["Demo Active Vaults", "2,431", "Simulation"],
   ["Collateral Ratio", "176%", "Healthy"],
-  ["Protocol Revenue", "$312.9K", "+15.4% 24H"],
+  ["Demo Protocol Revenue", "$312.9K", "Simulation"],
   ["MegaETH Block Time", "<10MS", "Real-Time"],
 ];
 
 export default function Home() {
   return (
     <main className="faith-home relative min-h-screen overflow-hidden bg-black text-white">
-      <img
+<img
         src="/faith/design/background-cosmic.png"
         alt=""
         className="fixed inset-0 h-full w-full object-cover opacity-95"
@@ -114,7 +114,7 @@ export default function Home() {
 
             <div className="relative z-10 mt-8 flex flex-col justify-center gap-4 sm:flex-row">
               <a href="#protocol" className="faith-button px-8 py-4 text-[11px]">
-                Read The Protocol
+Read The Protocol
               </a>
               <Link href="/dashboard" className="faith-button px-8 py-4 text-[11px]">
                 Enter Dashboard
@@ -142,7 +142,7 @@ export default function Home() {
                       {module.body}
                     </p>
                     <p className="mt-4 text-[10px] font-black uppercase tracking-[0.25em] text-cyan-300">
-                      Learn More ?
+                      Learn More →
                     </p>
                   </div>
                 </div>
@@ -182,12 +182,23 @@ export default function Home() {
                 treasury aligned, liquidation visible, and settlement prepared for real-time utility.
               </p>
               <Link href="/dashboard" className="mt-5 inline-block text-[11px] font-black uppercase tracking-[0.28em] text-cyan-200">
-                Explore The Loop ?
+                Explore the Loop →
               </Link>
             </div>
           </section>
 
           <section className="mx-6 mb-6 grid border border-slate-300/20 bg-black/45 md:grid-cols-3 lg:mx-10 xl:grid-cols-6">
+            
+            <div className="col-span-full rounded-2xl border border-amber-300/20 bg-amber-300/[0.06] px-5 py-4 text-center">
+              <p className="text-[10px] font-black uppercase tracking-[0.28em] text-amber-200">
+                Demo Protocol Metrics
+              </p>
+              <p className="mx-auto mt-2 max-w-4xl text-xs leading-6 text-slate-300">
+                Illustrative MVP simulation data. FAITH is currently a testnet MVP and does not manage live user deposits,
+                production TVL, or real protocol revenue.
+              </p>
+            </div>
+
             {stats.map(([label, value, sub]) => (
               <div key={label} className="border-b border-r border-white/10 p-5 text-center xl:border-b-0">
                 <p className="text-[9px] font-black uppercase tracking-[0.27em] text-slate-500">{label}</p>
@@ -236,7 +247,7 @@ export default function Home() {
                   <div className="faith-token-ring">
                     <img
                       src="/faith/design/token-fusd.png"
-                      alt="FUSD token"
+                      alt="tfUSD testnet credit"
                       className="faith-token-large tfusd-bright"
                     />
                   </div>
@@ -246,7 +257,7 @@ export default function Home() {
                       FUSD
                     </h3>
                     <p className="mt-3 text-sm leading-7 text-slate-400">
-                      Autonomous credit asset minted by FAITH vaults on MegaETH testnet.
+                      Testnet internal credit asset minted by FAITH vaults during the MVP demo. fUSD represents the future FAITH internal credit layer.
                     </p>
                     <p className="mt-5 text-[10px] font-black uppercase tracking-[0.32em] text-cyan-300">
                       FUSD Token
@@ -326,6 +337,9 @@ export default function Home() {
 </main>
   );
 }
+
+
+
 
 
 
