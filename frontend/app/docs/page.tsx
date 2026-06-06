@@ -39,18 +39,64 @@ const roadmap = [
 
 export default function DocsPage() {
   return (
-    <main className="min-h-screen bg-[#050505] text-white">
-      <section className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 py-20">
-        <div className="max-w-4xl">
-          <p className="mb-4 text-sm uppercase tracking-[0.35em] text-amber-300/80">
+    <main className="relative min-h-screen overflow-hidden bg-black px-6 py-10 text-white lg:px-10">
+      <div className="pointer-events-none fixed inset-0">
+        <img
+          src="/faith/design/background-cosmic.png"
+          alt=""
+          className="h-full w-full object-cover opacity-80"
+        />
+      </div>
+
+      <div className="pointer-events-none fixed inset-0 bg-black/60" />
+      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.16),transparent_34%),linear-gradient(to_bottom,rgba(2,6,23,0.25),rgba(0,0,0,0.94))]" />
+      <div className="pointer-events-none fixed inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:96px_96px] opacity-20" />
+
+      <section className="relative z-10 mx-auto max-w-6xl">
+        <div className="flex items-center justify-between gap-4">
+          <Link
+            href="/"
+            className="inline-flex rounded-full border border-cyan-300/25 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-300 backdrop-blur-md transition hover:border-cyan-300/70 hover:bg-cyan-300/10 hover:text-white"
+          >
+            Back to FAITH
+          </Link>
+
+          <div className="hidden items-center gap-2 sm:flex">
+            <Link
+              href="/whitelist"
+              className="rounded-full border border-white/10 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300 backdrop-blur-md transition hover:border-cyan-300/50 hover:bg-cyan-300/10 hover:text-white"
+            >
+              Request Access
+            </Link>
+
+            <a
+              href="https://github.com/NewEraOracle/faith-protocol-mvp"
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-white/10 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300 backdrop-blur-md transition hover:border-cyan-300/50 hover:bg-cyan-300/10 hover:text-white"
+            >
+              GitHub
+            </a>
+
+            <Link
+              href="/dashboard"
+              className="rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-200 backdrop-blur-md transition hover:border-cyan-300/70 hover:bg-cyan-300/20 hover:text-white"
+            >
+              Dashboard
+            </Link>
+          </div>
+        </div>
+
+        <div className="py-20">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.35em] text-cyan-300">
             FAITH Protocol Docs
           </p>
 
-          <h1 className="text-4xl font-semibold tracking-tight text-white md:text-6xl">
+          <h1 className="max-w-5xl text-4xl font-semibold tracking-tight text-white md:text-6xl">
             PCS-regulated credit and treasury infrastructure for autonomous onchain economies.
           </h1>
 
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-white/70">
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
             FAITH is a MegaETH-native testnet MVP built around programmable credit,
             treasury resilience, oracle shock simulation, liquidation-risk visibility,
             and PCS protocol-risk intelligence.
@@ -59,74 +105,81 @@ export default function DocsPage() {
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/dashboard"
-              className="rounded-full bg-amber-300 px-5 py-3 text-sm font-semibold text-black transition hover:bg-amber-200"
+              className="rounded-full bg-cyan-300 px-5 py-3 text-sm font-semibold text-black transition hover:bg-cyan-200"
             >
               Enter Dashboard
             </Link>
 
             <Link
               href="/whitelist"
-              className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:border-amber-300/70 hover:text-amber-200"
+              className="rounded-full border border-white/15 bg-black/35 px-5 py-3 text-sm font-semibold text-white backdrop-blur-md transition hover:border-cyan-300/70 hover:text-cyan-200"
             >
-              Join Whitelist
+              Request Access
             </Link>
 
             <a
               href="https://github.com/NewEraOracle/faith-protocol-mvp"
               target="_blank"
               rel="noreferrer"
-              className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:border-amber-300/70 hover:text-amber-200"
+              className="rounded-full border border-white/15 bg-black/35 px-5 py-3 text-sm font-semibold text-white backdrop-blur-md transition hover:border-cyan-300/70 hover:text-cyan-200"
             >
               GitHub
             </a>
           </div>
-        </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          {sections.map((section) => (
-            <article
-              key={section.title}
-              className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-2xl shadow-black/20"
-            >
-              <h2 className="text-xl font-semibold text-amber-200">{section.title}</h2>
-              <p className="mt-4 text-sm leading-7 text-white/70">{section.body}</p>
-            </article>
-          ))}
-        </div>
-
-        <section className="rounded-3xl border border-amber-300/20 bg-amber-300/[0.06] p-6">
-          <h2 className="text-2xl font-semibold text-white">Roadmap</h2>
-          <div className="mt-6 grid gap-3">
-            {roadmap.map((item) => (
-              <div
-                key={item}
-                className="rounded-2xl border border-white/10 bg-black/30 p-4 text-sm leading-7 text-white/70"
+          <div className="mt-14 grid gap-4 md:grid-cols-2">
+            {sections.map((section) => (
+              <article
+                key={section.title}
+                className="rounded-3xl border border-white/10 bg-black/45 p-6 shadow-2xl shadow-cyan-950/20 backdrop-blur-xl"
               >
-                {item}
-              </div>
+                <h2 className="text-xl font-semibold text-cyan-100">{section.title}</h2>
+                <p className="mt-4 text-sm leading-7 text-slate-300">{section.body}</p>
+              </article>
             ))}
           </div>
-        </section>
 
-        <section className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
-          <h2 className="text-2xl font-semibold text-white">Whitepaper</h2>
-          <p className="mt-4 max-w-3xl text-sm leading-7 text-white/70">
-            The Delphi submission whitepaper explains the testnet MVP, PCS risk architecture,
-            treasury direction, roadmap, and safety boundaries. Add the final PDF link here
-            when the public download path is ready.
-          </p>
-          <div className="mt-6">
-            <a
-              href="/whitelist"
-              className="inline-flex rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:border-amber-300/70 hover:text-amber-200"
-            >
-              Request Whitepaper Access
-            </a>
-          </div>
-        </section>
+          <section className="mt-8 rounded-3xl border border-cyan-300/20 bg-cyan-300/[0.06] p-6 shadow-2xl shadow-cyan-950/20 backdrop-blur-xl">
+            <h2 className="text-2xl font-semibold text-white">Roadmap</h2>
+            <div className="mt-6 grid gap-3">
+              {roadmap.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-2xl border border-white/10 bg-black/35 p-4 text-sm leading-7 text-slate-300"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="mt-8 rounded-3xl border border-white/10 bg-black/45 p-6 shadow-2xl shadow-cyan-950/20 backdrop-blur-xl">
+            <h2 className="text-2xl font-semibold text-white">Private Whitepaper Access</h2>
+            <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300">
+              The investor whitepaper is available upon request for serious ecosystem
+              partners, investors, and reviewers. Public documentation intentionally keeps
+              proprietary PCS scoring, treasury strategy, tokenomics, and future capital-routing
+              mechanics private.
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link
+                href="/whitelist"
+                className="inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-5 py-3 text-sm font-semibold text-cyan-200 transition hover:bg-cyan-300/20 hover:text-white"
+              >
+                Request Whitepaper Access
+              </Link>
+
+              <a
+                href="mailto:contact@faithdefi.com?subject=FAITH%20Whitepaper%20Access%20Request"
+                className="inline-flex rounded-full border border-white/15 bg-black/35 px-5 py-3 text-sm font-semibold text-white transition hover:border-cyan-300/70 hover:text-cyan-200"
+              >
+                Email contact@faithdefi.com
+              </a>
+            </div>
+          </section>
+        </div>
       </section>
     </main>
   );
 }
-
-
