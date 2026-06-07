@@ -17,9 +17,9 @@ const modules = [
     body: "Protocol-owned liquidity and reserves aligned for long-term solvency.",
   },
   {
-    title: "tfUSD Activation",
+    title: "FUSD ACTIVATION",
     image: "/faith/design/token-fusd.png",
-    body: "Activate testnet tfUSD for internal credit simulation and future fUSD credit infrastructure.",
+    body: "Activate testnet FUSD for internal credit simulation and future fUSD credit infrastructure.",
   },
 ];
 
@@ -27,13 +27,13 @@ const loop = [
   ["Collateral", "Deposited", "/faith/design/icon-vaults.png"],
   ["Credit", "Minted", "/faith/design/token-fusd.png"],
   ["PCS", "Monitor", "/faith/design/icon-pcs.png"],
-  ["tfUSD", "Activated", "/faith/design/token-fusd.png"],
+  ["FUSD", "Activated", "/faith/design/token-fusd.png"],
   ["Real-Time", "Utilization", "/faith/design/icon-real-time-execution.png"],
 ];
 
 const stats = [
   ["Demo TVL", "$128.7M", "Simulation"],
-  ["Demo tfUSD Supply", "$84.2M", "Simulation"],
+  ["Demo FUSD Supply", "$84.2M", "Simulation"],
   ["Demo Active Vaults", "2,431", "Simulation"],
   ["Collateral Ratio", "176%", "Healthy"],
   ["Demo Protocol Revenue", "$312.9K", "Simulation"],
@@ -61,7 +61,7 @@ export default function Home() {
 
             <div className="hidden items-center gap-10 text-[11px] font-black uppercase tracking-[0.28em] text-slate-100 lg:flex">
               <Link href="/protocol">Protocol</Link>
-              <Link href="/tfusd">FUSD</Link>
+              <Link href="/FUSD">FUSD</Link>
               <Link href="/developers">Developers</Link>
               <Link href="/docs">Docs</Link>
               <Link href="/governance">Governance</Link>
@@ -130,7 +130,7 @@ Read The Protocol
                     <img
                       src={module.image}
                       alt={module.title}
-                      className={module.title.includes("FUSD") ? "faith-asset tfusd-bright" : "faith-asset"}
+                      className={module.title.includes("FUSD") ? "faith-asset FUSD-bright" : "faith-asset"}
                     />
                   </div>
 
@@ -163,7 +163,7 @@ Read The Protocol
                       <img
                         src={image}
                         alt={top}
-                        className={top === "FUSD" || top === "Credit" ? "faith-asset tfusd-bright" : "faith-asset"}
+                        className={top === "FUSD" || top === "Credit" ? "faith-asset FUSD-bright" : "faith-asset"}
                       />
                     </div>
                     <p className="mt-3 text-[11px] font-black uppercase tracking-[0.2em] text-white">{top}</p>
@@ -178,7 +178,7 @@ Read The Protocol
                 Credit That Moves At Internet Speed.
               </h2>
               <p className="mt-4 text-sm leading-7 text-slate-400">
-                FAITH is purpose-built for MegaETH: collateral in, credit out, PCS active,
+                Faith Monetary Protocol is purpose-built for MegaETH: collateral in, credit out, PCS active,
                 treasury aligned, liquidation visible, and settlement prepared for real-time utility.
               </p>
               <Link href="/dashboard" className="mt-5 inline-block text-[11px] font-black uppercase tracking-[0.28em] text-cyan-200">
@@ -213,7 +213,7 @@ Read The Protocol
             <div className="faith-token-system">
               <div className="text-center">
                 <p className="text-[11px] font-black uppercase tracking-[0.45em] text-cyan-100/80">
-                  Faith Token System
+                  FXMP TOKEN SYSTEM
                 </p>
                 <p className="mt-2 text-sm uppercase tracking-[0.28em] text-slate-400">
                   Autonomous Credit for the Real-Time Internet
@@ -225,7 +225,7 @@ Read The Protocol
                   <div className="faith-token-ring">
                     <img
                       src="/faith/design/token-faith.png"
-                      alt="FAITH token"
+                      alt="FXMP TOKEN"
                       className="faith-token-large"
                     />
                   </div>
@@ -238,7 +238,7 @@ Read The Protocol
                       Protocol collateral identity and future governance coordination layer.
                     </p>
                     <p className="mt-5 text-[10px] font-black uppercase tracking-[0.32em] text-cyan-300">
-                      Faith Token
+                      FXMP TOKEN
                     </p>
                   </div>
                 </div>
@@ -247,8 +247,8 @@ Read The Protocol
                   <div className="faith-token-ring">
                     <img
                       src="/faith/design/token-fusd.png"
-                      alt="tfUSD testnet credit"
-                      className="faith-token-large tfusd-bright"
+                      alt="FUSD testnet credit"
+                      className="faith-token-large FUSD-bright"
                     />
                   </div>
 
@@ -257,7 +257,7 @@ Read The Protocol
                       FUSD
                     </h3>
                     <p className="mt-3 text-sm leading-7 text-slate-400">
-                      Testnet internal credit asset minted by FAITH vaults during the MVP demo. fUSD represents the future FAITH internal credit layer.
+                      Testnet internal credit asset minted by Faith Monetary Protocol vaults during the MVP demo. fUSD represents the future Faith Monetary Protocol internal credit layer.
                     </p>
                     <p className="mt-5 text-[10px] font-black uppercase tracking-[0.32em] text-cyan-300">
                       FUSD Token
@@ -337,6 +337,7 @@ Read The Protocol
 </main>
   );
 }
+
 
 
 
