@@ -1,4 +1,4 @@
-const pillars = [
+﻿const pillars = [
   {
     title: "Productive Treasury",
     text: "Liquid reserves protect the system while productive allocations grow the economy through disciplined capital deployment.",
@@ -21,7 +21,7 @@ const pillars = [
   },
   {
     title: "UtopiaByFaith Utility Layer",
-    text: "UtopiaByFaith brings culture, gameplay utility, artifacts, marketplace activity, and ecosystem identity to Faith Monetary Protocol.",
+    text: "UtopiaByFaith brings culture, gameplay utility, artifacts, marketplace activity, and ecosystem identity to FAITH.",
   },
 ];
 
@@ -31,7 +31,7 @@ export function FaithEconomicOSSection() {
       <div className="rounded-[2rem] border border-amber-400/20 bg-slate-950/80 p-8 shadow-2xl shadow-amber-950/20 backdrop-blur md:p-12">
         <div className="max-w-4xl">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.35em] text-amber-300">
-            Faith Monetary Protocol Economic Operating System
+            FAITH Economic Operating System
           </p>
 
           <h2 className="text-3xl font-semibold tracking-tight text-white md:text-5xl">
@@ -39,7 +39,7 @@ export function FaithEconomicOSSection() {
           </h2>
 
           <p className="mt-6 text-base leading-8 text-slate-300 md:text-lg">
-            Faith Monetary Protocol connects productive treasury reserves, programmable credit, PCS risk regulation,
+            FAITH connects productive treasury reserves, programmable credit, PCS risk regulation,
             and MegaETH real-time execution into one disciplined financial economy.
           </p>
 
@@ -86,4 +86,3 @@ export function FaithEconomicOSSection() {
     </section>
   );
 }
-

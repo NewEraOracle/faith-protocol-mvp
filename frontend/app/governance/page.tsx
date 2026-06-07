@@ -1,11 +1,11 @@
-import { InfoCard, PublicPage } from "../components/PublicPage";
+﻿import { InfoCard, PublicPage } from "../components/PublicPage";
 
 export default function GovernancePage() {
   return (
     <PublicPage
       label="Governance"
       title="Risk-Aware Governance Direction"
-      intro="Faith Monetary Protocol governance is designed to evolve from core-team execution into risk-aware protocol coordination, where PCS monitors system conditions, recommends parameter responses, and governance approves disciplined changes."
+      intro="FAITH governance is designed to evolve from core-team execution into risk-aware protocol coordination, where PCS monitors system conditions, recommends parameter responses, and governance approves disciplined changes."
     >
       <div className="grid gap-5 md:grid-cols-2">
         <InfoCard title="Governance Principle">
@@ -25,5 +25,4 @@ export default function GovernancePage() {
     </PublicPage>
   );
 }
-
 

@@ -1,4 +1,4 @@
-import { InfoCard, PublicPage } from "../components/PublicPage";
+﻿import { InfoCard, PublicPage } from "../components/PublicPage";
 
 const contacts = [
   ["X / Twitter", "Project updates and public build logs", "#"],
@@ -10,21 +10,21 @@ const contacts = [
 export default function AboutPage() {
   return (
     <PublicPage
-      label="About Faith Monetary Protocol Monetary Protocol"
+      label="About FAITH"
       title="A Machine-Regulated Economy"
-      intro="Faith Monetary Protocol is not only about borrowing. It is about designing an economy that can grow without losing discipline. Human productivity creates value. PCS regulates risk. Treasury protects the system. MegaETH executes in real time."
+      intro="FAITH is not only about borrowing. It is about designing an economy that can grow without losing discipline. Human productivity creates value. PCS regulates risk. Treasury protects the system. MegaETH executes in real time."
     >
       <div className="space-y-5">
         <InfoCard title="Vision">
           <p>
-            Faith Monetary Protocol aims to become a capital operating system for disciplined economic growth,
+            FAITH aims to become a capital operating system for disciplined economic growth,
             where credit expansion is balanced by treasury strength and PCS risk control.
           </p>
         </InfoCard>
 
         <InfoCard title="Contact and Community">
           <p>
-            Follow Faith Monetary Protocol updates, join the community, or contact the team for serious
+            Follow FAITH updates, join the community, or contact the team for serious
             partnerships, investor discussions, and ecosystem collaboration.
           </p>
 
@@ -46,12 +46,11 @@ export default function AboutPage() {
           </div>
 
           <p className="mt-6 text-xs uppercase tracking-[0.22em] text-slate-500">
-            Social links can be updated when the official Faith Monetary Protocol channels are finalized.
+            Social links can be updated when the official FAITH channels are finalized.
           </p>
         </InfoCard>
       </div>
     </PublicPage>
   );
 }
-
 

@@ -1,4 +1,4 @@
-import { FaithTreasuryCertificateSection } from './FaithTreasuryCertificateSection';
+﻿import { FaithTreasuryCertificateSection } from './FaithTreasuryCertificateSection';
 import { FaithEconomicOSSection } from './FaithEconomicOSSection';
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -15,7 +15,7 @@ export function PublicPage({ label, title, intro, children }: PublicPageProps) {
     <main className="relative min-h-screen overflow-hidden bg-black px-6 py-10 text-white lg:px-10">
       <div className="pointer-events-none fixed inset-0">
         <img
-          src="/Faith Monetary Protocol/design/background-cosmic.png"
+          src="/faith/design/background-cosmic.png"
           alt=""
           className="h-full w-full object-cover opacity-80"
         />
@@ -31,7 +31,7 @@ export function PublicPage({ label, title, intro, children }: PublicPageProps) {
             href="/"
             className="inline-flex rounded-full border border-cyan-300/25 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-300 backdrop-blur-md transition hover:border-cyan-300/70 hover:bg-cyan-300/10 hover:text-white"
           >
-            Back to Faith Monetary Protocol Monetary Protocol
+            Back to FAITH
           </Link>
           <div className="hidden items-center gap-2 sm:flex">
             <Link
@@ -49,7 +49,7 @@ export function PublicPage({ label, title, intro, children }: PublicPageProps) {
             </Link>
 
             <a
-              href="https://github.com/NewEraOracle/Faith Monetary Protocol-protocol-mvp"
+              href="https://github.com/NewEraOracle/faith-protocol-mvp"
               target="_blank"
               rel="noreferrer"
               className="rounded-full border border-white/10 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300 backdrop-blur-md transition hover:border-cyan-300/50 hover:bg-cyan-300/10 hover:text-white"
@@ -108,7 +108,6 @@ export function InfoCard({
     </div>
   );
 }
-
 
 
 

@@ -70,7 +70,7 @@ async function safeQueryFilter(contract: any, eventFilter: any, fromBlock?: any,
     if (!contract || !eventFilter) return [];
     return await contract.queryFilter(eventFilter, fromBlock, toBlock);
   } catch (error) {
-    console.warn("Faith Monetary Protocol dashboard activity filter skipped:", error);
+    console.warn("FAITH dashboard activity filter skipped:", error);
     return [];
   }
 }
@@ -78,12 +78,12 @@ async function safeQueryFilter(contract: any, eventFilter: any, fromBlock?: any,
 export default function Home() {
   const [wallet, setWallet] = useState("");
   const [walletProvider, setWalletProvider] = useState<any>(null);
-  const [faithBalance, seFXMPBalance] = useState("0");
+  const [faithBalance, setFaithBalance] = useState("0");
   const [fusdBalance, seFUSDBalance] = useState("0");
   const [collateral, setCollateral] = useState("0");
   const [debt, setDebt] = useState("0");
   const [vaultActive, setVaultActive] = useState(false);
-  const [healthFactor, setHealthFactor] = useState("8");
+  const [healthFactor, setHealthFactor] = useState("∞");
   const [borrowLimit, setBorrowLimit] = useState("0");
   const [availableBorrow, setAvailableBorrow] = useState("0");
   const [oraclePrice, setOraclePrice] = useState("1");
@@ -102,7 +102,7 @@ export default function Home() {
   const [demoProgress, setDemoProgress] = useState<DemoProgress>(DEFAULT_DEMO_PROGRESS);
   const [status, setStatus] = useState("");
 
-  const healthNumber = healthFactor === "8" ? Number.POSITIVE_INFINITY : Number(healthFactor);
+  const healthNumber = healthFactor === "∞" ? Number.POSITIVE_INFINITY : Number(healthFactor);
 
   useEffect(() => {
     const saved = window.localStorage.getItem(DEMO_PROGRESS_STORAGE_KEY);
@@ -165,7 +165,7 @@ export default function Home() {
   }, [wallet, walletProvider]);
 
   const riskStatus = useMemo(() => {
-    if (healthFactor === "8") {
+    if (healthFactor === "∞") {
       return { label: "No Debt", color: "text-sky-300", bg: "bg-sky-500/10", border: "border-sky-500/30" };
     }
     if (healthNumber < 1.1) {
@@ -179,7 +179,7 @@ export default function Home() {
   const pcsRisk = useMemo(() => {
     return calculatePCSRisk({
       oraclePrice: Number(oraclePrice),
-      healthFactor: healthFactor === "8" ? null : Number(healthFactor),
+      healthFactor: healthFactor === "∞" ? null : Number(healthFactor),
       protocolCollateral: Number(protocolCollateral),
       protocolDebtSupply: Number(protocolDebtSupply),
       vaultActive,
@@ -189,7 +189,7 @@ export default function Home() {
   const pcsStressScenarios = useMemo(() => {
     return simulatePCSStress({
       oraclePrice: Number(oraclePrice),
-      healthFactor: healthFactor === "8" ? null : Number(healthFactor),
+      healthFactor: healthFactor === "∞" ? null : Number(healthFactor),
       protocolCollateral: Number(protocolCollateral),
       protocolDebtSupply: Number(protocolDebtSupply),
       vaultActive,
@@ -206,14 +206,14 @@ export default function Home() {
     },
     {
       number: "02",
-      title: "Claim FXMP",
-      description: "Use the faucet to Claim 1000 test FXMP collateral tokens.",
+      title: "Claim tFAITH",
+      description: "Use the faucet to claim 1000 test tFAITH collateral tokens.",
       complete: demoProgress.claim,
     },
     {
       number: "03",
       title: "Deposit Collateral",
-      description: "Deposit 10 FXMP into the tVaultManager to open a testnet vault.",
+      description: "Deposit 10 tFAITH into the tVaultManager to open a testnet vault.",
       complete: demoProgress.deposit,
     },
     {
@@ -225,7 +225,7 @@ export default function Home() {
     {
       number: "05",
       title: "Simulate Oracle Shock",
-      description: "Crash FXMP to $0.40 with the test oracle to stress the vault.",
+      description: "Crash tFAITH to $0.40 with the test oracle to stress the vault.",
       complete: demoProgress.crash,
     },
     {
@@ -246,12 +246,12 @@ export default function Home() {
 
   const recommendedAction = useMemo(() => {
     if (!wallet) return "Connect your wallet to begin the live demo.";
-    if (!demoProgress.claim) return "Next: Claim 1000 FXMP from the faucet.";
-    if (!demoProgress.deposit) return "Next: Deposit 10 FXMP.";
+    if (!demoProgress.claim) return "Next: Claim 1000 tFAITH from the faucet.";
+    if (!demoProgress.deposit) return "Next: Deposit 10 tFAITH.";
     if (!demoProgress.borrow) return "Next: Borrow 5 tfUSD.";
-    if (!demoProgress.crash) return "Next: Crash FXMP price to $0.40.";
+    if (!demoProgress.crash) return "Next: Crash tFAITH price to $0.40.";
     if (!demoProgress.liquidation) return "Next: Liquidate the unsafe tVault.";
-    return "Demo completed successfully Ã¢Å“â€";
+    return "Demo completed successfully âœ”";
   }, [wallet, demoProgress]);
 
   function shortAddress(address: string) {
@@ -326,7 +326,7 @@ export default function Home() {
       ],
       events: ["chainChanged", "accountsChanged", "disconnect"],
       metadata: {
-        name: "Faith Monetary Protocol",
+        name: "FAITH Protocol",
         description: "MegaETH testnet collateralized credit demo",
         url: typeof window !== "undefined" ? window.location.origin : "https://faith-protocol-mvp.vercel.app",
         icons: [],
@@ -405,7 +405,7 @@ export default function Home() {
       const formattedProtocolDebt = ethers.formatEther(totalFUSDSupply);
       const available = Number(formattedBorrowLimit) - Number(formattedDebt);
 
-      seFXMPBalance(formattedFaithBalance);
+      setFaithBalance(formattedFaithBalance);
       seFUSDBalance(formattedFusdBalance);
       setCollateral(formattedCollateral);
       setDebt(formattedDebt);
@@ -415,10 +415,10 @@ export default function Home() {
       setOraclePrice(formattedOraclePrice);
       setProtocolCollateral(formattedProtocolCollateral);
       setProtocolDebtSupply(formattedProtocolDebt);
-      setHealthFactor(healthRaw === ethers.MaxUint256 ? "8" : (Number(healthRaw) / 100).toFixed(2));
+      setHealthFactor(healthRaw === ethers.MaxUint256 ? "∞" : (Number(healthRaw) / 100).toFixed(2));
     } catch (error) {
       console.error(error);
-      setStatus("Loading protocol data failed Ã¢ÂÅ’");
+      setStatus("Loading protocol data failed âŒ");
     }
   }
 
@@ -452,12 +452,12 @@ export default function Home() {
       for (const event of depositEvents as any[]) {
         const user = event.args.user;
         const amount = Number(ethers.formatEther(event.args.amount));
-        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Deposit", title: "Collateral Deposited", description: `${shortAddress(user)} added ${amount} FXMP collateral to the credit system`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, amount });
+        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Deposit", title: "Collateral Deposited", description: `${shortAddress(user)} added ${amount} tFAITH collateral to the credit system`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, amount });
       }
       for (const event of withdrawEvents as any[]) {
         const user = event.args.user;
         const amount = Number(ethers.formatEther(event.args.amount));
-        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Withdraw", title: "Collateral Withdrawn", description: `${shortAddress(user)} withdrew ${amount} FXMP collateral from the vault system`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, amount });
+        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Withdraw", title: "Collateral Withdrawn", description: `${shortAddress(user)} withdrew ${amount} tFAITH collateral from the vault system`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, amount });
       }
       for (const event of borrowEvents as any[]) {
         const user = event.args.user;
@@ -474,19 +474,19 @@ export default function Home() {
         const liquidator = event.args.liquidator;
         const debtRepaid = Number(ethers.formatEther(event.args.debtRepaid));
         const collateralSeized = Number(ethers.formatEther(event.args.collateralSeized));
-        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Liquidation", title: "Liquidation Executed", description: `${shortAddress(liquidator)} cleared unsafe debt for ${shortAddress(user)} Ã¢â‚¬â€ ${debtRepaid} tfUSD repaid, ${collateralSeized} FXMP collateral seized`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, liquidator, debtRepaid, collateralSeized });
+        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Liquidation", title: "Liquidation Executed", description: `${shortAddress(liquidator)} cleared unsafe debt for ${shortAddress(user)} â€” ${debtRepaid} tfUSD repaid, ${collateralSeized} tFAITH collateral seized`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, liquidator, debtRepaid, collateralSeized });
       }
       for (const event of oracleEvents as any[]) {
         const previousPrice = Number(ethers.formatEther(event.args.previousPrice));
         const newOraclePrice = Number(ethers.formatEther(event.args.newPrice));
-        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Oracle", title: "Oracle Shock Recorded", description: `FXMP oracle moved from $${previousPrice} to $${newOraclePrice}; PCS risk conditions should update from this signal`, blockNumber: event.blockNumber, txHash: event.transactionHash, previousPrice, newPrice: newOraclePrice });
+        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Oracle", title: "Oracle Shock Recorded", description: `tFAITH oracle moved from $${previousPrice} to $${newOraclePrice}; PCS risk conditions should update from this signal`, blockNumber: event.blockNumber, txHash: event.transactionHash, previousPrice, newPrice: newOraclePrice });
       }
 
       items.sort((a, b) => b.blockNumber - a.blockNumber);
       setActivity(items.slice(0, 50));
     } catch (error) {
       console.error(error);
-      setStatus("Loading on-chain activity failed Ã¢ÂÅ’");
+      setStatus("Loading on-chain activity failed âŒ");
     } finally {
       setActivityLoading(false);
     }
@@ -546,14 +546,14 @@ export default function Home() {
   async function resetDemoFlow() {
     setDemoProgress(DEFAULT_DEMO_PROGRESS);
     window.localStorage.setItem(DEMO_PROGRESS_STORAGE_KEY, JSON.stringify(DEFAULT_DEMO_PROGRESS));
-    setStatus("Demo Flow reset to 0/5 Ã¢Å“â€");
+    setStatus("Demo Flow reset to 0/5 âœ”");
   }
 
-  async function claimTesFXMP() {
+  async function claimTestFaith() {
     try {
       if (!wallet) return;
 
-      setStatus("Checking FXMP balance...");
+      setStatus("Checking tFAITH balance...");
 
       const provider = await ensureMegaETHProvider();
       const signer = await provider.getSigner();
@@ -563,19 +563,19 @@ export default function Home() {
 
       if (currentBalance > BigInt(0)) {
         updateDemoProgress({ claim: true });
-        setStatus("Wallet already has FXMP - continue demo");
+        setStatus("Wallet already has tFAITH - continue demo");
         await refreshEverything(wallet);
         return;
       }
 
-      setStatus("Claiming 1000 FXMP from faucet...");
+      setStatus("Claiming 1000 tFAITH from faucet...");
 
       const faucet = new ethers.Contract(FAUCET_ADDRESS, FAUCET_ABI, signer);
       const tx = await faucet.claim();
       await tx.wait();
 
       updateDemoProgress({ claim: true });
-      setStatus("1000 FXMP claimed successfully");
+      setStatus("1000 tFAITH claimed successfully");
       await refreshEverything(wallet);
     } catch (error: any) {
       console.error(error);
@@ -587,7 +587,7 @@ export default function Home() {
 
         if (currentBalance > BigInt(0)) {
           updateDemoProgress({ claim: true });
-          setStatus("Claim already completed - wallet has FXMP");
+          setStatus("Claim already completed - wallet has tFAITH");
           await refreshEverything(wallet);
           return;
         }
@@ -602,7 +602,7 @@ export default function Home() {
   async function depositCollateral() {
     try {
       if (!depositAmount || !wallet) return;
-      setStatus("Approving FXMP...");
+      setStatus("Approving tFAITH...");
       const provider = await ensureMegaETHProvider();
       const signer = await provider.getSigner();
       const faith = new ethers.Contract(FAITH_TOKEN_ADDRESS, FAITH_TOKEN_ABI, signer);
@@ -610,16 +610,16 @@ export default function Home() {
       const amount = ethers.parseEther(depositAmount);
       const approveTx = await faith.approve(VAULT_MANAGER_ADDRESS, amount);
       await approveTx.wait();
-      setStatus("Depositing FXMP collateral...");
+      setStatus("Depositing tFAITH collateral...");
       const tx = await vault.depositCollateral(amount);
       await tx.wait();
       updateDemoProgress({ deposit: true });
-      setStatus("FXMP deposit successful Ã¢Å“â€");
+      setStatus("tFAITH deposit successful âœ”");
       setDepositAmount("");
       await refreshEverything(wallet);
     } catch (error) {
       console.error(error);
-      setStatus("FXMP deposit failed Ã¢ÂÅ’");
+      setStatus("tFAITH deposit failed âŒ");
     }
   }
 
@@ -633,12 +633,12 @@ export default function Home() {
       const tx = await vault.borrow(ethers.parseEther(borrowAmount));
       await tx.wait();
       updateDemoProgress({ borrow: true });
-      setStatus("tfUSD borrow successful ?");
+      setStatus("tfUSD borrow successful ✔");
       setBorrowAmount("");
       await refreshEverything(wallet);
     } catch (error) {
       console.error(error);
-      setStatus("FUSD borrow failed Ã¢ÂÅ’");
+      setStatus("FUSD borrow failed âŒ");
     }
   }
 
@@ -656,30 +656,30 @@ export default function Home() {
       setStatus("Repaying tfUSD...");
       const tx = await vault.repay(amount);
       await tx.wait();
-      setStatus("tfUSD repayment successful ?");
+      setStatus("tfUSD repayment successful ✔");
       setRepayAmount("");
       await refreshEverything(wallet);
     } catch (error) {
       console.error(error);
-      setStatus("FUSD repayment failed Ã¢ÂÅ’");
+      setStatus("FUSD repayment failed âŒ");
     }
   }
 
   async function withdrawCollateral() {
     try {
       if (!withdrawAmount || !wallet) return;
-      setStatus("Withdrawing FXMP collateral...");
+      setStatus("Withdrawing tFAITH collateral...");
       const provider = await ensureMegaETHProvider();
       const signer = await provider.getSigner();
       const vault = new ethers.Contract(VAULT_MANAGER_ADDRESS, VAULT_MANAGER_ABI, signer);
       const tx = await vault.withdrawCollateral(ethers.parseEther(withdrawAmount));
       await tx.wait();
-      setStatus("FXMP withdrawal successful Ã¢Å“â€");
+      setStatus("tFAITH withdrawal successful âœ”");
       setWithdrawAmount("");
       await refreshEverything(wallet);
     } catch (error) {
       console.error(error);
-      setStatus("FXMP withdrawal failed Ã¢ÂÅ’");
+      setStatus("tFAITH withdrawal failed âŒ");
     }
   }
 
@@ -694,7 +694,7 @@ export default function Home() {
       const targetVault = await vault.vaults(liquidateAddress);
       const targetDebt = targetVault.debtAmount;
       if (targetDebt.toString() === "0") {
-        setStatus("Target tVault has no FUSD debt Ã¢ÂÅ’");
+        setStatus("Target tVault has no FUSD debt âŒ");
         return;
       }
       setStatus("Approving tfUSD for liquidation...");
@@ -704,12 +704,12 @@ export default function Home() {
       const tx = await vault.liquidate(liquidateAddress);
       await tx.wait();
       updateDemoProgress({ liquidation: true });
-      setStatus("tVault liquidation successful Ã¢Å“â€");
+      setStatus("tVault liquidation successful âœ”");
       setLiquidateAddress("");
       await refreshEverything(wallet);
     } catch (error) {
       console.error(error);
-      setStatus("tVault liquidation failed Ã¢ÂÅ’");
+      setStatus("tVault liquidation failed âŒ");
     }
   }
 
@@ -723,12 +723,12 @@ export default function Home() {
       const tx = await oracle.setPrice(ethers.parseEther(price));
       await tx.wait();
       if (Number(price) <= 0.4) updateDemoProgress({ crash: true });
-      setStatus("tMockOracle price updated Ã¢Å“â€");
+      setStatus("tMockOracle price updated âœ”");
       setNewPrice("");
       await refreshEverything(wallet);
     } catch (error) {
       console.error(error);
-      setStatus("tMockOracle update failed Ã¢ÂÅ’");
+      setStatus("tMockOracle update failed âŒ");
     }
   }
 
@@ -739,9 +739,9 @@ export default function Home() {
           <div className="mb-3 inline-flex rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-sm font-semibold text-blue-300">
             MegaETH-Native Institutional Credit Infrastructure
           </div>
-          <h1 className="text-5xl font-bold tracking-tight">Faith Monetary Protocol</h1>
+          <h1 className="text-5xl font-bold tracking-tight">FAITH Protocol</h1>
           <p className="mt-3 max-w-2xl text-lg text-zinc-400">
-            Faith Monetary Protocol is building MegaETH-native credit, treasury, and risk infrastructure for an autonomous digital economy. Built around vaults, stable credit, PCS monitoring, oracle shock simulation, treasury health, and future capital routing.
+            FAITH Protocol is building MegaETH-native credit, treasury, and risk infrastructure for an autonomous digital economy. Built around vaults, stable credit, PCS monitoring, oracle shock simulation, treasury health, and future capital routing.
           </p>
         </div>
         {!wallet ? (
@@ -762,7 +762,7 @@ export default function Home() {
         </div>
         <h2 className="text-2xl font-bold">Before testing, get MegaETH testnet gas</h2>
         <p className="mt-2 max-w-4xl text-zinc-300">
-          Testers need a small amount of MegaETH testnet ETH to pay gas before claiming FXMP or using the protocol. For mobile testing, the most reliable option is currently the MetaMask mobile browser. Safari and Chrome mobile may not connect consistently during the MVP testnet phase.
+          Testers need a small amount of MegaETH testnet ETH to pay gas before claiming tFAITH or using the protocol. For mobile testing, the most reliable option is currently the MetaMask mobile browser. Safari and Chrome mobile may not connect consistently during the MVP testnet phase.
         </p>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           <SetupCard title="1. Open wallet" body="Best mobile option: use the MetaMask mobile browser. Safari/Chrome mobile may not connect consistently during MVP testing." />
@@ -780,7 +780,7 @@ export default function Home() {
               Open MegaETH Faucet
             </a>
           </div>
-          <SetupCard title="3. Run demo" body="Claim 1000 FXMP, deposit, borrow, crash the oracle, and liquidate." />
+          <SetupCard title="3. Run demo" body="Claim 1000 tFAITH, deposit, borrow, crash the oracle, and liquidate." />
         </div>
       </section>
 
@@ -790,7 +790,7 @@ export default function Home() {
             <div className="mb-2 inline-flex rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-sm font-bold text-cyan-200">
               Investor Demo Flow
             </div>
-            <h2 className="text-3xl font-bold">Demo Flow: Prove the Faith Monetary Protocol Credit, Treasury, and PCS Risk Loop</h2>
+            <h2 className="text-3xl font-bold">Demo Flow: Prove the FAITH Credit, Treasury, and PCS Risk Loop</h2>
             <p className="mt-2 max-w-3xl text-zinc-300">A clear investor-ready walkthrough from wallet connection to PCS risk detection and liquidation visibility.</p>
           </div>
           <div className="flex flex-col gap-3">
@@ -838,7 +838,7 @@ export default function Home() {
                 ? "border-orange-400/30 bg-orange-400/10 text-orange-200"
                 : "border-emerald-400/30 bg-emerald-400/10 text-emerald-200"
           }`}>
-            {pcsRisk.pcsRiskLevel} Â· {pcsRisk.pcsRiskScore}/100
+            {pcsRisk.pcsRiskLevel} · {pcsRisk.pcsRiskScore}/100
           </div>
         </div>
 
@@ -860,7 +860,7 @@ export default function Home() {
             }`}>
               {pcsRisk.oracleRisk}
             </h3>
-            <p className="mt-2 text-xs text-zinc-500">Current FXMP oracle: ${Number(oraclePrice).toFixed(3)}</p>
+            <p className="mt-2 text-xs text-zinc-500">Current tFAITH oracle: ${Number(oraclePrice).toFixed(3)}</p>
           </div>
 
           <div className="rounded-2xl border border-white/10 bg-black/35 p-5">
@@ -910,9 +910,9 @@ export default function Home() {
       </section>
 
       <section className="mb-8 rounded-3xl border border-white/10 bg-white/[0.03] p-6">
-        <h2 className="text-2xl font-bold">Why Faith Monetary Protocol is built for MegaETH</h2>
+        <h2 className="text-2xl font-bold">Why FAITH is built for MegaETH</h2>
         <div className="mt-5 grid gap-5 md:grid-cols-3">
-          <NarrativeCard title="Real-Time Risk" body="Faith Monetary Protocol reacts instantly to collateral price shocks and displays borrower solvency live." />
+          <NarrativeCard title="Real-Time Risk" body="FAITH reacts instantly to collateral price shocks and displays borrower solvency live." />
           <NarrativeCard title="Fast Liquidation" body="Unsafe debt positions can be cleared immediately, reducing stale-state risk in credit markets." />
           <NarrativeCard title="Visible On-Chain Activity" body="Every deposit, borrow, price update, and liquidation is exposed through a transparent activity layer." />
         </div>
@@ -936,7 +936,7 @@ export default function Home() {
             <div className="mt-5 space-y-2 text-xs">
               <div className="flex justify-between gap-3">
                 <span className="text-zinc-500">System Risk</span>
-                <span className="text-cyan-100">{pcsRisk.pcsRiskLevel} Â· {pcsRisk.pcsRiskScore}/100</span>
+                <span className="text-cyan-100">{pcsRisk.pcsRiskLevel} · {pcsRisk.pcsRiskScore}/100</span>
               </div>
               <div className="flex justify-between gap-3">
                 <span className="text-zinc-500">Oracle Risk</span>
@@ -979,7 +979,7 @@ export default function Home() {
               </div>
               <div className="flex justify-between gap-3">
                 <span className="text-zinc-500">Collateral</span>
-                <span className="text-white">{Number(protocolCollateral).toLocaleString()} FXMP</span>
+                <span className="text-white">{Number(protocolCollateral).toLocaleString()} tFAITH</span>
               </div>
               <div className="flex justify-between gap-3">
                 <span className="text-zinc-500">Debt Coverage</span>
@@ -1004,9 +1004,9 @@ export default function Home() {
             </div>
           </div>
 
-          <MetricCard label="Total FXMP Collateral" value={Number(protocolCollateral).toLocaleString()} helper="Held inside tVaultManager" />
+          <MetricCard label="Total tFAITH Collateral" value={Number(protocolCollateral).toLocaleString()} helper="Held inside tVaultManager" />
           <MetricCard label="Total tfUSD Debt Supply" value={Number(protocolDebtSupply).toLocaleString()} helper="Outstanding test credit" />
-          <MetricCard label="FXMP Oracle Price" value={`$${oraclePrice}`} helper="tMockOracle live value" />
+          <MetricCard label="tFAITH Oracle Price" value={`$${oraclePrice}`} helper="tMockOracle live value" />
           <MetricCard label="tVault Address" value={`${VAULT_MANAGER_ADDRESS.slice(0, 6)}...${VAULT_MANAGER_ADDRESS.slice(-4)}`} helper="Current test deployment" />
         </div>
       </section>
@@ -1022,7 +1022,7 @@ export default function Home() {
             </p>
           </div>
           <div className={`rounded-full border px-4 py-2 text-sm font-bold ${riskStatus.bg} ${riskStatus.border} ${riskStatus.color}`}>
-            System Risk: {pcsRisk.pcsRiskLevel} Â· {pcsRisk.pcsRiskScore}/100
+            System Risk: {pcsRisk.pcsRiskLevel} · {pcsRisk.pcsRiskScore}/100
           </div>
         </div>
 
@@ -1084,7 +1084,7 @@ export default function Home() {
                 ? "border-orange-400/30 bg-orange-400/10 text-orange-200"
                 : "border-emerald-400/30 bg-emerald-400/10 text-emerald-200"
           }`}>
-            System Risk: {pcsRisk.pcsRiskLevel} Â· {pcsRisk.pcsRiskScore}/100
+            System Risk: {pcsRisk.pcsRiskLevel} · {pcsRisk.pcsRiskScore}/100
           </div>
         </div>
 
@@ -1391,9 +1391,9 @@ export default function Home() {
           </div>
         </div>
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          <MetricCard label="FXMP Balance" value={Number(faithBalance).toLocaleString()} />
+          <MetricCard label="tFAITH Balance" value={Number(faithBalance).toLocaleString()} />
           <MetricCard label="tfUSD Balance" value={Number(fusdBalance).toLocaleString()} />
-          <MetricCard label="Collateral (FXMP)" value={collateral} />
+          <MetricCard label="Collateral (FAITH)" value={collateral} />
           <MetricCard label="Debt (tfUSD)" value={debt} />
           <MetricCard label="Borrow Limit (tfUSD)" value={borrowLimit} />
           <MetricCard label="Available Borrow (tfUSD)" value={availableBorrow} />
@@ -1407,7 +1407,7 @@ export default function Home() {
             <div className="mt-5 space-y-2 text-xs">
               <div className="flex justify-between gap-3">
                 <span className="text-zinc-500">Current Status</span>
-                <span className="text-cyan-100">{pcsRisk.pcsRiskLevel} Â· {pcsRisk.pcsRiskScore}/100</span>
+                <span className="text-cyan-100">{pcsRisk.pcsRiskLevel} · {pcsRisk.pcsRiskScore}/100</span>
               </div>
               <div className="flex justify-between gap-3">
                 <span className="text-zinc-500">Health Factor</span>
@@ -1420,7 +1420,7 @@ export default function Home() {
               <div className="flex justify-between gap-3">
                 <span className="text-zinc-500">Collateral at Risk</span>
                 <span className={riskStatus.label === "Liquidatable" ? "text-red-300" : riskStatus.label === "Warning" ? "text-orange-300" : "text-emerald-300"}>
-                  {riskStatus.label === "No Debt" ? "None" : `${Number(collateral).toLocaleString()} FXMP`}
+                  {riskStatus.label === "No Debt" ? "None" : `${Number(collateral).toLocaleString()} tFAITH`}
                 </span>
               </div>
               <div className="flex justify-between gap-3">
@@ -1434,10 +1434,10 @@ export default function Home() {
 
           <div className="rounded-3xl border border-white/10 bg-black/30 p-5">
             <p className="text-sm text-zinc-400">Health Factor</p>
-            <p className={`mt-3 break-words text-2xl font-bold ${healthFactor !== "8" && Number(healthFactor) < 1.1 ? "text-red-400" : healthFactor !== "8" && Number(healthFactor) < 1.5 ? "text-orange-300" : "text-green-400"}`}>{healthFactor}</p>
+            <p className={`mt-3 break-words text-2xl font-bold ${healthFactor !== "∞" && Number(healthFactor) < 1.1 ? "text-red-400" : healthFactor !== "∞" && Number(healthFactor) < 1.5 ? "text-orange-300" : "text-green-400"}`}>{healthFactor}</p>
             <div className="mt-4">
               <div className="h-3 w-full overflow-hidden rounded-full bg-white/10">
-                <div className={`h-full transition-all duration-700 ${healthFactor !== "8" && Number(healthFactor) < 1.1 ? "bg-red-500" : healthFactor !== "8" && Number(healthFactor) < 1.5 ? "bg-orange-400" : "bg-emerald-400"}`} style={{ width: healthFactor === "8" ? "100%" : `${Math.min(100, Number(healthFactor) * 50)}%` }} />
+                <div className={`h-full transition-all duration-700 ${healthFactor !== "∞" && Number(healthFactor) < 1.1 ? "bg-red-500" : healthFactor !== "∞" && Number(healthFactor) < 1.5 ? "bg-orange-400" : "bg-emerald-400"}`} style={{ width: healthFactor === "∞" ? "100%" : `${Math.min(100, Number(healthFactor) * 50)}%` }} />
               </div>
               <div className="mt-2 flex justify-between text-[10px] font-semibold tracking-wide text-zinc-500">
                 <span>DANGER</span><span>WARNING</span><span>SAFE</span>
@@ -1453,8 +1453,8 @@ export default function Home() {
           <p className="text-xs font-black uppercase tracking-[0.28em] text-cyan-200">Core Thesis</p>
           <h2 className="mt-2 text-2xl font-bold">Human-Built, Machine-Regulated Economy</h2>
           <p className="mt-2 max-w-4xl text-zinc-400">
-            Faith Monetary Protocol connects human-built productive value to a machine-regulated financial layer on MegaETH.
-            Humans build the world. Technology regulates the economy. Faith Monetary Protocol connects both layers through credit,
+            FAITH connects human-built productive value to a machine-regulated financial layer on MegaETH.
+            Humans build the world. Technology regulates the economy. FAITH connects both layers through credit,
             treasury, PCS monitoring, and future capital routing.
           </p>
         </div>
@@ -1478,7 +1478,7 @@ export default function Home() {
               Vaults, collateral, stable credit, treasury reserves, liquidity, protocol activity, and settlement rails.
             </p>
             <p className="mt-5 text-xs font-bold uppercase tracking-[0.18em] text-cyan-100">
-              Faith Monetary Protocol transforms value into credit
+              FAITH transforms value into credit
             </p>
           </div>
 
@@ -1501,7 +1501,7 @@ export default function Home() {
             <p className="text-xs font-black uppercase tracking-[0.28em] text-cyan-200">Research / Future Phase</p>
             <h2 className="mt-2 text-2xl font-bold">Future Capital Routing</h2>
             <p className="mt-2 max-w-3xl text-zinc-400">
-              Faith Monetary Protocol may eventually route capital toward productive real-world sectors through compliant,
+              FAITH Protocol may eventually route capital toward productive real-world sectors through compliant,
               audited, partner-driven structures. This module is a roadmap layer, not a live investment product.
             </p>
           </div>
@@ -1557,14 +1557,14 @@ export default function Home() {
         <h2 className="mb-5 text-2xl font-bold">MVP Actions</h2>
         <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
           <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
-            <h3 className="text-2xl font-bold">FXMP Faucet</h3>
-            <p className="mt-2 min-h-[48px] text-sm text-zinc-400">Claim 1000 test FXMP for demo and testing. Each wallet can claim once.</p>
-            <button onClick={claimTesFXMP} className="mt-5 w-full rounded-2xl bg-cyan-600 p-4 font-bold transition hover:bg-cyan-500">Claim 1000 FXMP</button>
+            <h3 className="text-2xl font-bold">FAITH Faucet</h3>
+            <p className="mt-2 min-h-[48px] text-sm text-zinc-400">Claim 1000 test tFAITH for demo and testing. Each wallet can claim once.</p>
+            <button onClick={claimTestFaith} className="mt-5 w-full rounded-2xl bg-cyan-600 p-4 font-bold transition hover:bg-cyan-500">Claim 1000 tFAITH</button>
           </div>
-          <ActionCard title="Deposit FXMP" description="Lock test collateral into your tVault." inputValue={depositAmount} onInputChange={setDepositAmount} placeholder="Amount" buttonLabel="Deposit FXMP" buttonClassName="bg-green-600 hover:bg-green-500" onClick={depositCollateral} />
-          <ActionCard title="Borrow tfUSD" description="Mint tfUSD against available FXMP collateral." inputValue={borrowAmount} onInputChange={setBorrowAmount} placeholder="Amount" buttonLabel="Borrow tfUSD" buttonClassName="bg-blue-600 hover:bg-blue-500" onClick={borrowFUSD} />
+          <ActionCard title="Deposit tFAITH" description="Lock test collateral into your tVault." inputValue={depositAmount} onInputChange={setDepositAmount} placeholder="Amount" buttonLabel="Deposit tFAITH" buttonClassName="bg-green-600 hover:bg-green-500" onClick={depositCollateral} />
+          <ActionCard title="Borrow tfUSD" description="Mint tfUSD against available tFAITH collateral." inputValue={borrowAmount} onInputChange={setBorrowAmount} placeholder="Amount" buttonLabel="Borrow tfUSD" buttonClassName="bg-blue-600 hover:bg-blue-500" onClick={borrowFUSD} />
           <ActionCard title="Repay tfUSD" description="Repay test debt and restore vault health." inputValue={repayAmount} onInputChange={setRepayAmount} placeholder="Amount" buttonLabel="Repay tfUSD" buttonClassName="bg-yellow-600 hover:bg-yellow-500" onClick={repayFUSD} />
-          <ActionCard title="Withdraw FXMP" description="Withdraw collateral while preserving solvency." inputValue={withdrawAmount} onInputChange={setWithdrawAmount} placeholder="Amount" buttonLabel="Withdraw FXMP" buttonClassName="bg-red-600 hover:bg-red-500" onClick={withdrawCollateral} />
+          <ActionCard title="Withdraw tFAITH" description="Withdraw collateral while preserving solvency." inputValue={withdrawAmount} onInputChange={setWithdrawAmount} placeholder="Amount" buttonLabel="Withdraw tFAITH" buttonClassName="bg-red-600 hover:bg-red-500" onClick={withdrawCollateral} />
           <ActionCard title="Liquidate tVault" description="Liquidate an unsafe vault using tfUSD." inputValue={liquidateAddress} onInputChange={setLiquidateAddress} placeholder="User wallet address" buttonLabel="Liquidate tVault" buttonClassName="bg-rose-700 hover:bg-rose-600" onClick={liquidateVault} />
           <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
             <h3 className="text-2xl font-bold">Oracle Shock Simulator</h3>
@@ -1583,7 +1583,7 @@ export default function Home() {
                 <div className="flex justify-between gap-3">
                   <span className="text-zinc-500">Shock Scenario</span>
                   <span className={Number(oraclePrice) < 0.75 ? "text-orange-300" : "text-emerald-300"}>
-                    {Number(oraclePrice) < 0.75 ? "FXMP crash active" : "Stable baseline"}
+                    {Number(oraclePrice) < 0.75 ? "tFAITH crash active" : "Stable baseline"}
                   </span>
                 </div>
                 <div className="flex justify-between gap-3">
@@ -1600,11 +1600,11 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <input value={newPrice} onChange={(e) => setNewPrice(e.target.value)} placeholder="New FXMP price, ex: 0.4" className="mt-5 w-full rounded-2xl border border-white/10 bg-black/30 p-4 outline-none placeholder:text-zinc-600 focus:border-purple-400/70" />
+            <input value={newPrice} onChange={(e) => setNewPrice(e.target.value)} placeholder="New tFAITH price, ex: 0.4" className="mt-5 w-full rounded-2xl border border-white/10 bg-black/30 p-4 outline-none placeholder:text-zinc-600 focus:border-purple-400/70" />
             <div className="mt-4 grid gap-3">
-              <button onClick={() => setOraclePriceOnchain(newPrice)} className="w-full rounded-2xl bg-purple-600 p-4 font-bold transition hover:bg-purple-500">Set FXMP Price</button>
-              <button onClick={() => setOraclePriceOnchain("0.4")} className="w-full rounded-2xl bg-orange-600 p-4 font-bold transition hover:bg-orange-500">Crash FXMP to $0.40</button>
-              <button onClick={() => setOraclePriceOnchain("1")} className="w-full rounded-2xl bg-zinc-700 p-4 font-bold transition hover:bg-zinc-600">Reset FXMP to $1.00</button>
+              <button onClick={() => setOraclePriceOnchain(newPrice)} className="w-full rounded-2xl bg-purple-600 p-4 font-bold transition hover:bg-purple-500">Set tFAITH Price</button>
+              <button onClick={() => setOraclePriceOnchain("0.4")} className="w-full rounded-2xl bg-orange-600 p-4 font-bold transition hover:bg-orange-500">Crash tFAITH to $0.40</button>
+              <button onClick={() => setOraclePriceOnchain("1")} className="w-full rounded-2xl bg-zinc-700 p-4 font-bold transition hover:bg-zinc-600">Reset tFAITH to $1.00</button>
             </div>
           </div>
         </div>
@@ -1628,7 +1628,7 @@ export default function Home() {
       <section className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
         <h2 className="text-2xl font-bold">Current Testnet Deployment Registry</h2>
         <div className="mt-5 grid gap-4 text-sm text-zinc-300 lg:grid-cols-2">
-          <RegistryLine label="FXMP" value={FAITH_TOKEN_ADDRESS} />
+          <RegistryLine label="tFAITH" value={FAITH_TOKEN_ADDRESS} />
           <RegistryLine label="tfUSD" value={FUSD_ADDRESS} />
           <RegistryLine label="tMockOracle" value={MOCK_ORACLE_ADDRESS} />
           <RegistryLine label="tVaultManager" value={VAULT_MANAGER_ADDRESS} />
@@ -1671,9 +1671,6 @@ function ActivityRow({ item, shortHash }: { item: ActivityItem; shortHash: (hash
   const badgeStyle = item.type === "Deposit" ? "border-green-500/30 bg-green-500/10 text-green-300" : item.type === "Withdraw" ? "border-red-500/30 bg-red-500/10 text-red-300" : item.type === "Borrow" ? "border-blue-500/30 bg-blue-500/10 text-blue-300" : item.type === "Repay" ? "border-yellow-500/30 bg-yellow-500/10 text-yellow-300" : item.type === "Liquidation" ? "border-rose-500/30 bg-rose-500/10 text-rose-300" : "border-purple-500/30 bg-purple-500/10 text-purple-300";
   return <div className="flex flex-col justify-between gap-4 rounded-2xl border border-white/10 bg-black/30 p-5 lg:flex-row lg:items-center"><div className="flex items-start gap-4"><div className={`rounded-full border px-3 py-1 text-xs font-bold ${badgeStyle}`}>{item.type}</div><div><p className="font-semibold text-white">{item.title}</p><p className="mt-1 text-sm text-zinc-400">{item.description}</p></div></div><div className="text-sm text-zinc-500"><p>Block #{item.blockNumber}</p><p className="font-mono">{shortHash(item.txHash)}</p></div></div>;
 }
-
-
-
 
 
 
