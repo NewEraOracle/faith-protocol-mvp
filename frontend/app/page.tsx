@@ -213,10 +213,10 @@ Read The Protocol
             <div className="faith-token-system">
               <div className="text-center">
                 <p className="text-[11px] font-black uppercase tracking-[0.45em] text-cyan-100/80">
-                  FAITH MONETARY ASSET SYSTEM
+                  FAITH ECONOMIC ENGINE
                 </p>
                 <p className="mt-2 text-sm uppercase tracking-[0.28em] text-slate-400">
-                  Growth • Credit • Treasury Capital
+                  Three Assets. One Regulated Economy.
                 </p>
               </div>
 
@@ -358,6 +358,7 @@ Read The Protocol
     </main>
   );
 }
+
 
 
 
