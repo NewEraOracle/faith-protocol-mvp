@@ -14,7 +14,7 @@ const contacts = [
   [
     "Telegram",
     "Official Telegram channel for community updates, protocol discussion, and early ecosystem coordination.",
-    "https://t.me/faithmonetaryprotocol",
+    "https://t.me/faithmonetary",
   ],
   [
     "Builder Applications",
@@ -73,3 +73,4 @@ export default function AboutPage() {
     </PublicPage>
   );
 }
+
