@@ -62,7 +62,8 @@ export default function Home() {
             <div className="hidden items-center gap-10 text-[11px] font-black uppercase tracking-[0.28em] text-slate-100 lg:flex">
               <Link href="/protocol">About the Protocol</Link>
               <Link href="/tfusd">Economics</Link>
-              <Link href="/build">Build</Link>`r`n              <Link href="/developers">Developers</Link>
+              <Link href="/build">Build</Link>
+              <Link href="/developers">Developers</Link>
               <Link href="/docs">Docs</Link>
               <Link href="/governance">Governance</Link>
               <Link href="/about">Contact</Link>
@@ -358,6 +359,7 @@ Read The Protocol
     </main>
   );
 }
+
 
 
 
