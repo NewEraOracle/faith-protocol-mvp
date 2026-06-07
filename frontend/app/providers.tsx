@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import "@rainbow-me/rainbowkit/styles.css";
 
@@ -16,7 +16,7 @@ import {
 } from "@tanstack/react-query";
 
 const config = getDefaultConfig({
-  appName: "FAITH Protocol",
+  appName: "Faith Monetary Protocol",
   projectId: "faith-demo",
   chains: [hardhat],
   ssr: true,

@@ -32,7 +32,7 @@ export default function WhitelistPage() {
             href="/"
             className="inline-flex rounded-full border border-cyan-300/25 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-300 backdrop-blur-md transition hover:border-cyan-300/70 hover:bg-cyan-300/10 hover:text-white"
           >
-            Back to FAITH
+            Back to Faith Monetary Protocol
           </Link>
 
           <div className="hidden items-center gap-2 sm:flex">
@@ -64,11 +64,11 @@ export default function WhitelistPage() {
         <div className="grid gap-10 py-20 lg:grid-cols-[1fr_0.9fr] lg:items-start">
           <div>
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.35em] text-cyan-300">
-              FAITH Protected Access
+              Faith Monetary Protocol Protected Access
             </p>
 
             <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">
-              Request FAITH Access
+              Request Faith Monetary Protocol Access
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
@@ -124,7 +124,7 @@ export default function WhitelistPage() {
                 </p>
 
                 <h2 className="mt-4 text-3xl font-semibold text-white">
-                  Your FAITH access request has been submitted.
+                  Your Faith Monetary Protocol Access Request has been submitted.
                 </h2>
 
                 <p className="mt-4 text-sm leading-7 text-slate-300">
@@ -233,6 +233,7 @@ export default function WhitelistPage() {
     </main>
   );
 }
+
 
 
 

@@ -4,7 +4,7 @@ export default function FUSDPage() {
   return (
     <PublicPage
       label="FUSD"
-      title="Stable Credit for the FAITH Economy"
+      title="Stable Credit for the Faith Monetary Protocol Economy"
       intro="FUSD represents the stable credit layer of FAITH. It shows how collateral-backed programmable credit can circulate through a real-time economy without relying on speculation as the primary growth engine."
     >
       <div className="grid gap-5 md:grid-cols-2">
@@ -25,4 +25,5 @@ export default function FUSDPage() {
     </PublicPage>
   );
 }
+
 
