@@ -26,6 +26,21 @@ const sections = [
     body:
       "FAITH is currently a testnet MVP. It does not manage real user capital, offer guaranteed yield, issue live treasury certificates, provide financial advice, or operate as a public investment product. Future RWA, treasury, certificate, or productive-capital modules require legal, compliance, audit, and risk review before real deployment.",
   },
+  {
+    title: "FAITH Economic Engine",
+    body:
+      "FAITH separates the economy into three core assets: FXMP for growth and coordination, FUSD for internal credit activity, and FXTC for treasury-aligned long-term capital participation. Together they create a clearer economic model for builders, users, and long-term partners.",
+  },
+  {
+    title: "Build on FAITH",
+    body:
+      "The Build section is designed for MegaETH ecosystem builders, RWA infrastructure projects, DeFi credit developers, treasury analytics teams, AI agents, yield strategists, and strategic protocol partners.",
+  },
+  {
+    title: "Governance Direction",
+    body:
+      "Governance is designed to evolve around PCS risk intelligence, treasury protection, emergency controls, and disciplined protocol parameter management. The goal is informed coordination, not blind voting.",
+  },
 ];
 
 const roadmap = [
@@ -58,7 +73,7 @@ export default function DocsPage() {
             href="/"
             className="inline-flex rounded-full border border-cyan-300/25 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-300 backdrop-blur-md transition hover:border-cyan-300/70 hover:bg-cyan-300/10 hover:text-white"
           >
-            Back to Faith Monetary Protocol
+            Back to Faith
           </Link>
 
           <div className="hidden items-center gap-2 sm:flex">
@@ -183,5 +198,7 @@ export default function DocsPage() {
     </main>
   );
 }
+
+
 
 
