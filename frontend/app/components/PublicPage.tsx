@@ -1,6 +1,4 @@
-﻿import { FaithTreasuryCertificateSection } from './FaithTreasuryCertificateSection';
-import { FaithEconomicOSSection } from './FaithEconomicOSSection';
-import Link from "next/link";
+﻿import Link from "next/link";
 import type { ReactNode } from "react";
 
 type PublicPageProps = {
@@ -84,8 +82,6 @@ export function PublicPage({ label, title, intro, children }: PublicPageProps) {
           {children}
         </div>
       </section>
-          <FaithEconomicOSSection />
-          <FaithTreasuryCertificateSection />
     </main>
   );
 }
@@ -108,6 +104,7 @@ export function InfoCard({
     </div>
   );
 }
+
 
 
 
