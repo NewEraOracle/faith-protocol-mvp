@@ -4,7 +4,7 @@ export default function DevelopersPage() {
   return (
     <PublicPage
       label="Developers"
-      title="Build on the FAITH Economy"
+      title="Build on the Faith Monetary Protocol Economy"
       intro="FAITH is designed for builders who want to create around programmable credit, real-time vault health, PCS risk monitoring, treasury-aware systems, and MegaETH execution."
     >
       <div className="grid gap-5 md:grid-cols-2">
@@ -25,4 +25,5 @@ export default function DevelopersPage() {
     </PublicPage>
   );
 }
+
 

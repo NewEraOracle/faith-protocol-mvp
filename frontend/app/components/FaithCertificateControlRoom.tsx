@@ -48,13 +48,13 @@ export function FaithCertificateControlRoom() {
       <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.35em] text-emerald-300">
-            Treasury Certificate Control
+            FXTC Control
           </p>
           <h2 className="mt-3 text-2xl font-semibold text-white md:text-4xl">
             Class-based capital, LTV, redemption, and PCS risk monitoring.
           </h2>
           <p className="mt-3 max-w-4xl text-sm leading-6 text-slate-400">
-            This demo module shows how FAITH Treasury Certificates can be classed by liquidity,
+            This demo module shows how FXTC can be classed by liquidity,
             productive exposure, collateral quality, redemption speed, and PCS-adjusted LTV.
           </p>
         </div>
@@ -130,3 +130,4 @@ export function FaithCertificateControlRoom() {
     </section>
   );
 }
+

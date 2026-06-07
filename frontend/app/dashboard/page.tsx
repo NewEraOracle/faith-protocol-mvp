@@ -206,14 +206,14 @@ export default function Home() {
     },
     {
       number: "02",
-      title: "Claim tFAITH",
-      description: "Use the faucet to claim 1000 test tFAITH collateral tokens.",
+      title: "Claim FXMP",
+      description: "Use the faucet to claim 1000 test FXMP collateral tokens.",
       complete: demoProgress.claim,
     },
     {
       number: "03",
       title: "Deposit Collateral",
-      description: "Deposit 10 tFAITH into the tVaultManager to open a testnet vault.",
+      description: "Deposit 10 FXMP into the tVaultManager to open a testnet vault.",
       complete: demoProgress.deposit,
     },
     {
@@ -225,7 +225,7 @@ export default function Home() {
     {
       number: "05",
       title: "Simulate Oracle Shock",
-      description: "Crash tFAITH to $0.40 with the test oracle to stress the vault.",
+      description: "Crash FXMP to $0.40 with the test oracle to stress the vault.",
       complete: demoProgress.crash,
     },
     {
@@ -246,10 +246,10 @@ export default function Home() {
 
   const recommendedAction = useMemo(() => {
     if (!wallet) return "Connect your wallet to begin the live demo.";
-    if (!demoProgress.claim) return "Next: Claim 1000 tFAITH from the faucet.";
-    if (!demoProgress.deposit) return "Next: Deposit 10 tFAITH.";
+    if (!demoProgress.claim) return "Next: Claim 1000 FXMP from the faucet.";
+    if (!demoProgress.deposit) return "Next: Deposit 10 FXMP.";
     if (!demoProgress.borrow) return "Next: Borrow 5 tfUSD.";
-    if (!demoProgress.crash) return "Next: Crash tFAITH price to $0.40.";
+    if (!demoProgress.crash) return "Next: Crash FXMP price to $0.40.";
     if (!demoProgress.liquidation) return "Next: Liquidate the unsafe tVault.";
     return "Demo completed successfully âœ”";
   }, [wallet, demoProgress]);
@@ -326,7 +326,7 @@ export default function Home() {
       ],
       events: ["chainChanged", "accountsChanged", "disconnect"],
       metadata: {
-        name: "FAITH Protocol",
+        name: "Faith Monetary Protocol",
         description: "MegaETH testnet collateralized credit demo",
         url: typeof window !== "undefined" ? window.location.origin : "https://faith-protocol-mvp.vercel.app",
         icons: [],
@@ -452,12 +452,12 @@ export default function Home() {
       for (const event of depositEvents as any[]) {
         const user = event.args.user;
         const amount = Number(ethers.formatEther(event.args.amount));
-        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Deposit", title: "Collateral Deposited", description: `${shortAddress(user)} added ${amount} tFAITH collateral to the credit system`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, amount });
+        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Deposit", title: "Collateral Deposited", description: `${shortAddress(user)} added ${amount} FXMP collateral to the credit system`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, amount });
       }
       for (const event of withdrawEvents as any[]) {
         const user = event.args.user;
         const amount = Number(ethers.formatEther(event.args.amount));
-        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Withdraw", title: "Collateral Withdrawn", description: `${shortAddress(user)} withdrew ${amount} tFAITH collateral from the vault system`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, amount });
+        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Withdraw", title: "Collateral Withdrawn", description: `${shortAddress(user)} withdrew ${amount} FXMP collateral from the vault system`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, amount });
       }
       for (const event of borrowEvents as any[]) {
         const user = event.args.user;
@@ -474,12 +474,12 @@ export default function Home() {
         const liquidator = event.args.liquidator;
         const debtRepaid = Number(ethers.formatEther(event.args.debtRepaid));
         const collateralSeized = Number(ethers.formatEther(event.args.collateralSeized));
-        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Liquidation", title: "Liquidation Executed", description: `${shortAddress(liquidator)} cleared unsafe debt for ${shortAddress(user)} â€” ${debtRepaid} tfUSD repaid, ${collateralSeized} tFAITH collateral seized`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, liquidator, debtRepaid, collateralSeized });
+        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Liquidation", title: "Liquidation Executed", description: `${shortAddress(liquidator)} cleared unsafe debt for ${shortAddress(user)} â€” ${debtRepaid} tfUSD repaid, ${collateralSeized} FXMP collateral seized`, blockNumber: event.blockNumber, txHash: event.transactionHash, user, liquidator, debtRepaid, collateralSeized });
       }
       for (const event of oracleEvents as any[]) {
         const previousPrice = Number(ethers.formatEther(event.args.previousPrice));
         const newOraclePrice = Number(ethers.formatEther(event.args.newPrice));
-        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Oracle", title: "Oracle Shock Recorded", description: `tFAITH oracle moved from $${previousPrice} to $${newOraclePrice}; PCS risk conditions should update from this signal`, blockNumber: event.blockNumber, txHash: event.transactionHash, previousPrice, newPrice: newOraclePrice });
+        items.push({ id: `${event.transactionHash}-${event.index}`, type: "Oracle", title: "Oracle Shock Recorded", description: `FXMP oracle moved from $${previousPrice} to $${newOraclePrice}; PCS risk conditions should update from this signal`, blockNumber: event.blockNumber, txHash: event.transactionHash, previousPrice, newPrice: newOraclePrice });
       }
 
       items.sort((a, b) => b.blockNumber - a.blockNumber);
@@ -553,7 +553,7 @@ export default function Home() {
     try {
       if (!wallet) return;
 
-      setStatus("Checking tFAITH balance...");
+      setStatus("Checking FXMP Balance...");
 
       const provider = await ensureMegaETHProvider();
       const signer = await provider.getSigner();
@@ -568,14 +568,14 @@ export default function Home() {
         return;
       }
 
-      setStatus("Claiming 1000 tFAITH from faucet...");
+      setStatus("Claiming 1000 FXMP from faucet...");
 
       const faucet = new ethers.Contract(FAUCET_ADDRESS, FAUCET_ABI, signer);
       const tx = await faucet.claim();
       await tx.wait();
 
       updateDemoProgress({ claim: true });
-      setStatus("1000 tFAITH claimed successfully");
+      setStatus("1000 FXMP claimed successfully");
       await refreshEverything(wallet);
     } catch (error: any) {
       console.error(error);
@@ -610,7 +610,7 @@ export default function Home() {
       const amount = ethers.parseEther(depositAmount);
       const approveTx = await faith.approve(VAULT_MANAGER_ADDRESS, amount);
       await approveTx.wait();
-      setStatus("Depositing tFAITH collateral...");
+      setStatus("Depositing FXMP collateral...");
       const tx = await vault.depositCollateral(amount);
       await tx.wait();
       updateDemoProgress({ deposit: true });
@@ -668,7 +668,7 @@ export default function Home() {
   async function withdrawCollateral() {
     try {
       if (!withdrawAmount || !wallet) return;
-      setStatus("Withdrawing tFAITH collateral...");
+      setStatus("Withdrawing FXMP collateral...");
       const provider = await ensureMegaETHProvider();
       const signer = await provider.getSigner();
       const vault = new ethers.Contract(VAULT_MANAGER_ADDRESS, VAULT_MANAGER_ABI, signer);
@@ -739,9 +739,9 @@ export default function Home() {
           <div className="mb-3 inline-flex rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-sm font-semibold text-blue-300">
             MegaETH-Native Institutional Credit Infrastructure
           </div>
-          <h1 className="text-5xl font-bold tracking-tight">FAITH Protocol</h1>
+          <h1 className="text-5xl font-bold tracking-tight">Faith Monetary Protocol</h1>
           <p className="mt-3 max-w-2xl text-lg text-zinc-400">
-            FAITH Protocol is building MegaETH-native credit, treasury, and risk infrastructure for an autonomous digital economy. Built around vaults, stable credit, PCS monitoring, oracle shock simulation, treasury health, and future capital routing.
+            Faith Monetary Protocol is building MegaETH-native credit, treasury, and risk infrastructure for an autonomous digital economy. Built around vaults, stable credit, PCS monitoring, oracle shock simulation, treasury health, and future capital routing.
           </p>
         </div>
         {!wallet ? (
@@ -780,7 +780,7 @@ export default function Home() {
               Open MegaETH Faucet
             </a>
           </div>
-          <SetupCard title="3. Run demo" body="Claim 1000 tFAITH, deposit, borrow, crash the oracle, and liquidate." />
+          <SetupCard title="3. Run demo" body="Claim 1000 FXMP, deposit, borrow, crash the oracle, and liquidate." />
         </div>
       </section>
 
@@ -860,7 +860,7 @@ export default function Home() {
             }`}>
               {pcsRisk.oracleRisk}
             </h3>
-            <p className="mt-2 text-xs text-zinc-500">Current tFAITH oracle: ${Number(oraclePrice).toFixed(3)}</p>
+            <p className="mt-2 text-xs text-zinc-500">Current FXMP oracle: ${Number(oraclePrice).toFixed(3)}</p>
           </div>
 
           <div className="rounded-2xl border border-white/10 bg-black/35 p-5">
@@ -1004,9 +1004,9 @@ export default function Home() {
             </div>
           </div>
 
-          <MetricCard label="Total tFAITH Collateral" value={Number(protocolCollateral).toLocaleString()} helper="Held inside tVaultManager" />
+          <MetricCard label="Total FXMP collateral" value={Number(protocolCollateral).toLocaleString()} helper="Held inside tVaultManager" />
           <MetricCard label="Total tfUSD Debt Supply" value={Number(protocolDebtSupply).toLocaleString()} helper="Outstanding test credit" />
-          <MetricCard label="tFAITH Oracle Price" value={`$${oraclePrice}`} helper="tMockOracle live value" />
+          <MetricCard label="FXMP Oracle Price" value={`$${oraclePrice}`} helper="tMockOracle live value" />
           <MetricCard label="tVault Address" value={`${VAULT_MANAGER_ADDRESS.slice(0, 6)}...${VAULT_MANAGER_ADDRESS.slice(-4)}`} helper="Current test deployment" />
         </div>
       </section>
@@ -1391,9 +1391,9 @@ export default function Home() {
           </div>
         </div>
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          <MetricCard label="tFAITH Balance" value={Number(faithBalance).toLocaleString()} />
+          <MetricCard label="FXMP Balance" value={Number(faithBalance).toLocaleString()} />
           <MetricCard label="tfUSD Balance" value={Number(fusdBalance).toLocaleString()} />
-          <MetricCard label="Collateral (FAITH)" value={collateral} />
+          <MetricCard label="Collateral (FXMP)" value={collateral} />
           <MetricCard label="Debt (tfUSD)" value={debt} />
           <MetricCard label="Borrow Limit (tfUSD)" value={borrowLimit} />
           <MetricCard label="Available Borrow (tfUSD)" value={availableBorrow} />
@@ -1501,7 +1501,7 @@ export default function Home() {
             <p className="text-xs font-black uppercase tracking-[0.28em] text-cyan-200">Research / Future Phase</p>
             <h2 className="mt-2 text-2xl font-bold">Future Capital Routing</h2>
             <p className="mt-2 max-w-3xl text-zinc-400">
-              FAITH Protocol may eventually route capital toward productive real-world sectors through compliant,
+              Faith Monetary Protocol may eventually route capital toward productive real-world sectors through compliant,
               audited, partner-driven structures. This module is a roadmap layer, not a live investment product.
             </p>
           </div>
@@ -1557,14 +1557,14 @@ export default function Home() {
         <h2 className="mb-5 text-2xl font-bold">MVP Actions</h2>
         <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
           <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
-            <h3 className="text-2xl font-bold">FAITH Faucet</h3>
-            <p className="mt-2 min-h-[48px] text-sm text-zinc-400">Claim 1000 test tFAITH for demo and testing. Each wallet can claim once.</p>
-            <button onClick={claimTestFaith} className="mt-5 w-full rounded-2xl bg-cyan-600 p-4 font-bold transition hover:bg-cyan-500">Claim 1000 tFAITH</button>
+            <h3 className="text-2xl font-bold">FXMP Faucet</h3>
+            <p className="mt-2 min-h-[48px] text-sm text-zinc-400">Claim 1000 test FXMP for demo and testing. Each wallet can claim once.</p>
+            <button onClick={claimTestFaith} className="mt-5 w-full rounded-2xl bg-cyan-600 p-4 font-bold transition hover:bg-cyan-500">Claim 1000 FXMP</button>
           </div>
-          <ActionCard title="Deposit tFAITH" description="Lock test collateral into your tVault." inputValue={depositAmount} onInputChange={setDepositAmount} placeholder="Amount" buttonLabel="Deposit tFAITH" buttonClassName="bg-green-600 hover:bg-green-500" onClick={depositCollateral} />
-          <ActionCard title="Borrow tfUSD" description="Mint tfUSD against available tFAITH collateral." inputValue={borrowAmount} onInputChange={setBorrowAmount} placeholder="Amount" buttonLabel="Borrow tfUSD" buttonClassName="bg-blue-600 hover:bg-blue-500" onClick={borrowFUSD} />
+          <ActionCard title="Deposit FXMP" description="Lock test collateral into your tVault." inputValue={depositAmount} onInputChange={setDepositAmount} placeholder="Amount" buttonLabel="Deposit FXMP" buttonClassName="bg-green-600 hover:bg-green-500" onClick={depositCollateral} />
+          <ActionCard title="Borrow tfUSD" description="Mint tfUSD against available FXMP collateral." inputValue={borrowAmount} onInputChange={setBorrowAmount} placeholder="Amount" buttonLabel="Borrow tfUSD" buttonClassName="bg-blue-600 hover:bg-blue-500" onClick={borrowFUSD} />
           <ActionCard title="Repay tfUSD" description="Repay test debt and restore vault health." inputValue={repayAmount} onInputChange={setRepayAmount} placeholder="Amount" buttonLabel="Repay tfUSD" buttonClassName="bg-yellow-600 hover:bg-yellow-500" onClick={repayFUSD} />
-          <ActionCard title="Withdraw tFAITH" description="Withdraw collateral while preserving solvency." inputValue={withdrawAmount} onInputChange={setWithdrawAmount} placeholder="Amount" buttonLabel="Withdraw tFAITH" buttonClassName="bg-red-600 hover:bg-red-500" onClick={withdrawCollateral} />
+          <ActionCard title="Withdraw FXMP" description="Withdraw collateral while preserving solvency." inputValue={withdrawAmount} onInputChange={setWithdrawAmount} placeholder="Amount" buttonLabel="Withdraw FXMP" buttonClassName="bg-red-600 hover:bg-red-500" onClick={withdrawCollateral} />
           <ActionCard title="Liquidate tVault" description="Liquidate an unsafe vault using tfUSD." inputValue={liquidateAddress} onInputChange={setLiquidateAddress} placeholder="User wallet address" buttonLabel="Liquidate tVault" buttonClassName="bg-rose-700 hover:bg-rose-600" onClick={liquidateVault} />
           <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
             <h3 className="text-2xl font-bold">Oracle Shock Simulator</h3>
@@ -1600,11 +1600,11 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <input value={newPrice} onChange={(e) => setNewPrice(e.target.value)} placeholder="New tFAITH price, ex: 0.4" className="mt-5 w-full rounded-2xl border border-white/10 bg-black/30 p-4 outline-none placeholder:text-zinc-600 focus:border-purple-400/70" />
+            <input value={newPrice} onChange={(e) => setNewPrice(e.target.value)} placeholder="New FXMP price, ex: 0.4" className="mt-5 w-full rounded-2xl border border-white/10 bg-black/30 p-4 outline-none placeholder:text-zinc-600 focus:border-purple-400/70" />
             <div className="mt-4 grid gap-3">
-              <button onClick={() => setOraclePriceOnchain(newPrice)} className="w-full rounded-2xl bg-purple-600 p-4 font-bold transition hover:bg-purple-500">Set tFAITH Price</button>
-              <button onClick={() => setOraclePriceOnchain("0.4")} className="w-full rounded-2xl bg-orange-600 p-4 font-bold transition hover:bg-orange-500">Crash tFAITH to $0.40</button>
-              <button onClick={() => setOraclePriceOnchain("1")} className="w-full rounded-2xl bg-zinc-700 p-4 font-bold transition hover:bg-zinc-600">Reset tFAITH to $1.00</button>
+              <button onClick={() => setOraclePriceOnchain(newPrice)} className="w-full rounded-2xl bg-purple-600 p-4 font-bold transition hover:bg-purple-500">Set FXMP price</button>
+              <button onClick={() => setOraclePriceOnchain("0.4")} className="w-full rounded-2xl bg-orange-600 p-4 font-bold transition hover:bg-orange-500">Crash FXMP to $0.40</button>
+              <button onClick={() => setOraclePriceOnchain("1")} className="w-full rounded-2xl bg-zinc-700 p-4 font-bold transition hover:bg-zinc-600">Reset FXMP to $1.00</button>
             </div>
           </div>
         </div>
@@ -1671,6 +1671,7 @@ function ActivityRow({ item, shortHash }: { item: ActivityItem; shortHash: (hash
   const badgeStyle = item.type === "Deposit" ? "border-green-500/30 bg-green-500/10 text-green-300" : item.type === "Withdraw" ? "border-red-500/30 bg-red-500/10 text-red-300" : item.type === "Borrow" ? "border-blue-500/30 bg-blue-500/10 text-blue-300" : item.type === "Repay" ? "border-yellow-500/30 bg-yellow-500/10 text-yellow-300" : item.type === "Liquidation" ? "border-rose-500/30 bg-rose-500/10 text-rose-300" : "border-purple-500/30 bg-purple-500/10 text-purple-300";
   return <div className="flex flex-col justify-between gap-4 rounded-2xl border border-white/10 bg-black/30 p-5 lg:flex-row lg:items-center"><div className="flex items-start gap-4"><div className={`rounded-full border px-3 py-1 text-xs font-bold ${badgeStyle}`}>{item.type}</div><div><p className="font-semibold text-white">{item.title}</p><p className="mt-1 text-sm text-zinc-400">{item.description}</p></div></div><div className="text-sm text-zinc-500"><p>Block #{item.blockNumber}</p><p className="font-mono">{shortHash(item.txHash)}</p></div></div>;
 }
+
 
 
 

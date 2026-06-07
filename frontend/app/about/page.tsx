@@ -10,7 +10,7 @@ const contacts = [
 export default function AboutPage() {
   return (
     <PublicPage
-      label="About FAITH"
+      label="About Faith Monetary Protocol"
       title="A Machine-Regulated Economy"
       intro="FAITH is not only about borrowing. It is about designing an economy that can grow without losing discipline. Human productivity creates value. PCS regulates risk. Treasury protects the system. MegaETH executes in real time."
     >
@@ -53,4 +53,5 @@ export default function AboutPage() {
     </PublicPage>
   );
 }
+
 

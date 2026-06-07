@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "FAITH Protocol",
+  title: "Faith Monetary Protocol",
   description: "Web3 Trading Dashboard",
 };
 
@@ -31,3 +31,4 @@ export default function RootLayout({
     </html>
   );
 }
+

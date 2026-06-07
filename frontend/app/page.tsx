@@ -83,7 +83,7 @@ export default function Home() {
             />
 
             <p className="relative z-10 mt-2 text-sm font-black uppercase tracking-[0.52em] text-cyan-100 md:text-base">
-              FAITH Protocol
+              Faith Monetary Protocol
             </p>
 
             <p className="relative z-10 mt-2 text-xs font-black uppercase tracking-[0.30em] text-slate-300 md:text-sm">
@@ -276,7 +276,7 @@ Read The Protocol
                 Developers
               </p>
               <h2 className="mt-4 text-3xl font-black uppercase tracking-[0.16em] text-white">
-                Build on the FAITH Economy
+                Build on the Faith Monetary Protocol Economy
               </h2>
               <p className="mt-5 max-w-4xl text-sm leading-7 text-slate-400">
                 FAITH is designed as a machine-regulated economy where developers can build
@@ -337,6 +337,7 @@ Read The Protocol
 </main>
   );
 }
+
 
 
 

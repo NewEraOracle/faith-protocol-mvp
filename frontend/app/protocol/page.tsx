@@ -5,9 +5,9 @@ import { InfoCard, PublicPage } from "../components/PublicPage";
 export default function ProtocolPage() {
   return (
     <PublicPage
-      label="FAITH ARCHITECTURE"
+      label="FAITH MONETARY ARCHITECTURE"
       title="FAITH is a treasury-protected, PCS-regulated economic operating system"
-      intro="FAITH Protocol represents the credit, treasury, and risk infrastructure layer of the FAITH economy. It shows how collateral-backed programmable credit, PCS risk monitoring, and treasury protection can circulate through a real-time economy without relying on speculation as the primary growth engine."
+      intro="Faith Monetary Protocol represents the credit, treasury, and risk infrastructure layer of the Faith Monetary Protocol Economy. It shows how collateral-backed programmable credit, PCS risk monitoring, and treasury protection can circulate through a real-time economy without relying on speculation as the primary growth engine."
     >
       <div className="grid gap-5 md:grid-cols-2">
         <InfoCard title="Treasury-Protected Economy">
@@ -27,6 +27,7 @@ export default function ProtocolPage() {
     </PublicPage>
   );
 }
+
 
 
 

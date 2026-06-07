@@ -2,9 +2,9 @@
 
 const sections = [
   {
-    title: "What is FAITH?",
+    title: "What is Faith Monetary Protocol?",
     body:
-      "FAITH Protocol is PCS-regulated credit and treasury infrastructure for autonomous onchain economies on MegaETH. The current product is a testnet MVP focused on vault-based borrowing, treasury visibility, oracle shock simulation, liquidation-risk visibility, and protocol-level risk monitoring.",
+      "Faith Monetary Protocol is PCS-regulated credit and treasury infrastructure for autonomous onchain economies on MegaETH. The current product is a testnet MVP focused on vault-based borrowing, treasury visibility, oracle shock simulation, liquidation-risk visibility, and protocol-level risk monitoring.",
   },
   {
     title: "What is PCS?",
@@ -58,7 +58,7 @@ export default function DocsPage() {
             href="/"
             className="inline-flex rounded-full border border-cyan-300/25 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-300 backdrop-blur-md transition hover:border-cyan-300/70 hover:bg-cyan-300/10 hover:text-white"
           >
-            Back to FAITH
+            Back to Faith Monetary Protocol
           </Link>
 
           <div className="hidden items-center gap-2 sm:flex">
@@ -89,7 +89,7 @@ export default function DocsPage() {
 
         <div className="py-20">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.35em] text-cyan-300">
-            FAITH Protocol Docs
+            Faith Monetary Protocol Docs
           </p>
 
           <h1 className="max-w-5xl text-4xl font-semibold tracking-tight text-white md:text-6xl">
@@ -183,3 +183,4 @@ export default function DocsPage() {
     </main>
   );
 }
+
