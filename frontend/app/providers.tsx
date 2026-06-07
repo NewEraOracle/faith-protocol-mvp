@@ -16,8 +16,8 @@ import {
 } from "@tanstack/react-query";
 
 const config = getDefaultConfig({
-  appName: "FAITH Protocol",
-  projectId: "faith-demo",
+  appName: "Faith Monetary Protocol Monetary Protocol",
+  projectId: "Faith Monetary Protocol-demo",
   chains: [hardhat],
   ssr: true,
 });

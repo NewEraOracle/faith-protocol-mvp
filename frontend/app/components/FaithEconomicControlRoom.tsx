@@ -1,4 +1,4 @@
-﻿const treasuryCards = [
+const treasuryCards = [
   {
     label: "Treasury Health",
     value: "HEALTHY",
@@ -74,7 +74,7 @@ export function FaithEconomicControlRoom() {
             Productive Treasury + Credit Engine + PCS
           </h2>
           <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-400">
-            Demo control layer showing how FAITH can monitor treasury reserves, credit conditions,
+            Demo control layer showing how Faith Monetary Protocol can monitor treasury reserves, credit conditions,
             PCS risk score, reserve-backed value strength, and MegaETH execution readiness.
           </p>
         </div>
@@ -128,9 +128,10 @@ export function FaithEconomicControlRoom() {
       </div>
 
       <p className="mt-6 text-xs leading-5 text-slate-500">
-        FAITH does not guarantee price appreciation. MVP values are simulated until live treasury,
+        Faith Monetary Protocol does not guarantee price appreciation. MVP values are simulated until live treasury,
         RWA, and protocol parameters are connected.
       </p>
     </section>
   );
 }
+

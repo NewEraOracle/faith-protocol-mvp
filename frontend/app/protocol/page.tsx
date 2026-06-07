@@ -1,13 +1,13 @@
-﻿import { FaithEconomicOSSection } from "../components/FaithEconomicOSSection";
+import { FaithEconomicOSSection } from "../components/FaithEconomicOSSection";
 import { FaithTreasuryCertificateSection } from "../components/FaithTreasuryCertificateSection";
 import { InfoCard, PublicPage } from "../components/PublicPage";
 
 export default function ProtocolPage() {
   return (
     <PublicPage
-      label="FAITH ARCHITECTURE"
-      title="FAITH is a treasury-protected, PCS-regulated economic operating system"
-      intro="FAITH Protocol represents the credit, treasury, and risk infrastructure layer of the FAITH economy. It shows how collateral-backed programmable credit, PCS risk monitoring, and treasury protection can circulate through a real-time economy without relying on speculation as the primary growth engine."
+      label="Faith Monetary Protocol MONETARY ARCHITECTURE"
+      title="Faith Monetary Protocol is a treasury-protected, PCS-regulated economic operating system"
+      intro="Faith Monetary Protocol Monetary Protocol represents the credit, treasury, and risk infrastructure layer of the Faith Monetary Protocol Monetary Protocol Economy. It shows how collateral-backed programmable credit, PCS risk monitoring, and treasury protection can circulate through a real-time economy without relying on speculation as the primary growth engine."
     >
       <div className="grid gap-5 md:grid-cols-2">
         <InfoCard title="Treasury-Protected Economy">
@@ -19,7 +19,7 @@ export default function ProtocolPage() {
 
         <InfoCard title="Dual-Asset Structure">
           <p>
-            fUSD/tfUSD powers internal credit. USDm powers external settlement and commerce. FAITH powers
+            fUSD/tfUSD powers internal credit. USDm powers external settlement and commerce. Faith Monetary Protocol powers
             coordination, access, progression, risk participation, and protocol utility.
           </p>
         </InfoCard>
@@ -27,6 +27,7 @@ export default function ProtocolPage() {
     </PublicPage>
   );
 }
+
 
 
 

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { useState } from "react";
@@ -16,7 +16,7 @@ export default function WhitelistPage() {
     <main className="relative min-h-screen overflow-hidden bg-black px-6 py-10 text-white lg:px-10">
       <div className="pointer-events-none fixed inset-0">
         <img
-          src="/faith/design/background-cosmic.png"
+          src="/Faith Monetary Protocol/design/background-cosmic.png"
           alt=""
           className="h-full w-full object-cover opacity-80"
         />
@@ -32,7 +32,7 @@ export default function WhitelistPage() {
             href="/"
             className="inline-flex rounded-full border border-cyan-300/25 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-300 backdrop-blur-md transition hover:border-cyan-300/70 hover:bg-cyan-300/10 hover:text-white"
           >
-            Back to FAITH
+            Back to Faith Monetary Protocol Monetary Protocol
           </Link>
 
           <div className="hidden items-center gap-2 sm:flex">
@@ -44,7 +44,7 @@ export default function WhitelistPage() {
             </Link>
 
             <a
-              href="https://github.com/NewEraOracle/faith-protocol-mvp"
+              href="https://github.com/NewEraOracle/Faith Monetary Protocol-protocol-mvp"
               target="_blank"
               rel="noreferrer"
               className="rounded-full border border-white/10 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300 backdrop-blur-md transition hover:border-cyan-300/50 hover:bg-cyan-300/10 hover:text-white"
@@ -64,16 +64,16 @@ export default function WhitelistPage() {
         <div className="grid gap-10 py-20 lg:grid-cols-[1fr_0.9fr] lg:items-start">
           <div>
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.35em] text-cyan-300">
-              FAITH Protected Access
+              Faith Monetary Protocol Monetary Protocol Protected Access
             </p>
 
             <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">
-              Request FAITH Access
+              Request Faith Monetary Protocol Monetary Protocol Access
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
               Request testnet review, builder onboarding, investor materials, or private
-              whitepaper access. FAITH reviews requests manually and only shares private
+              whitepaper access. Faith Monetary Protocol reviews requests manually and only shares private
               materials with serious ecosystem partners, investors, and reviewers.
             </p>
 
@@ -83,8 +83,8 @@ export default function WhitelistPage() {
               </h2>
 
               <p className="mt-4 text-sm leading-7 text-slate-300">
-                FAITH does not currently manage real user capital, offer guaranteed
-                yield, issue live treasury certificates, provide financial advice, or
+                Faith Monetary Protocol does not currently manage real user capital, offer guaranteed
+                yield, issue live FXTC, provide financial advice, or
                 operate as a public investment product.
               </p>
 
@@ -124,7 +124,7 @@ export default function WhitelistPage() {
                 </p>
 
                 <h2 className="mt-4 text-3xl font-semibold text-white">
-                  Your FAITH access request has been submitted.
+                  Your Faith Monetary Protocol Monetary Protocol Access Request has been submitted.
                 </h2>
 
                 <p className="mt-4 text-sm leading-7 text-slate-300">
@@ -134,10 +134,10 @@ export default function WhitelistPage() {
                 </p>
 
                 <a
-                  href="mailto:contact@faithdefi.com?subject=FAITH%20Access%20Request"
+                  href="mailto:contact@faithdefi.com?subject=Faith Monetary Protocol%20Access%20Request"
                   className="mt-8 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-5 py-3 text-center text-sm font-semibold text-cyan-200 transition hover:bg-cyan-300/20 hover:text-white"
                 >
-                  Contact FAITH directly
+                  Contact Faith Monetary Protocol directly
                 </a>
 
                 <button
@@ -222,7 +222,7 @@ export default function WhitelistPage() {
 
                 <p className="text-xs leading-6 text-white/45">
                   No token, airdrop, investment return, yield, public sale, or access
-                  guarantee is promised. FAITH may decline or delay access requests to
+                  guarantee is promised. Faith Monetary Protocol may decline or delay access requests to
                   protect protocol IP and review quality.
                 </p>
               </form>
@@ -233,6 +233,7 @@ export default function WhitelistPage() {
     </main>
   );
 }
+
 
 
 

@@ -1,11 +1,11 @@
-﻿import { InfoCard, PublicPage } from "../components/PublicPage";
+import { InfoCard, PublicPage } from "../components/PublicPage";
 
 export default function FUSDPage() {
   return (
     <PublicPage
       label="FUSD"
-      title="Stable Credit for the FAITH Economy"
-      intro="FUSD represents the stable credit layer of FAITH. It shows how collateral-backed programmable credit can circulate through a real-time economy without relying on speculation as the primary growth engine."
+      title="Stable Credit for the Faith Monetary Protocol Monetary Protocol Economy"
+      intro="FUSD represents the stable credit layer of Faith Monetary Protocol. It shows how collateral-backed programmable credit can circulate through a real-time economy without relying on speculation as the primary growth engine."
     >
       <div className="grid gap-5 md:grid-cols-2">
         <InfoCard title="Role in the Economy">
@@ -17,7 +17,7 @@ export default function FUSDPage() {
 
         <InfoCard title="Separation of Roles">
           <p>
-            USDm or FUSD powers stable transactions and settlement. FAITH powers
+            USDm or FUSD powers stable transactions and settlement. Faith Monetary Protocol powers
             coordination, access, progression, risk participation, and protocol utility.
           </p>
         </InfoCard>
@@ -25,4 +25,5 @@ export default function FUSDPage() {
     </PublicPage>
   );
 }
+
 

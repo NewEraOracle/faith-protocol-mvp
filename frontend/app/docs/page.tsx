@@ -1,10 +1,10 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 
 const sections = [
   {
-    title: "What is FAITH?",
+    title: "What is Faith Monetary Protocol Monetary Protocol?",
     body:
-      "FAITH Protocol is PCS-regulated credit and treasury infrastructure for autonomous onchain economies on MegaETH. The current product is a testnet MVP focused on vault-based borrowing, treasury visibility, oracle shock simulation, liquidation-risk visibility, and protocol-level risk monitoring.",
+      "Faith Monetary Protocol Monetary Protocol is PCS-regulated credit and treasury infrastructure for autonomous onchain economies on MegaETH. The current product is a testnet MVP focused on vault-based borrowing, treasury visibility, oracle shock simulation, liquidation-risk visibility, and protocol-level risk monitoring.",
   },
   {
     title: "What is PCS?",
@@ -14,25 +14,25 @@ const sections = [
   {
     title: "Current MVP",
     body:
-      "The current MVP demonstrates tFAITH testnet collateral, tfUSD testnet credit, vault deposits, borrowing, oracle shock simulation, liquidation-risk visibility, treasury mock accounting, and PCS monitoring.",
+      "The current MVP demonstrates FXMP testnet collateral, tfUSD testnet credit, vault deposits, borrowing, oracle shock simulation, liquidation-risk visibility, treasury mock accounting, and PCS monitoring.",
   },
   {
     title: "Why MegaETH?",
     body:
-      "FAITH is designed for real-time financial infrastructure. MegaETH gives the execution environment for fast state awareness, low-latency protocol monitoring, and high-performance onchain financial interactions.",
+      "Faith Monetary Protocol is designed for real-time financial infrastructure. MegaETH gives the execution environment for fast state awareness, low-latency protocol monitoring, and high-performance onchain financial interactions.",
   },
   {
     title: "Safety Boundary",
     body:
-      "FAITH is currently a testnet MVP. It does not manage real user capital, offer guaranteed yield, issue live treasury certificates, provide financial advice, or operate as a public investment product. Future RWA, treasury, certificate, or productive-capital modules require legal, compliance, audit, and risk review before real deployment.",
+      "Faith Monetary Protocol is currently a testnet MVP. It does not manage real user capital, offer guaranteed yield, issue live FXTC, provide financial advice, or operate as a public investment product. Future RWA, treasury, certificate, or productive-capital modules require legal, compliance, audit, and risk review before real deployment.",
   },
 ];
 
 const roadmap = [
-  "Phase 1 — Testnet MVP: tFAITH collateral, tfUSD borrowing, oracle shock simulation, liquidation demo, treasury mock accounting, and PCS monitoring.",
+  "Phase 1 — Testnet MVP: FXMP collateral, tfUSD borrowing, oracle shock simulation, liquidation demo, treasury mock accounting, and PCS monitoring.",
   "Phase 2 — PCS v2: deterministic risk scoring, treasury coverage scoring, liquidation pressure scoring, borrow utilization scoring, action queue, and stress timeline.",
   "Phase 3 — Treasury Architecture: treasury design, controlled capital models, quarterly review concepts, PCS treasury monitoring, and legal-safe documentation.",
-  "Phase 4 — Ecosystem Layer: Build-on-FAITH framework, project vault concepts, developer modules, UtopiaByFaith integration, and future USDm marketplace support.",
+  "Phase 4 — Ecosystem Layer: Build-on-Faith Monetary Protocol framework, project vault concepts, developer modules, UtopiaByFaith integration, and future USDm marketplace support.",
   "Phase 5 — Funding and Validation: demo video, pitch deck, investor memo, MegaETH outreach, grants, strategic angels, and accelerators.",
   "Phase 6 — Future RWA / Productive Capital: legal structure, compliance review, partner due diligence, audited reporting, PCS controls, and controlled capital routing.",
 ];
@@ -42,7 +42,7 @@ export default function DocsPage() {
     <main className="relative min-h-screen overflow-hidden bg-black px-6 py-10 text-white lg:px-10">
       <div className="pointer-events-none fixed inset-0">
         <img
-          src="/faith/design/background-cosmic.png"
+          src="/Faith Monetary Protocol/design/background-cosmic.png"
           alt=""
           className="h-full w-full object-cover opacity-80"
         />
@@ -58,7 +58,7 @@ export default function DocsPage() {
             href="/"
             className="inline-flex rounded-full border border-cyan-300/25 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-300 backdrop-blur-md transition hover:border-cyan-300/70 hover:bg-cyan-300/10 hover:text-white"
           >
-            Back to FAITH
+            Back to Faith Monetary Protocol Monetary Protocol
           </Link>
 
           <div className="hidden items-center gap-2 sm:flex">
@@ -70,7 +70,7 @@ export default function DocsPage() {
             </Link>
 
             <a
-              href="https://github.com/NewEraOracle/faith-protocol-mvp"
+              href="https://github.com/NewEraOracle/Faith Monetary Protocol-protocol-mvp"
               target="_blank"
               rel="noreferrer"
               className="rounded-full border border-white/10 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300 backdrop-blur-md transition hover:border-cyan-300/50 hover:bg-cyan-300/10 hover:text-white"
@@ -89,7 +89,7 @@ export default function DocsPage() {
 
         <div className="py-20">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.35em] text-cyan-300">
-            FAITH Protocol Docs
+            Faith Monetary Protocol Monetary Protocol Docs
           </p>
 
           <h1 className="max-w-5xl text-4xl font-semibold tracking-tight text-white md:text-6xl">
@@ -97,7 +97,7 @@ export default function DocsPage() {
           </h1>
 
           <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
-            FAITH is a MegaETH-native testnet MVP built around programmable credit,
+            Faith Monetary Protocol is a MegaETH-native testnet MVP built around programmable credit,
             treasury resilience, oracle shock simulation, liquidation-risk visibility,
             and PCS protocol-risk intelligence.
           </p>
@@ -118,7 +118,7 @@ export default function DocsPage() {
             </Link>
 
             <a
-              href="https://github.com/NewEraOracle/faith-protocol-mvp"
+              href="https://github.com/NewEraOracle/Faith Monetary Protocol-protocol-mvp"
               target="_blank"
               rel="noreferrer"
               className="rounded-full border border-white/15 bg-black/35 px-5 py-3 text-sm font-semibold text-white backdrop-blur-md transition hover:border-cyan-300/70 hover:text-cyan-200"
@@ -171,7 +171,7 @@ export default function DocsPage() {
               </Link>
 
               <a
-                href="mailto:contact@faithdefi.com?subject=FAITH%20Whitepaper%20Access%20Request"
+                href="mailto:contact@faithdefi.com?subject=Faith Monetary Protocol%20Whitepaper%20Access%20Request"
                 className="inline-flex rounded-full border border-white/15 bg-black/35 px-5 py-3 text-sm font-semibold text-white transition hover:border-cyan-300/70 hover:text-cyan-200"
               >
                 Email contact@faithdefi.com
@@ -183,3 +183,4 @@ export default function DocsPage() {
     </main>
   );
 }
+

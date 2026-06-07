@@ -1,4 +1,4 @@
-﻿const certificateClasses = [
+const certificateClasses = [
   {
     name: "Class A",
     liquidity: "70%",
@@ -34,7 +34,7 @@ const waterfall = [
   "Strengthen liquid reserve coverage",
   "Fund emergency, insurance, and liquidation buffers",
   "Retain growth capital",
-  "Allocate realized surplus to Treasury Certificate classes",
+  "Allocate realized surplus to FXTC classes",
   "Fund ecosystem growth, UtopiaByFaith, infrastructure, and protocol development",
 ];
 
@@ -58,12 +58,12 @@ export function FaithTreasuryCertificateSection() {
           </p>
 
           <h2 className="max-w-4xl text-3xl font-semibold tracking-tight text-white md:text-4xl xl:text-5xl">
-            FAITH now separates utility from reserve-backed capital.
+            Faith Monetary Protocol now separates utility from reserve-backed capital.
           </h2>
 
           <p className="mt-6 max-w-4xl text-base leading-8 text-slate-300 md:text-lg">
-            FAITH Protocol uses a dual-asset model: the FAITH token coordinates access, utility,
-            UtopiaByFaith participation, and protocol privileges, while FAITH Treasury Certificates
+            Faith Monetary Protocol Monetary Protocol uses a dual-asset model: the FXMP Token coordinates access, utility,
+            UtopiaByFaith participation, and protocol privileges, while FXTC
             represent restricted treasury-backed capital accounts with controlled inflow, controlled
             redemption, class-based risk, and PCS-regulated credit eligibility.
           </p>
@@ -78,15 +78,15 @@ export function FaithTreasuryCertificateSection() {
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">
               Asset 01
             </p>
-            <h3 className="mt-3 text-2xl font-semibold text-white">FAITH Token</h3>
+            <h3 className="mt-3 text-2xl font-semibold text-white">FXMP Token</h3>
             <p className="mt-4 text-sm leading-7 text-slate-400">
-              The FAITH token remains the ecosystem utility and coordination asset. It can support
+              The FXMP Token remains the ecosystem utility and coordination asset. It can support
               access, membership, UtopiaByFaith gameplay utility, forge and minting utility,
               protocol privileges, governance later, vault access, and lower-LTV collateral if PCS
               approves.
             </p>
             <p className="mt-4 text-sm font-medium text-amber-200">
-              FAITH opens access to the economy.
+              Faith Monetary Protocol opens access to the economy.
             </p>
           </article>
 
@@ -95,16 +95,16 @@ export function FaithTreasuryCertificateSection() {
               Asset 02
             </p>
             <h3 className="mt-3 text-2xl font-semibold text-white">
-              FAITH Treasury NFT / Certificate
+              Faith Monetary Protocol Treasury NFT / Certificate
             </h3>
             <p className="mt-4 text-sm leading-7 text-emerald-50/80">
-              The Treasury Certificate is the reserve-backed capital account layer. It can represent
+              The FXTC is the reserve-backed capital account layer. It can represent
               contributed capital, class-based treasury participation, controlled redemption,
               higher-LTV collateral eligibility, and account-value changes based only on realized
               treasury surplus.
             </p>
             <p className="mt-4 text-sm font-medium text-emerald-100">
-              Treasury Certificates hold the reserve-backed capital value.
+              FXTC hold the reserve-backed capital value.
             </p>
           </article>
         </div>
@@ -146,7 +146,7 @@ export function FaithTreasuryCertificateSection() {
           <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-6">
             <h3 className="text-lg font-semibold text-white">Value Accrual Logic</h3>
             <p className="mt-4 text-sm leading-7 text-slate-400">
-              Treasury Certificate value can increase only when realized treasury surplus is
+              FXTC value can increase only when realized treasury surplus is
               allocated to a class. This is NAV/account-value based, not speculative price pumping.
             </p>
             <p className="mt-4 rounded-xl border border-amber-300/20 bg-amber-300/10 p-3 text-xs leading-6 text-amber-100">
@@ -158,7 +158,7 @@ export function FaithTreasuryCertificateSection() {
           <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-6">
             <h3 className="text-lg font-semibold text-white">LTV Principle</h3>
             <p className="mt-4 text-sm leading-7 text-slate-400">
-              High LTV belongs mainly to Treasury Certificates, not the FAITH token. Liquidity
+              High LTV belongs mainly to FXTC, not the FXMP Token. Liquidity
               protects LTV. Productive risk earns upside. PCS decides how much credit is safe.
             </p>
           </div>
@@ -196,10 +196,10 @@ export function FaithTreasuryCertificateSection() {
             Legal / Compliance Note
           </h3>
           <p className="mt-3 text-sm leading-7 text-red-50/80">
-            Treasury Certificates may be legally sensitive because they can resemble capital
+            FXTC may be legally sensitive because they can resemble capital
             contribution, treasury participation, redemption rights, account value, surplus
             participation, or investment contract characteristics. This structure should be reviewed
-            by legal counsel before launch. FAITH should not market Treasury Certificates as
+            by legal counsel before launch. Faith Monetary Protocol should not market FXTC as
             guaranteed yield, guaranteed profit, guaranteed principal protection, or guaranteed
             redemption.
           </p>
@@ -208,5 +208,6 @@ export function FaithTreasuryCertificateSection() {
     </section>
   );
 }
+
 
 
