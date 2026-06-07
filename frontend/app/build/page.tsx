@@ -40,7 +40,7 @@ export default function BuildPage() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-8 lg:px-10">
         <div className="mb-8 flex items-center justify-between gap-6">
-          <Link href="/" className="text-[11px] font-black uppercase tracking-[0.32em] text-cyan-200">
+          <Link href="/" className="faith-button px-7 py-4 text-[11px]">
             Back to Faith Monetary Protocol
           </Link>
           <Link href="/dashboard" className="faith-button px-6 py-3 text-[11px]">
@@ -117,6 +117,7 @@ export default function BuildPage() {
     </main>
   );
 }
+
 
 
 
