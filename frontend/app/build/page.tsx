@@ -39,8 +39,11 @@ export default function BuildPage() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-8 lg:px-10">
         <div className="mb-8 flex items-center justify-between gap-6">
-          <Link href="/" className="text-[11px] font-black uppercase tracking-[0.32em] text-cyan-200">
-            Back to Faith Monetary Protocol
+          <Link
+            href="/"
+            className="inline-flex rounded-full border border-cyan-300/25 bg-black/35 px-6 py-3 text-[10px] font-black uppercase tracking-[0.24em] text-cyan-300 backdrop-blur-md transition hover:border-cyan-300/70 hover:bg-cyan-300/10 hover:text-white"
+          >
+            Back to Faith
           </Link>
           <Link href="/dashboard" className="faith-button px-6 py-3 text-[11px]">
             Enter Dashboard
@@ -116,3 +119,4 @@ export default function BuildPage() {
     </main>
   );
 }
+
