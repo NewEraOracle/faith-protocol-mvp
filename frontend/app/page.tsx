@@ -213,10 +213,10 @@ Read The Protocol
             <div className="faith-token-system">
               <div className="text-center">
                 <p className="text-[11px] font-black uppercase tracking-[0.45em] text-cyan-100/80">
-                  FXMP TOKEN SYSTEM
+                  FAITH MONETARY ASSET SYSTEM
                 </p>
                 <p className="mt-2 text-sm uppercase tracking-[0.28em] text-slate-400">
-                  Autonomous Credit for the Real-Time Internet
+                  Growth • Credit • Treasury Capital
                 </p>
               </div>
 
@@ -225,7 +225,7 @@ Read The Protocol
                   <div className="faith-token-ring">
                     <img
                       src="/faith/design/token-fxmp.png"
-                      alt="FXMP token"
+                      alt="GROWTH TOKEN"
                       className="faith-token-large"
                     />
                   </div>
@@ -235,10 +235,10 @@ Read The Protocol
                       FXMP
                     </h3>
                     <p className="mt-3 text-sm leading-7 text-slate-400">
-                      Core protocol token for access, coordination, governance, and future ecosystem utility.
+                      Public growth token for investors seeking exposure to Faith Monetary Protocol adoption, ecosystem expansion, governance, and market upside.
                     </p>
                     <p className="mt-5 text-[10px] font-black uppercase tracking-[0.32em] text-cyan-300">
-                      FXMP TOKEN
+                      GROWTH TOKEN
                     </p>
                   </div>
                 </div>
@@ -257,7 +257,7 @@ Read The Protocol
                       FUSD
                     </h3>
                     <p className="mt-3 text-sm leading-7 text-slate-400">
-                      Internal credit asset minted by Faith Monetary Protocol vaults. FUSD powers borrowing, repayments, liquidations, and protocol credit mechanics.
+                      Internal credit asset minted by protocol vaults. FUSD powers borrowing, repayments, liquidations, and productive on-chain economic activity.
                     </p>
                     <p className="mt-5 text-[10px] font-black uppercase tracking-[0.32em] text-cyan-300">
                       FUSD TOKEN
@@ -269,7 +269,7 @@ Read The Protocol
                   <div className="faith-token-ring">
                     <img
                       src="/faith/design/token-fxtc.png"
-                      alt="FXTC token"
+                      alt="TREASURY CAPITAL TOKEN"
                       className="faith-token-large"
                     />
                   </div>
@@ -279,10 +279,10 @@ Read The Protocol
                       FXTC
                     </h3>
                     <p className="mt-3 text-sm leading-7 text-slate-400">
-                      Treasury certificate layer designed to represent reserve-backed protocol capital and long-term treasury strength.
+                      Treasury capital token designed for long-term participants seeking more stable, treasury-aligned exposure to the development of Faith Monetary Protocol.
                     </p>
                     <p className="mt-5 text-[10px] font-black uppercase tracking-[0.32em] text-cyan-300">
-                      FXTC TOKEN
+                      TREASURY CAPITAL TOKEN
                     </p>
                   </div>
                 </div>
@@ -358,6 +358,7 @@ Read The Protocol
     </main>
   );
 }
+
 
 
 
