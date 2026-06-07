@@ -220,7 +220,7 @@ Read The Protocol
                 </p>
               </div>
 
-              <div className="mt-8 grid gap-8 lg:grid-cols-2">
+              <div className="mt-8 grid gap-8 lg:grid-cols-3">
                 <div className="faith-token-orb">
                   <div className="faith-token-ring">
                     <img
@@ -231,20 +231,12 @@ Read The Protocol
                   </div>
 
                   <div className="mt-6 text-center">
-                    <h3 className="text-3xl font-black uppercase tracking-[0.16em] text-white">
-                      FAITH
-                    </h3>
+                    <h3 className="text-3xl font-black uppercase tracking-[0.16em] text-white">Faith Monetary Protocol</h3>
                     <p className="mt-3 text-sm leading-7 text-slate-400">
-                      Protocol collateral identity and future governance coordination layer.
+                      The protocol layer coordinating credit, treasury, PCS risk control, and MegaETH execution.
                     </p>
                     <p className="mt-5 text-[10px] font-black uppercase tracking-[0.32em] text-cyan-300">
-                      FXMP TOKEN
-                    </p>
-                  </div>
-                </div>
-
-                <div className="faith-token-orb">
-                  <div className="faith-token-ring">
+                      PROTOCOL LAYER</p></div></div><div className="faith-token-orb"><div className="faith-token-ring">
                     <img
                       src="/faith/design/token-fusd.png"
                       alt="FUSD testnet credit"
@@ -265,8 +257,29 @@ Read The Protocol
                   </div>
                 </div>
               </div>
-            </div>
-          </section>
+                <div className="faith-token-orb">
+                  <div className="faith-token-ring">
+                    <img
+                      src="/faith/design/token-faith.png"
+                      alt="FXMP token"
+                      className="faith-token-large"
+                    />
+                  </div>
+
+                  <div className="mt-6 text-center">
+                    <h3 className="text-3xl font-black uppercase tracking-[0.16em] text-white">
+                      FXMP
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-400">
+                      Core protocol token for access, coordination, governance, and future ecosystem utility.
+                    </p>
+                    <p className="mt-5 text-[10px] font-black uppercase tracking-[0.32em] text-cyan-300">
+                      FXMP TOKEN
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
         </div>
       </div>
     
@@ -337,6 +350,7 @@ Read The Protocol
 </main>
   );
 }
+
 
 
 
