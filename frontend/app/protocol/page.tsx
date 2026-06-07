@@ -19,7 +19,7 @@ export default function ProtocolPage() {
 
         <InfoCard title="Dual-Asset Structure">
           <p>
-            fUSD/tfUSD powers internal credit. USDm powers external settlement and commerce. FAITH powers
+            FUSD powers internal credit. USDm powers external settlement and commerce. FXMP powers
             coordination, access, progression, risk participation, and protocol utility.
           </p>
         </InfoCard>
@@ -27,6 +27,7 @@ export default function ProtocolPage() {
     </PublicPage>
   );
 }
+
 
 
 

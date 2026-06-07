@@ -14,7 +14,7 @@ const sections = [
   {
     title: "Current MVP",
     body:
-      "The current MVP demonstrates tFAITH testnet collateral, tfUSD testnet credit, vault deposits, borrowing, oracle shock simulation, liquidation-risk visibility, treasury mock accounting, and PCS monitoring.",
+      "The current MVP demonstrates FXMP testnet collateral, FUSD testnet credit, vault deposits, borrowing, oracle shock simulation, liquidation-risk visibility, treasury mock accounting, and PCS monitoring.",
   },
   {
     title: "Why MegaETH?",
@@ -29,7 +29,7 @@ const sections = [
 ];
 
 const roadmap = [
-  "Phase 1 — Testnet MVP: tFAITH collateral, tfUSD borrowing, oracle shock simulation, liquidation demo, treasury mock accounting, and PCS monitoring.",
+  "Phase 1 — Testnet MVP: FXMP collateral, FUSD borrowing, oracle shock simulation, liquidation demo, treasury mock accounting, and PCS monitoring.",
   "Phase 2 — PCS v2: deterministic risk scoring, treasury coverage scoring, liquidation pressure scoring, borrow utilization scoring, action queue, and stress timeline.",
   "Phase 3 — Treasury Architecture: treasury design, controlled capital models, quarterly review concepts, PCS treasury monitoring, and legal-safe documentation.",
   "Phase 4 — Ecosystem Layer: Build-on-FAITH framework, project vault concepts, developer modules, UtopiaByFaith integration, and future USDm marketplace support.",
@@ -183,4 +183,5 @@ export default function DocsPage() {
     </main>
   );
 }
+
 
