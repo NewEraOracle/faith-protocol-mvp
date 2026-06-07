@@ -224,7 +224,8 @@ Read The Protocol
                 <div className="faith-token-orb">
                   <div className="faith-token-ring">
                     <img
-                      src="/faith/design/token-fxmp.png"`n                      alt="FXMP token"
+                      src="/faith/design/token-fxmp.png"
+                      alt="FXMP token"
                       className="faith-token-large"
                     />
                   </div>
@@ -267,7 +268,8 @@ Read The Protocol
                 <div className="faith-token-orb">
                   <div className="faith-token-ring">
                     <img
-                      src="/faith/design/token-fxtc.png"`n                      alt="FXTC token"
+                      src="/faith/design/token-fxtc.png"
+                      alt="FXTC token"
                       className="faith-token-large"
                     />
                   </div>
@@ -356,6 +358,7 @@ Read The Protocol
     </main>
   );
 }
+
 
 
 
