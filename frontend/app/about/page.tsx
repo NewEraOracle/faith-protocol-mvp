@@ -1,4 +1,4 @@
-﻿import { InfoCard, PublicPage } from "../components/PublicPage";
+import { InfoCard, PublicPage } from "../components/PublicPage";
 
 const contacts = [
   ["X / Twitter", "Project updates and public build logs", "#"],
@@ -10,7 +10,7 @@ const contacts = [
 export default function AboutPage() {
   return (
     <PublicPage
-      label="About Faith Monetary Protocol"
+      label="About Faith Monetary Protocol Monetary Protocol"
       title="A Machine-Regulated Economy"
       intro="Faith Monetary Protocol is not only about borrowing. It is about designing an economy that can grow without losing discipline. Human productivity creates value. PCS regulates risk. Treasury protects the system. MegaETH executes in real time."
     >
@@ -53,6 +53,5 @@ export default function AboutPage() {
     </PublicPage>
   );
 }
-
 
 

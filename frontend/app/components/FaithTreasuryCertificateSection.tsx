@@ -1,4 +1,4 @@
-﻿const certificateClasses = [
+const certificateClasses = [
   {
     name: "Class A",
     liquidity: "70%",
@@ -62,7 +62,7 @@ export function FaithTreasuryCertificateSection() {
           </h2>
 
           <p className="mt-6 max-w-4xl text-base leading-8 text-slate-300 md:text-lg">
-            Faith Monetary Protocol uses a dual-asset model: the FXMP Token coordinates access, utility,
+            Faith Monetary Protocol Monetary Protocol uses a dual-asset model: the FXMP Token coordinates access, utility,
             UtopiaByFaith participation, and protocol privileges, while FXTC
             represent restricted treasury-backed capital accounts with controlled inflow, controlled
             redemption, class-based risk, and PCS-regulated credit eligibility.
@@ -208,7 +208,6 @@ export function FaithTreasuryCertificateSection() {
     </section>
   );
 }
-
 
 
 

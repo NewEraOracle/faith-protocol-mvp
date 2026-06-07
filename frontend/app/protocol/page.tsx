@@ -1,4 +1,4 @@
-﻿import { FaithEconomicOSSection } from "../components/FaithEconomicOSSection";
+import { FaithEconomicOSSection } from "../components/FaithEconomicOSSection";
 import { FaithTreasuryCertificateSection } from "../components/FaithTreasuryCertificateSection";
 import { InfoCard, PublicPage } from "../components/PublicPage";
 
@@ -7,7 +7,7 @@ export default function ProtocolPage() {
     <PublicPage
       label="Faith Monetary Protocol MONETARY ARCHITECTURE"
       title="Faith Monetary Protocol is a treasury-protected, PCS-regulated economic operating system"
-      intro="Faith Monetary Protocol represents the credit, treasury, and risk infrastructure layer of the Faith Monetary Protocol Economy. It shows how collateral-backed programmable credit, PCS risk monitoring, and treasury protection can circulate through a real-time economy without relying on speculation as the primary growth engine."
+      intro="Faith Monetary Protocol Monetary Protocol represents the credit, treasury, and risk infrastructure layer of the Faith Monetary Protocol Monetary Protocol Economy. It shows how collateral-backed programmable credit, PCS risk monitoring, and treasury protection can circulate through a real-time economy without relying on speculation as the primary growth engine."
     >
       <div className="grid gap-5 md:grid-cols-2">
         <InfoCard title="Treasury-Protected Economy">
@@ -27,7 +27,6 @@ export default function ProtocolPage() {
     </PublicPage>
   );
 }
-
 
 
 

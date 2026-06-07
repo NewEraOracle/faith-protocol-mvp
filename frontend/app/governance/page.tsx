@@ -1,4 +1,4 @@
-﻿import { InfoCard, PublicPage } from "../components/PublicPage";
+import { InfoCard, PublicPage } from "../components/PublicPage";
 
 export default function GovernancePage() {
   return (
@@ -25,6 +25,5 @@ export default function GovernancePage() {
     </PublicPage>
   );
 }
-
 
 

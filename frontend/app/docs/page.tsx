@@ -1,10 +1,10 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 
 const sections = [
   {
-    title: "What is Faith Monetary Protocol?",
+    title: "What is Faith Monetary Protocol Monetary Protocol?",
     body:
-      "Faith Monetary Protocol is PCS-regulated credit and treasury infrastructure for autonomous onchain economies on MegaETH. The current product is a testnet MVP focused on vault-based borrowing, treasury visibility, oracle shock simulation, liquidation-risk visibility, and protocol-level risk monitoring.",
+      "Faith Monetary Protocol Monetary Protocol is PCS-regulated credit and treasury infrastructure for autonomous onchain economies on MegaETH. The current product is a testnet MVP focused on vault-based borrowing, treasury visibility, oracle shock simulation, liquidation-risk visibility, and protocol-level risk monitoring.",
   },
   {
     title: "What is PCS?",
@@ -29,12 +29,12 @@ const sections = [
 ];
 
 const roadmap = [
-  "Phase 1 â€” Testnet MVP: FXMP collateral, tfUSD borrowing, oracle shock simulation, liquidation demo, treasury mock accounting, and PCS monitoring.",
-  "Phase 2 â€” PCS v2: deterministic risk scoring, treasury coverage scoring, liquidation pressure scoring, borrow utilization scoring, action queue, and stress timeline.",
-  "Phase 3 â€” Treasury Architecture: treasury design, controlled capital models, quarterly review concepts, PCS treasury monitoring, and legal-safe documentation.",
-  "Phase 4 â€” Ecosystem Layer: Build-on-Faith Monetary Protocol framework, project vault concepts, developer modules, UtopiaByFaith integration, and future USDm marketplace support.",
-  "Phase 5 â€” Funding and Validation: demo video, pitch deck, investor memo, MegaETH outreach, grants, strategic angels, and accelerators.",
-  "Phase 6 â€” Future RWA / Productive Capital: legal structure, compliance review, partner due diligence, audited reporting, PCS controls, and controlled capital routing.",
+  "Phase 1 — Testnet MVP: FXMP collateral, tfUSD borrowing, oracle shock simulation, liquidation demo, treasury mock accounting, and PCS monitoring.",
+  "Phase 2 — PCS v2: deterministic risk scoring, treasury coverage scoring, liquidation pressure scoring, borrow utilization scoring, action queue, and stress timeline.",
+  "Phase 3 — Treasury Architecture: treasury design, controlled capital models, quarterly review concepts, PCS treasury monitoring, and legal-safe documentation.",
+  "Phase 4 — Ecosystem Layer: Build-on-Faith Monetary Protocol framework, project vault concepts, developer modules, UtopiaByFaith integration, and future USDm marketplace support.",
+  "Phase 5 — Funding and Validation: demo video, pitch deck, investor memo, MegaETH outreach, grants, strategic angels, and accelerators.",
+  "Phase 6 — Future RWA / Productive Capital: legal structure, compliance review, partner due diligence, audited reporting, PCS controls, and controlled capital routing.",
 ];
 
 export default function DocsPage() {
@@ -58,7 +58,7 @@ export default function DocsPage() {
             href="/"
             className="inline-flex rounded-full border border-cyan-300/25 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-300 backdrop-blur-md transition hover:border-cyan-300/70 hover:bg-cyan-300/10 hover:text-white"
           >
-            Back to Faith Monetary Protocol
+            Back to Faith Monetary Protocol Monetary Protocol
           </Link>
 
           <div className="hidden items-center gap-2 sm:flex">
@@ -89,7 +89,7 @@ export default function DocsPage() {
 
         <div className="py-20">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.35em] text-cyan-300">
-            Faith Monetary Protocol Docs
+            Faith Monetary Protocol Monetary Protocol Docs
           </p>
 
           <h1 className="max-w-5xl text-4xl font-semibold tracking-tight text-white md:text-6xl">
@@ -183,5 +183,4 @@ export default function DocsPage() {
     </main>
   );
 }
-
 

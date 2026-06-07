@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import "@rainbow-me/rainbowkit/styles.css";
 
@@ -16,7 +16,7 @@ import {
 } from "@tanstack/react-query";
 
 const config = getDefaultConfig({
-  appName: "Faith Monetary Protocol",
+  appName: "Faith Monetary Protocol Monetary Protocol",
   projectId: "Faith Monetary Protocol-demo",
   chains: [hardhat],
   ssr: true,
@@ -39,4 +39,3 @@ export default function Providers({
     </WagmiProvider>
   );
 }
-

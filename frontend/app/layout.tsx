@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Faith Monetary Protocol",
+  title: "Faith Monetary Protocol Monetary Protocol",
   description: "Web3 Trading Dashboard",
 };
 
@@ -31,5 +31,4 @@ export default function RootLayout({
     </html>
   );
 }
-
 

@@ -1,4 +1,4 @@
-﻿const treasuryCards = [
+const treasuryCards = [
   {
     label: "Treasury Health",
     value: "HEALTHY",
@@ -16,7 +16,7 @@
   },
   {
     label: "Early RWA / Venture",
-    value: "1â€“5%",
+    value: "1–5%",
     detail: "Limited early exposure for disciplined growth.",
   },
   {
@@ -80,7 +80,7 @@ export function FaithEconomicControlRoom() {
         </div>
 
         <div className="rounded-2xl border border-emerald-400/20 bg-emerald-400/10 px-5 py-4 text-sm text-emerald-100">
-          Demo data â€” MVP simulation
+          Demo data — MVP simulation
         </div>
       </div>
 
@@ -134,5 +134,4 @@ export function FaithEconomicControlRoom() {
     </section>
   );
 }
-
 
