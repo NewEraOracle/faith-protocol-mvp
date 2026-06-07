@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 export default function AccessRequestReceivedPage() {
   return (
@@ -16,7 +16,7 @@ export default function AccessRequestReceivedPage() {
 
       <section className="relative z-10 mx-auto flex min-h-[80vh] max-w-4xl flex-col justify-center">
         <p className="mb-4 text-xs font-semibold uppercase tracking-[0.35em] text-cyan-300">
-          Faith Monetary Protocol Monetary Protocol Access Request
+          Faith Monetary Protocol Access Request
         </p>
 
         <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">
@@ -24,7 +24,7 @@ export default function AccessRequestReceivedPage() {
         </h1>
 
         <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-          Thank you for requesting access to Faith Monetary Protocol Monetary Protocol. Requests are reviewed manually.
+          Thank you for requesting access to Faith Monetary Protocol. Requests are reviewed manually.
           Private materials are only shared with serious ecosystem partners, investors,
           builders, and reviewers.
         </p>
@@ -45,7 +45,7 @@ export default function AccessRequestReceivedPage() {
             href="/"
             className="rounded-full border border-cyan-300/25 bg-black/35 px-5 py-3 text-sm font-semibold text-cyan-200 transition hover:border-cyan-300/70 hover:bg-cyan-300/10 hover:text-white"
           >
-            Back to Faith Monetary Protocol Monetary Protocol
+            Back to Faith Monetary Protocol
           </Link>
 
           <Link
@@ -59,4 +59,5 @@ export default function AccessRequestReceivedPage() {
     </main>
   );
 }
+
 

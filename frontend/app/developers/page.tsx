@@ -1,10 +1,10 @@
-import { InfoCard, PublicPage } from "../components/PublicPage";
+﻿import { InfoCard, PublicPage } from "../components/PublicPage";
 
 export default function DevelopersPage() {
   return (
     <PublicPage
       label="Developers"
-      title="Build on the Faith Monetary Protocol Monetary Protocol Economy"
+      title="Build on the Faith Monetary Protocol Economy"
       intro="Faith Monetary Protocol is designed for builders who want to create around programmable credit, real-time vault health, PCS risk monitoring, treasury-aware systems, and MegaETH execution."
     >
       <div className="grid gap-5 md:grid-cols-2">
@@ -25,5 +25,6 @@ export default function DevelopersPage() {
     </PublicPage>
   );
 }
+
 
 

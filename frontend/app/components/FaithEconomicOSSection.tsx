@@ -1,4 +1,4 @@
-const pillars = [
+﻿const pillars = [
   {
     title: "Productive Treasury",
     text: "Liquid reserves protect the system while productive allocations grow the economy through disciplined capital deployment.",
@@ -73,7 +73,7 @@ export function FaithEconomicOSSection() {
           </div>
 
           <div className="rounded-2xl border border-sky-400/20 bg-sky-400/10 p-5">
-            <p className="text-3xl font-semibold text-sky-200">1–5%</p>
+            <p className="text-3xl font-semibold text-sky-200">1â€“5%</p>
             <p className="mt-2 text-sm text-sky-50">Early RWA / venture exposure target</p>
           </div>
         </div>
@@ -86,4 +86,5 @@ export function FaithEconomicOSSection() {
     </section>
   );
 }
+
 
