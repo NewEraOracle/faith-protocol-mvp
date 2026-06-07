@@ -24,9 +24,14 @@ export default function ProtocolPage() {
           </p>
         </InfoCard>
       </div>
+
+      <FaithEconomicOSSection />
+      <FaithTreasuryCertificateSection />
     </PublicPage>
   );
 }
+
+
 
 
 
