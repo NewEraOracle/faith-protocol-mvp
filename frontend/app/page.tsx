@@ -225,42 +225,6 @@ Read The Protocol
                   <div className="faith-token-ring">
                     <img
                       src="/faith/design/token-faith.png"
-                      alt="FXMP TOKEN"
-                      className="faith-token-large"
-                    />
-                  </div>
-
-                  <div className="mt-6 text-center">
-                    <h3 className="text-3xl font-black uppercase tracking-[0.16em] text-white">Faith Monetary Protocol</h3>
-                    <p className="mt-3 text-sm leading-7 text-slate-400">
-                      The protocol layer coordinating credit, treasury, PCS risk control, and MegaETH execution.
-                    </p>
-                    <p className="mt-5 text-[10px] font-black uppercase tracking-[0.32em] text-cyan-300">
-                      PROTOCOL LAYER</p></div></div><div className="faith-token-orb"><div className="faith-token-ring">
-                    <img
-                      src="/faith/design/token-fusd.png"
-                      alt="FUSD testnet credit"
-                      className="faith-token-large FUSD-bright"
-                    />
-                  </div>
-
-                  <div className="mt-6 text-center">
-                    <h3 className="text-3xl font-black uppercase tracking-[0.16em] text-white">
-                      FUSD
-                    </h3>
-                    <p className="mt-3 text-sm leading-7 text-slate-400">
-                      Testnet internal credit asset minted by Faith Monetary Protocol vaults during the MVP demo. fUSD represents the future Faith Monetary Protocol internal credit layer.
-                    </p>
-                    <p className="mt-5 text-[10px] font-black uppercase tracking-[0.32em] text-cyan-300">
-                      FUSD Token
-                    </p>
-                  </div>
-                </div>
-              </div>
-                <div className="faith-token-orb">
-                  <div className="faith-token-ring">
-                    <img
-                      src="/faith/design/token-faith.png"
                       alt="FXMP token"
                       className="faith-token-large"
                     />
@@ -278,11 +242,53 @@ Read The Protocol
                     </p>
                   </div>
                 </div>
+
+                <div className="faith-token-orb">
+                  <div className="faith-token-ring">
+                    <img
+                      src="/faith/design/token-fusd.png"
+                      alt="FUSD token"
+                      className="faith-token-large FUSD-bright"
+                    />
+                  </div>
+
+                  <div className="mt-6 text-center">
+                    <h3 className="text-3xl font-black uppercase tracking-[0.16em] text-white">
+                      FUSD
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-400">
+                      Internal credit asset minted by Faith Monetary Protocol vaults. FUSD powers borrowing, repayments, liquidations, and protocol credit mechanics.
+                    </p>
+                    <p className="mt-5 text-[10px] font-black uppercase tracking-[0.32em] text-cyan-300">
+                      FUSD TOKEN
+                    </p>
+                  </div>
+                </div>
+
+                <div className="faith-token-orb">
+                  <div className="faith-token-ring">
+                    <img
+                      src="/faith/design/token-faith.png"
+                      alt="FXTC token"
+                      className="faith-token-large"
+                    />
+                  </div>
+
+                  <div className="mt-6 text-center">
+                    <h3 className="text-3xl font-black uppercase tracking-[0.16em] text-white">
+                      FXTC
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-400">
+                      Treasury certificate layer designed to represent reserve-backed protocol capital and long-term treasury strength.
+                    </p>
+                    <p className="mt-5 text-[10px] font-black uppercase tracking-[0.32em] text-cyan-300">
+                      FXTC TOKEN
+                    </p>
+                  </div>
+                </div>
               </div>
-            </section>
-        </div>
-      </div>
-    
+            </div>
+          </section>
           <section id="developers" className="mx-6 mb-6 lg:mx-10">
             <div className="faith-card p-6">
               <p className="text-sm font-black uppercase tracking-[0.38em] text-cyan-300">
@@ -347,9 +353,13 @@ Read The Protocol
             </div>
           </section>
 
-</main>
+        </div>
+      </div>
+    </main>
   );
 }
+
+
 
 
 
