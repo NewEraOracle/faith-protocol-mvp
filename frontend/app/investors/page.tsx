@@ -41,7 +41,7 @@ export default function InvestorsPage() {
         </p>
 
         <h2 className="mt-4 text-3xl font-semibold text-white">
-          Humans build. PCS regulates. Treasury protects. MegaETH executes.
+          Humans build. PCS regulates. Treasury protects. MegaETH executes. The economy grows.
         </h2>
 
         <p className="mt-5 max-w-5xl text-sm leading-8 text-slate-300">
@@ -116,3 +116,4 @@ export default function InvestorsPage() {
     </PublicPage>
   );
 }
+
