@@ -32,7 +32,7 @@ export default function WhitelistPage() {
             href="/"
             className="inline-flex rounded-full border border-cyan-300/25 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-300 backdrop-blur-md transition hover:border-cyan-300/70 hover:bg-cyan-300/10 hover:text-white"
           >
-            Back to Faith Monetary Protocol
+            Back to Faith
           </Link>
 
           <div className="hidden items-center gap-2 sm:flex">
@@ -149,7 +149,8 @@ export default function WhitelistPage() {
                 </button>
               </div>
             ) : (
-              <form action="https://formsubmit.co/contact@faithdefi.com" method="POST" className="grid gap-5">
+              <form action="/api/access-request" method="POST" className="grid gap-5">
+                <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" />
                 <div>
                   <label className="text-sm font-medium text-white/80">Name</label>
                   <input
@@ -217,7 +218,7 @@ export default function WhitelistPage() {
                   type="submit"
                   className="rounded-full bg-cyan-300 px-5 py-3 text-sm font-semibold text-black transition hover:bg-cyan-200"
                 >
-                  Request Access
+                  Contact
                 </button>
 
                 <p className="text-xs leading-6 text-white/45">
@@ -233,6 +234,13 @@ export default function WhitelistPage() {
     </main>
   );
 }
+
+
+
+
+
+
+
 
 
 

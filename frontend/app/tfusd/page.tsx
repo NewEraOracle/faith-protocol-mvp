@@ -66,3 +66,5 @@ export default function EconomicsPage() {
     </PublicPage>
   );
 }
+
+

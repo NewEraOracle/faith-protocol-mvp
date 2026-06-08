@@ -46,6 +46,20 @@ export function PublicPage({ label, title, intro, children }: PublicPageProps) {
               Whitelist
             </Link>
 
+            <Link
+              href="/security"
+              className="rounded-full border border-white/10 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300 backdrop-blur-md transition hover:border-cyan-300/50 hover:bg-cyan-300/10 hover:text-white"
+            >
+              Security
+            </Link>
+
+            <Link
+              href="/investors"
+              className="rounded-full border border-white/10 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300 backdrop-blur-md transition hover:border-cyan-300/50 hover:bg-cyan-300/10 hover:text-white"
+            >
+              Investors
+            </Link>
+
             <a
               href="https://github.com/NewEraOracle/faith-protocol-mvp"
               target="_blank"
@@ -104,6 +118,13 @@ export function InfoCard({
     </div>
   );
 }
+
+
+
+
+
+
+
 
 
 
