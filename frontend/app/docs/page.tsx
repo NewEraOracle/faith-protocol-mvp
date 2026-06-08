@@ -168,9 +168,9 @@ export default function DocsPage() {
             </div>
           </section>
           <section className="mt-8 rounded-3xl border border-cyan-300/20 bg-cyan-300/[0.06] p-6 shadow-2xl shadow-cyan-950/20 backdrop-blur-xl">
-            <h2 className="text-2xl font-semibold text-white">Public Litepaper</h2>
+            <h2 className="text-2xl font-semibold text-white">FAITH Litepaper</h2>
             <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300">
-              The FAITH public litepaper explains the protocol vision, FAITH Economic Operating System,
+              The public document explains the protocol vision, FAITH Economic Operating System,
               FXMP / FUSD / FXTC model, PCS risk regulation, treasury protection, MegaETH execution,
               builder ecosystem path, testnet MVP status, and legal boundary.
             </p>
@@ -182,7 +182,7 @@ export default function DocsPage() {
                 rel="noreferrer"
                 className="inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-5 py-3 text-sm font-semibold text-cyan-200 transition hover:bg-cyan-300/20 hover:text-white"
               >
-                Open Public Litepaper
+                Read Document
               </a>
 
               <a
@@ -225,6 +225,8 @@ export default function DocsPage() {
     </main>
   );
 }
+
+
 
 
 
