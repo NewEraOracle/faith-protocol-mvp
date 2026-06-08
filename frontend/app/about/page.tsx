@@ -5,21 +5,25 @@ const contacts = [
   [
     "Email",
     "Official company email for investors, partnerships, builders, and serious project inquiries.",
+    "mailto:contact@faithdefi.com",
     "contact@faithdefi.com",
   ],
   [
     "X / Twitter",
     "Official public updates, build logs, ecosystem announcements, and FAITH Monetary Protocol progress.",
+    "https://x.com/FaithMonetary",
     "Follow FAITH on X",
   ],
   [
     "Telegram",
     "Official Telegram channel for community updates, protocol discussion, and early ecosystem coordination.",
+    "https://t.me/faithmonetary",
     "Join FAITH Telegram",
   ],
   [
     "Join the Community",
     "Connect with builders, early supporters, reviewers, and FAITH ecosystem members inside the official Discord community.",
+    "https://discord.gg/qSbSEP3P8",
     "Join the FAITH Discord",
   ],
 ];
@@ -56,7 +60,7 @@ export default function AboutPage() {
       </section>
 
       <div className="grid gap-5 md:grid-cols-2">
-        {contacts.map(([title, body, href]) => (
+        {contacts.map(([title, body, href, label]) => (
           <a
             key={title}
             href={href}
@@ -69,7 +73,7 @@ export default function AboutPage() {
             </p>
             <p className="mt-4 text-sm leading-7 text-slate-400">{body}</p>
             <p className="mt-5 break-all text-sm font-semibold text-cyan-200">
-              {href.replace("mailto:", "").replace("?subject=Faith%20Monetary%20Protocol%20Builder%20Application", "")}
+              {label}
             </p>
           </a>
         ))}
@@ -96,6 +100,9 @@ export default function AboutPage() {
     </PublicPage>
   );
 }
+
+
+
 
 
 
