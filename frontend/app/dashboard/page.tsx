@@ -197,6 +197,43 @@ export default function Home() {
   }, [healthFactor, oraclePrice, protocolCollateral, protocolDebtSupply, vaultActive]);
 
 
+  const demoExplanation = useMemo(() => {
+    const hasDebt = Number(debt) > 0;
+    const hasCollateral = Number(collateral) > 0;
+    const price = Number(oraclePrice);
+    const treasuryActive = Number(protocolCollateral) > 0;
+
+    const summary = hasDebt
+      ? "The system is actively monitoring a collateralized FUSD debt position."
+      : hasCollateral
+        ? "Collateral has entered the vault system, but no FUSD debt is currently active."
+        : "No active vault position is detected yet. Start by claiming FXMP and depositing collateral.";
+
+    const points = [
+      hasCollateral
+        ? `Vault collateral is active with ${Number(collateral).toFixed(2)} FXMP deposited.`
+        : "No FXMP collateral is currently deposited in this wallet vault.",
+      hasDebt
+        ? `FUSD debt is active at ${Number(debt).toFixed(2)} FUSD, with a health factor of ${healthFactor}.`
+        : "No FUSD debt is currently open, so liquidation pressure remains limited.",
+      price <= 0.4
+        ? `The FXMP oracle is stressed at ${price.toFixed(2)}, showing how PCS reacts to a collateral shock.`
+        : `The FXMP oracle is currently ${price.toFixed(2)}. Use the oracle shock to test stress behavior.`,
+      `PCS currently rates protocol risk as ${pcsRisk.pcsRiskLevel} with a ${pcsRisk.pcsRiskScore}/100 score.`,
+      treasuryActive
+        ? `Treasury protection is ${pcsRisk.treasuryCoverage.toLowerCase()} based on current reserve and debt conditions.`
+        : "Treasury monitoring is in standby until protocol collateral and credit activity increase.",
+    ];
+
+    const action = hasDebt
+      ? pcsRisk.suggestedParameterResponse
+      : hasCollateral
+        ? "Next recommended action: borrow a small FUSD amount inside the borrow limit."
+        : "Next recommended action: claim test FXMP and deposit collateral to start the demo.";
+
+    return { summary, points, action };
+  }, [collateral, debt, healthFactor, oraclePrice, pcsRisk, protocolCollateral]);
+
   const demoSteps = [
     {
       number: "01",
@@ -807,6 +844,48 @@ export default function Home() {
           <p className="text-sm font-semibold uppercase tracking-wide text-zinc-500">Recommended Demo Action</p>
           <p className="mt-2 text-lg font-semibold text-white">{recommendedAction}</p>
           <p className="mt-2 text-sm text-zinc-500">This guided demo shows the full testnet cycle: connect wallet, claim collateral, open a vault, Borrow FUSD, simulate an oracle shock, watch PCS evaluate protocol risk, and expose liquidation pressure. Reset only clears the presentation tracker; it does not change wallet balances or protocol state.</p>
+        </div>
+                <div className="rounded-3xl border border-cyan-300/20 bg-cyan-300/[0.06] p-6 shadow-[0_0_45px_rgba(34,211,238,0.08)]">
+          <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-start">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.28em] text-cyan-200">
+                What happened?
+              </p>
+              <h3 className="mt-2 text-2xl font-black text-white">
+                Live explanation of the FAITH credit, treasury, and PCS loop.
+              </h3>
+              <p className="mt-3 max-w-4xl text-sm leading-7 text-zinc-300">
+                {demoExplanation.summary}
+              </p>
+            </div>
+
+            <div className={`rounded-full border px-4 py-2 text-sm font-bold ${riskStatus.bg} ${riskStatus.border} ${riskStatus.color}`}>
+              {pcsRisk.pcsRiskLevel} · {pcsRisk.pcsRiskScore}/100
+            </div>
+          </div>
+
+          <div className="mt-5 grid gap-3 md:grid-cols-2">
+            {demoExplanation.points.map((point) => (
+              <div
+                key={point}
+                className="rounded-2xl border border-white/10 bg-black/35 p-4 text-sm leading-7 text-zinc-300"
+              >
+                {point}
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-5 rounded-2xl border border-amber-300/20 bg-amber-300/[0.08] p-4">
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-amber-200">
+              PCS Protocol Response
+            </p>
+            <p className="mt-2 text-sm font-semibold leading-7 text-white">
+              {demoExplanation.action}
+            </p>
+            <p className="mt-2 text-xs leading-6 text-zinc-500">
+              This is a testnet protocol-level explanation. It is not user financial advice, investment advice, or a public investment product.
+            </p>
+          </div>
         </div>
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-7">
           {demoSteps.map((step) => (
@@ -1671,6 +1750,12 @@ function ActivityRow({ item, shortHash }: { item: ActivityItem; shortHash: (hash
   const badgeStyle = item.type === "Deposit" ? "border-green-500/30 bg-green-500/10 text-green-300" : item.type === "Withdraw" ? "border-red-500/30 bg-red-500/10 text-red-300" : item.type === "Borrow" ? "border-blue-500/30 bg-blue-500/10 text-blue-300" : item.type === "Repay" ? "border-yellow-500/30 bg-yellow-500/10 text-yellow-300" : item.type === "Liquidation" ? "border-rose-500/30 bg-rose-500/10 text-rose-300" : "border-purple-500/30 bg-purple-500/10 text-purple-300";
   return <div className="flex flex-col justify-between gap-4 rounded-2xl border border-white/10 bg-black/30 p-5 lg:flex-row lg:items-center"><div className="flex items-start gap-4"><div className={`rounded-full border px-3 py-1 text-xs font-bold ${badgeStyle}`}>{item.type}</div><div><p className="font-semibold text-white">{item.title}</p><p className="mt-1 text-sm text-zinc-400">{item.description}</p></div></div><div className="text-sm text-zinc-500"><p>Block #{item.blockNumber}</p><p className="font-mono">{shortHash(item.txHash)}</p></div></div>;
 }
+
+
+
+
+
+
 
 
 

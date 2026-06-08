@@ -67,7 +67,7 @@ export default function Home() {
               <Link href="/docs">Docs</Link>
               <Link href="/governance">Governance</Link>
               <Link href="/about">Contact</Link>
-              <Link href="/simulation">Simulation</Link>
+              <Link href="/simulations">Simulation</Link>
             </div>
 
             <Link href="/dashboard" className="faith-button px-7 py-4 text-[11px]">
@@ -359,6 +359,9 @@ Read The Protocol
     </main>
   );
 }
+
+
+
 
 
 

@@ -78,16 +78,16 @@ export default function DocsPage() {
 
           <div className="hidden items-center gap-2 sm:flex">
             <Link
-              href="/whitelist"
+              href="/about"
               className="rounded-full border border-white/10 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300 backdrop-blur-md transition hover:border-cyan-300/50 hover:bg-cyan-300/10 hover:text-white"
             >
-              Request Access
+              Contact
             </Link>
 
             <a
               href="https://github.com/NewEraOracle/faith-protocol-mvp"
-              target="_blank"
-              rel="noreferrer"
+              
+              
               className="rounded-full border border-white/10 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300 backdrop-blur-md transition hover:border-cyan-300/50 hover:bg-cyan-300/10 hover:text-white"
             >
               GitHub
@@ -126,16 +126,16 @@ export default function DocsPage() {
             </Link>
 
             <Link
-              href="/whitelist"
+              href="/about"
               className="rounded-full border border-white/15 bg-black/35 px-5 py-3 text-sm font-semibold text-white backdrop-blur-md transition hover:border-cyan-300/70 hover:text-cyan-200"
             >
-              Request Access
+              Contact
             </Link>
 
             <a
               href="https://github.com/NewEraOracle/faith-protocol-mvp"
-              target="_blank"
-              rel="noreferrer"
+              
+              
               className="rounded-full border border-white/15 bg-black/35 px-5 py-3 text-sm font-semibold text-white backdrop-blur-md transition hover:border-cyan-300/70 hover:text-cyan-200"
             >
               GitHub
@@ -167,6 +167,33 @@ export default function DocsPage() {
               ))}
             </div>
           </section>
+          <section className="mt-8 rounded-3xl border border-cyan-300/20 bg-cyan-300/[0.06] p-6 shadow-2xl shadow-cyan-950/20 backdrop-blur-xl">
+            <h2 className="text-2xl font-semibold text-white">FAITH Litepaper</h2>
+            <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300">
+              The public document explains the protocol vision, FAITH Economic Operating System,
+              FXMP / FUSD / FXTC model, PCS risk regulation, treasury protection, MegaETH execution,
+              builder ecosystem path, testnet MVP status, and legal boundary.
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a
+                href="/litepaper"
+                
+                
+                className="inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-5 py-3 text-sm font-semibold text-cyan-200 transition hover:bg-cyan-300/20 hover:text-white"
+              >
+                Read Document
+              </a>
+
+              <a
+                href="https://discord.gg/qSbSEP3P8"
+                className="inline-flex rounded-full border border-white/15 bg-black/35 px-5 py-3 text-sm font-semibold text-white transition hover:border-cyan-300/70 hover:text-cyan-200"
+              >
+                Request Private Whitepaper
+              </a>
+            </div>
+          </section>
+
 
           <section className="mt-8 rounded-3xl border border-white/10 bg-black/45 p-6 shadow-2xl shadow-cyan-950/20 backdrop-blur-xl">
             <h2 className="text-2xl font-semibold text-white">Private Whitepaper Access</h2>
@@ -179,17 +206,17 @@ export default function DocsPage() {
 
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
-                href="/whitelist"
+                href="/about"
                 className="inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-5 py-3 text-sm font-semibold text-cyan-200 transition hover:bg-cyan-300/20 hover:text-white"
               >
-                Request Whitepaper Access
+                Contact for Whitepaper Access
               </Link>
 
               <a
-                href="mailto:contact@faithdefi.com?subject=FAITH%20Whitepaper%20Access%20Request"
+                href="https://discord.gg/qSbSEP3P8"
                 className="inline-flex rounded-full border border-white/15 bg-black/35 px-5 py-3 text-sm font-semibold text-white transition hover:border-cyan-300/70 hover:text-cyan-200"
               >
-                Email contact@faithdefi.com
+                Join the FAITH Discord
               </a>
             </div>
           </section>
@@ -198,6 +225,13 @@ export default function DocsPage() {
     </main>
   );
 }
+
+
+
+
+
+
+
 
 
 
