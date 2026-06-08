@@ -10,17 +10,17 @@ const contacts = [
   [
     "X / Twitter",
     "Official public updates, build logs, ecosystem announcements, and FAITH Monetary Protocol progress.",
-    "https://x.com/FaithMonetary",
+    "Follow FAITH on X",
   ],
   [
     "Telegram",
     "Official Telegram channel for community updates, protocol discussion, and early ecosystem coordination.",
-    "https://t.me/faithmonetary",
+    "Join FAITH Telegram",
   ],
   [
     "Join the Community",
     "Connect with builders, early supporters, reviewers, and FAITH ecosystem members inside the official Discord community.",
-    "https://discord.gg/qSbSEP3P8",
+    "Join the FAITH Discord",
   ],
 ];
 
@@ -96,6 +96,7 @@ export default function AboutPage() {
     </PublicPage>
   );
 }
+
 
 
 
