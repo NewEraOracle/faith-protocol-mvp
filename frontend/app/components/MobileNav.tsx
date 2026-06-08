@@ -62,18 +62,10 @@ export function MobileNav() {
                 {link.label}
               </Link>
             ))}
-
-            <a
-              href="https://discord.gg/qSbSEP3P8"
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-xl border border-cyan-300/20 bg-cyan-300/10 px-4 py-3 text-sm font-semibold text-cyan-100"
-            >
-              Join Discord
-            </a>
           </div>
         ) : null}
       </div>
     </div>
   );
 }
+
