@@ -2,30 +2,30 @@
 import { InfoCard, PublicPage } from "../components/PublicPage";
 
 const contacts = [
-  [
-    "Email",
-    "Official company email for investors, partnerships, builders, and serious project inquiries.",
-    "mailto:contact@faithdefi.com",
-    "contact@faithdefi.com",
-  ],
-  [
-    "X / Twitter",
-    "Official public updates, build logs, ecosystem announcements, and FAITH Monetary Protocol progress.",
-    "https://x.com/FaithMonetary",
-    "Follow FAITH on X",
-  ],
-  [
-    "Telegram",
-    "Official Telegram channel for community updates, protocol discussion, and early ecosystem coordination.",
-    "https://t.me/faithmonetary",
-    "Join FAITH Telegram",
-  ],
-  [
-    "Join the Community",
-    "Connect with builders, early supporters, reviewers, and FAITH ecosystem members inside the official Discord community.",
-    "https://discord.gg/qSbSEP3P8",
-    "Join the FAITH Discord",
-  ],
+  {
+    title: "Email",
+    body: "Official company email for investors, partnerships, builders, and serious project inquiries.",
+    href: "mailto:contact@faithdefi.com",
+    label: "contact@faithdefi.com",
+  },
+  {
+    title: "X / Twitter",
+    body: "Official public updates, build logs, ecosystem announcements, and FAITH Monetary Protocol progress.",
+    href: "https://x.com/FaithMonetary",
+    label: "Follow FAITH on X",
+  },
+  {
+    title: "Telegram",
+    body: "Official Telegram channel for community updates, protocol discussion, and early ecosystem coordination.",
+    href: "https://t.me/faithmonetary",
+    label: "Join FAITH Telegram",
+  },
+  {
+    title: "Join the Community",
+    body: "Connect with builders, early supporters, reviewers, and FAITH ecosystem members inside the official Discord community.",
+    href: "https://discord.gg/qSbSEP3P8",
+    label: "Join the FAITH Discord",
+  },
 ];
 
 export default function AboutPage() {
@@ -60,20 +60,20 @@ export default function AboutPage() {
       </section>
 
       <div className="grid gap-5 md:grid-cols-2">
-        {contacts.map(([title, body, href, label]) => (
+        {contacts.map((contact) => (
           <a
-            key={title}
-            href={href}
-            target={href.startsWith("http") ? "_blank" : undefined}
-            rel={href.startsWith("http") ? "noreferrer" : undefined}
+            key={contact.title}
+            href={contact.href}
+            target={contact.href.startsWith("http") ? "_blank" : undefined}
+            rel={contact.href.startsWith("http") ? "noreferrer" : undefined}
             className="rounded-2xl border border-cyan-300/20 bg-black/40 p-6 transition hover:border-cyan-300/60 hover:bg-cyan-300/5"
           >
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
-              {title}
+              {contact.title}
             </p>
-            <p className="mt-4 text-sm leading-7 text-slate-400">{body}</p>
+            <p className="mt-4 text-sm leading-7 text-slate-400">{contact.body}</p>
             <p className="mt-5 break-all text-sm font-semibold text-cyan-200">
-              {label}
+              {contact.label}
             </p>
           </a>
         ))}
@@ -100,15 +100,3 @@ export default function AboutPage() {
     </PublicPage>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
