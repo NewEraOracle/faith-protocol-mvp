@@ -92,7 +92,7 @@ export default function BuildPage() {
 
             <div className="mt-6 flex flex-wrap gap-3">
               <a
-                href="mailto:contact@faithdefi.com?subject=Faith%20Monetary%20Protocol%20Build%20Application"
+                href="https://discord.gg/qSbSEP3P8"
                 className="faith-button px-7 py-4 text-[11px]"
               >
                 Submit Application
@@ -120,6 +120,7 @@ export default function BuildPage() {
     </main>
   );
 }
+
 
 
 

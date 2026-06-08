@@ -186,7 +186,7 @@ export default function DocsPage() {
               </a>
 
               <a
-                href="mailto:contact@faithdefi.com?subject=FAITH%20Private%20Whitepaper%20Request"
+                href="https://discord.gg/qSbSEP3P8"
                 className="inline-flex rounded-full border border-white/15 bg-black/35 px-5 py-3 text-sm font-semibold text-white transition hover:border-cyan-300/70 hover:text-cyan-200"
               >
                 Request Private Whitepaper
@@ -213,10 +213,10 @@ export default function DocsPage() {
               </Link>
 
               <a
-                href="mailto:contact@faithdefi.com?subject=FAITH%20Whitepaper%20Access%20Request"
+                href="https://discord.gg/qSbSEP3P8"
                 className="inline-flex rounded-full border border-white/15 bg-black/35 px-5 py-3 text-sm font-semibold text-white transition hover:border-cyan-300/70 hover:text-cyan-200"
               >
-                Email contact@faithdefi.com
+                Join the FAITH Discord
               </a>
             </div>
           </section>
@@ -225,6 +225,7 @@ export default function DocsPage() {
     </main>
   );
 }
+
 
 
 
