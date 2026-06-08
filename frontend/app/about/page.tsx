@@ -5,7 +5,7 @@ const contacts = [
   [
     "Email",
     "Official company email for investors, partnerships, builders, and serious project inquiries.",
-    "https://discord.gg/qSbSEP3P8",
+    "contact@faithdefi.com",
   ],
   [
     "X / Twitter",
@@ -18,8 +18,8 @@ const contacts = [
     "https://t.me/faithmonetary",
   ],
   [
-    "Builder Applications",
-    "For developers, RWA projects, AI agents, yield strategists, and MegaETH ecosystem builders.",
+    "Join the Community",
+    "Connect with builders, early supporters, reviewers, and FAITH ecosystem members inside the official Discord community.",
     "https://discord.gg/qSbSEP3P8",
   ],
 ];
@@ -47,7 +47,7 @@ export default function AboutPage() {
           </Link>
 
           <a
-            href="https://discord.gg/qSbSEP3P8"
+            href="mailto:contact@faithdefi.com"
             className="inline-flex rounded-full border border-white/15 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-white backdrop-blur-md transition hover:border-cyan-300/70 hover:text-cyan-200"
           >
             Email Directly
@@ -96,5 +96,10 @@ export default function AboutPage() {
     </PublicPage>
   );
 }
+
+
+
+
+
 
 
