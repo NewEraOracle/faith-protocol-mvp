@@ -38,7 +38,7 @@ const roadmap = [
 
 export default function LitepaperPage() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-black text-white">
+    <main className="relative min-h-screen overflow-x-hidden overflow-hidden bg-black text-white">
       <img
         src="/faith/design/background-cosmic.png"
         alt=""
@@ -75,7 +75,7 @@ export default function LitepaperPage() {
             FAITH Monetary Protocol
           </p>
 
-          <h1 className="mt-6 max-w-5xl text-5xl font-semibold tracking-tight text-white md:text-7xl">
+          <h1 className="mt-6 max-w-5xl text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-7xl">
             FAITH Litepaper
           </h1>
 
@@ -342,4 +342,6 @@ export default function LitepaperPage() {
     </main>
   );
 }
+
+
 

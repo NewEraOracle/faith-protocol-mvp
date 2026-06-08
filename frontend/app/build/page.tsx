@@ -31,7 +31,7 @@ const opportunities = [
 
 export default function BuildPage() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-black text-white">
+    <main className="relative min-h-screen overflow-x-hidden overflow-hidden bg-black text-white">
       <img
         src="/faith/design/background-cosmic.png"
         alt=""
@@ -120,6 +120,7 @@ export default function BuildPage() {
     </main>
   );
 }
+
 
 
 
