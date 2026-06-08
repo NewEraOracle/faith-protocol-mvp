@@ -167,6 +167,33 @@ export default function DocsPage() {
               ))}
             </div>
           </section>
+          <section className="mt-8 rounded-3xl border border-cyan-300/20 bg-cyan-300/[0.06] p-6 shadow-2xl shadow-cyan-950/20 backdrop-blur-xl">
+            <h2 className="text-2xl font-semibold text-white">Public Litepaper</h2>
+            <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300">
+              The FAITH public litepaper explains the protocol vision, FAITH Economic Operating System,
+              FXMP / FUSD / FXTC model, PCS risk regulation, treasury protection, MegaETH execution,
+              builder ecosystem path, testnet MVP status, and legal boundary.
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a
+                href="/docs/FAITH-Litepaper.md"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-5 py-3 text-sm font-semibold text-cyan-200 transition hover:bg-cyan-300/20 hover:text-white"
+              >
+                Open Public Litepaper
+              </a>
+
+              <a
+                href="mailto:contact@faithdefi.com?subject=FAITH%20Private%20Whitepaper%20Request"
+                className="inline-flex rounded-full border border-white/15 bg-black/35 px-5 py-3 text-sm font-semibold text-white transition hover:border-cyan-300/70 hover:text-cyan-200"
+              >
+                Request Private Whitepaper
+              </a>
+            </div>
+          </section>
+
 
           <section className="mt-8 rounded-3xl border border-white/10 bg-black/45 p-6 shadow-2xl shadow-cyan-950/20 backdrop-blur-xl">
             <h2 className="text-2xl font-semibold text-white">Private Whitepaper Access</h2>
@@ -198,6 +225,7 @@ export default function DocsPage() {
     </main>
   );
 }
+
 
 
 
