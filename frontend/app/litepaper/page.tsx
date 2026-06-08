@@ -3,69 +3,105 @@
 const sections = [
   {
     number: "01",
+    title: "Executive Summary",
+    body:
+      "FAITH Monetary Protocol is a MegaETH-native economic operating system that connects programmable credit, treasury resilience, and PCS risk regulation. The protocol separates growth, credit, and treasury capital into three economic roles: FXMP, FUSD, and FXTC. FAITH is not designed as a speculative lending app. It is designed as infrastructure for disciplined economic growth, where credit expansion is monitored by PCS and protected by treasury strength.",
+  },
+  {
+    number: "02",
     title: "Vision",
     body:
       "FAITH Monetary Protocol is building a human-built, PCS-regulated economic operating system for disciplined digital growth. The protocol connects programmable credit, treasury resilience, risk regulation, and productive economic activity into one coordinated financial infrastructure layer.",
   },
   {
-    number: "02",
+    number: "03",
     title: "Problem",
     body:
       "Many digital economies grow quickly but become fragile because they depend too heavily on speculation, unstable liquidity, uncontrolled incentives, and governance decisions made without real-time protocol risk intelligence.",
   },
   {
-    number: "03",
+    number: "04",
+    title: "How the System Works",
+    body:
+      "FAITH is designed around a controlled economic loop. Productive value and collateral can support credit creation. FUSD circulates as the internal credit asset. Treasury strength supports system resilience. PCS monitors protocol conditions, identifies stress, and helps guide risk responses. MegaETH provides the execution layer for fast state awareness and real-time protocol activity.",
+  },
+  {
+    number: "05",
     title: "FAITH Economic Operating System",
     body:
       "FAITH connects three major layers: a credit layer for programmable vault-based credit, a treasury layer for reserve strength and resilience, and PCS, the Protocol Control System, for protocol-level risk monitoring and disciplined system response.",
   },
   {
-    number: "04",
+    number: "06",
     title: "FXMP / FUSD / FXTC",
     body:
       "The FAITH economy separates roles across three assets. FXMP coordinates growth and participation. FUSD powers internal credit activity. FXTC represents the treasury-aligned capital participation layer designed for long-term protocol resilience.",
   },
   {
-    number: "05",
+    number: "07",
     title: "PCS Risk Regulation",
     body:
       "PCS observes protocol state, vault health, credit utilization, treasury coverage, collateral stress, liquidation pressure, reserve strength, and emergency risk conditions. PCS does not advise users. PCS advises the protocol.",
   },
   {
-    number: "06",
+    number: "08",
     title: "Treasury Protection",
     body:
       "The treasury is designed to strengthen long-term protocol resilience through reserve protection, risk buffers, controlled growth, ecosystem development, and protection during stress conditions. It is a resilience layer, not a public guarantee.",
   },
   {
-    number: "07",
+    number: "09",
     title: "MegaETH Execution",
     body:
       "FAITH is designed to be MegaETH-native. MegaETH provides the execution environment for fast state awareness, low-latency financial interactions, and high-performance protocol monitoring.",
   },
   {
-    number: "08",
-    title: "Build and Ecosystem Path",
+    number: "10",
+    title: "Why FAITH Is Different",
     body:
-      "FAITH is designed for MegaETH builders, RWA and productive infrastructure projects, DeFi credit developers, treasury analytics teams, earn and yield strategists, AI agents, automation builders, and strategic protocol partners.",
+      "FAITH is not positioned as a simple borrowing application or speculative token system. It is designed as a capital operating system where credit, treasury, and risk intelligence work together. Credit creates activity. Treasury protects the system. PCS monitors discipline. MegaETH provides real-time execution.",
   },
   {
-    number: "09",
+    number: "11",
+    title: "Who FAITH Is For",
+    body:
+      "FAITH is designed for MegaETH ecosystem builders, RWA and productive infrastructure projects, DeFi credit developers, treasury and risk analytics teams, earn and yield strategists, AI agents, automation builders, strategic investors, and long-term protocol partners.",
+  },
+  {
+    number: "12",
+    title: "Build and Ecosystem Path",
+    body:
+      "FAITH is designed for builders who want to create around credit flows, vault infrastructure, treasury analytics, PCS signals, simulations, productive activity, and future MegaETH-native economic applications.",
+  },
+  {
+    number: "13",
     title: "Current Testnet MVP",
     body:
       "The current MVP focuses on FXMP testnet collateral, FUSD testnet credit, vault deposits, borrowing simulation, oracle shock simulation, liquidation-risk visibility, treasury mock accounting, PCS monitoring, dashboard experience, and public protocol pages.",
   },
   {
-    number: "10",
+    number: "14",
+    title: "What Remains Private",
+    body:
+      "The public litepaper intentionally does not disclose proprietary PCS formulas, private treasury strategy, unreleased tokenomics, risk thresholds, future capital-routing mechanics, or confidential investor materials. These details are reserved for serious partners, investors, auditors, and ecosystem reviewers under a controlled access process.",
+  },
+  {
+    number: "15",
     title: "Compliance Boundary",
     body:
       "FAITH is currently a testnet MVP. It does not manage real user capital, offer guaranteed yield, issue live treasury certificates, provide financial advice, or operate as a public investment product. Future real-capital modules require legal, compliance, audit, and risk review.",
   },
   {
-    number: "11",
+    number: "16",
     title: "Roadmap",
     body:
       "The roadmap moves from testnet MVP to PCS expansion, treasury architecture, builder ecosystem growth, investor and ecosystem validation, then future production readiness through audits, legal structuring, security reviews, and controlled deployment pathways.",
+  },
+  {
+    number: "17",
+    title: "Closing Statement",
+    body:
+      "Faith Monetary Protocol is building a disciplined economic operating system where credit expansion is balanced by treasury strength and PCS risk regulation. The goal is not uncontrolled speculation. The goal is a growing, productive, and machine-regulated economy.",
   },
 ];
 
@@ -183,3 +219,4 @@ export default function LitepaperPage() {
     </main>
   );
 }
+
