@@ -45,7 +45,7 @@ export default function AccessRequestReceivedPage() {
             href="/"
             className="rounded-full border border-cyan-300/25 bg-black/35 px-5 py-3 text-sm font-semibold text-cyan-200 transition hover:border-cyan-300/70 hover:bg-cyan-300/10 hover:text-white"
           >
-            Back to Faith Monetary Protocol
+            Back to Faith
           </Link>
 
           <Link
@@ -59,5 +59,7 @@ export default function AccessRequestReceivedPage() {
     </main>
   );
 }
+
+
 
 

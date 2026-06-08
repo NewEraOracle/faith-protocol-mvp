@@ -32,7 +32,7 @@ export default function WhitelistPage() {
             href="/"
             className="inline-flex rounded-full border border-cyan-300/25 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-300 backdrop-blur-md transition hover:border-cyan-300/70 hover:bg-cyan-300/10 hover:text-white"
           >
-            Back to Faith Monetary Protocol
+            Back to Faith
           </Link>
 
           <div className="hidden items-center gap-2 sm:flex">
@@ -233,6 +233,8 @@ export default function WhitelistPage() {
     </main>
   );
 }
+
+
 
 
 
