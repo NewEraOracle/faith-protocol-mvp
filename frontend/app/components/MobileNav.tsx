@@ -14,6 +14,12 @@ const links = [
   { label: "Dashboard", href: "/dashboard" },
 ];
 
+const socialLinks = [
+  { label: "Join Discord", href: "https://discord.gg/qSbSEP3P8" },
+  { label: "Follow on X", href: "https://x.com/FaithMonetary" },
+  { label: "Join Telegram", href: "https://t.me/faithmonetary" },
+];
+
 export function MobileNav() {
   const [open, setOpen] = useState(false);
 
@@ -51,7 +57,7 @@ export function MobileNav() {
         </div>
 
         {open ? (
-          <div className="mt-3 grid gap-2 rounded-2xl border border-white/10 bg-black/70 p-3">
+          <div className="mt-3 grid max-h-[80vh] gap-2 overflow-y-auto rounded-2xl border border-white/10 bg-black/70 p-3">
             {links.map((link) => (
               <Link
                 key={link.href}
@@ -62,10 +68,30 @@ export function MobileNav() {
                 {link.label}
               </Link>
             ))}
+
+            <div className="mt-2 border-t border-white/10 pt-2">
+              <p className="mb-2 px-1 text-[10px] font-bold uppercase tracking-[0.22em] text-cyan-300">
+                Community
+              </p>
+
+              <div className="grid gap-2">
+                {socialLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() => setOpen(false)}
+                    className="rounded-xl border border-cyan-300/20 bg-cyan-300/10 px-4 py-3 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300/60 hover:text-white"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         ) : null}
       </div>
     </div>
   );
 }
-
