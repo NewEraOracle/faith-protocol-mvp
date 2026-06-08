@@ -149,7 +149,8 @@ export default function WhitelistPage() {
                 </button>
               </div>
             ) : (
-              <form action="https://formsubmit.co/contact@faithdefi.com" method="POST" className="grid gap-5">
+              <form action="/api/access-request" method="POST" className="grid gap-5">
+                <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" />
                 <div>
                   <label className="text-sm font-medium text-white/80">Name</label>
                   <input
@@ -233,6 +234,9 @@ export default function WhitelistPage() {
     </main>
   );
 }
+
+
+
 
 
 
