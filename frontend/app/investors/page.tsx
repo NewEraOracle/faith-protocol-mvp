@@ -96,6 +96,56 @@ export default function InvestorsPage() {
           </Link>
         </div>
       </section>
+      <section className="mt-6 rounded-3xl border border-cyan-300/20 bg-cyan-300/[0.06] p-8 shadow-2xl shadow-cyan-950/20 backdrop-blur-xl">
+        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-300">
+          Why FAITH Can Matter
+        </p>
+
+        <h2 className="mt-4 text-3xl font-semibold text-white">
+          A protocol economy needs more than lending mechanics.
+        </h2>
+
+        <p className="mt-5 max-w-5xl text-sm leading-8 text-slate-300">
+          FAITH is positioned around a broader thesis: digital economies need credit, but credit
+          expansion becomes fragile when it is not paired with treasury resilience, protocol-level
+          risk intelligence, and disciplined deployment standards. FAITH is designed to make
+          economic growth programmable, observable, and controlled.
+        </p>
+
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <div className="rounded-2xl border border-white/10 bg-black/35 p-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
+              Investor View
+            </p>
+            <p className="mt-3 text-sm leading-7 text-slate-300">
+              A clear protocol thesis with public MVP proof, protected private materials, and a
+              controlled access process.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-white/10 bg-black/35 p-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
+              Builder View
+            </p>
+            <p className="mt-3 text-sm leading-7 text-slate-300">
+              Credit, treasury, PCS risk, AI agents, RWA pathways, and MegaETH-native execution
+              can become modular ecosystem layers.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-white/10 bg-black/35 p-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
+              Partner View
+            </p>
+            <p className="mt-3 text-sm leading-7 text-slate-300">
+              Private review is reserved for serious partners, strategic investors, auditors,
+              technical reviewers, and ecosystem collaborators.
+            </p>
+          </div>
+        </div>
+      </section>
+
+
 
       <section className="mt-6 rounded-3xl border border-red-300/20 bg-red-300/[0.06] p-8 shadow-2xl shadow-red-950/20 backdrop-blur-xl">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-red-200">
@@ -116,4 +166,5 @@ export default function InvestorsPage() {
     </PublicPage>
   );
 }
+
 

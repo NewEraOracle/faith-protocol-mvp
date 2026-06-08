@@ -65,6 +65,43 @@ export default function SecurityPage() {
           </InfoCard>
         ))}
       </section>
+      <section className="mt-6 rounded-3xl border border-white/10 bg-black/45 p-8 shadow-2xl shadow-cyan-950/10 backdrop-blur-xl">
+        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-300">
+          Production Gate Framework
+        </p>
+
+        <h2 className="mt-4 text-3xl font-semibold text-white">
+          No production capital without review, validation, and controls.
+        </h2>
+
+        <p className="mt-5 max-w-5xl text-sm leading-8 text-slate-300">
+          FAITH separates the current public testnet demonstration from any future production
+          deployment. Before real capital, treasury certificates, RWA pathways, or public access
+          are considered, the protocol requires independent security review, legal structuring,
+          compliance review, governance standards, treasury reporting, and controlled deployment
+          procedures.
+        </p>
+
+        <div className="mt-6 grid gap-3 md:grid-cols-2">
+          {[
+            "Independent smart contract review before production contracts.",
+            "Legal and compliance review before real treasury or RWA exposure.",
+            "Transparent treasury reporting before capital allocation.",
+            "PCS risk thresholds validated before automated response mechanisms.",
+            "Governance controls before parameter changes affect real users.",
+            "Public communication must remain clear about testnet and production boundaries.",
+          ].map((item) => (
+            <div
+              key={item}
+              className="rounded-2xl border border-white/10 bg-black/35 p-4 text-sm font-semibold leading-7 text-slate-200"
+            >
+              {item}
+            </div>
+          ))}
+        </div>
+      </section>
+
+
 
       <section className="mt-6 rounded-3xl border border-yellow-300/20 bg-yellow-300/[0.06] p-8 shadow-2xl shadow-yellow-950/20 backdrop-blur-xl">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-yellow-200">
@@ -101,3 +138,4 @@ export default function SecurityPage() {
     </PublicPage>
   );
 }
+
