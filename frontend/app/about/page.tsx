@@ -1,4 +1,5 @@
-﻿import { InfoCard, PublicPage } from "../components/PublicPage";
+﻿import Link from "next/link";
+import { InfoCard, PublicPage } from "../components/PublicPage";
 
 const contacts = [
   [
@@ -70,8 +71,26 @@ export default function AboutPage() {
           </p>
         </InfoCard>
       </div>
+          <div className="mt-8 rounded-3xl border border-cyan-300/20 bg-cyan-300/[0.06] p-6 shadow-2xl shadow-cyan-950/20 backdrop-blur-xl">
+        <h2 className="text-2xl font-semibold text-white">Submit an Access Request</h2>
+        <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300">
+          Use the request form for builder access, investor materials, private litepaper review,
+          testnet review, or strategic partnership discussions.
+        </p>
+
+        <div className="mt-6">
+          <Link
+            href="/whitelist"
+            className="inline-flex rounded-full border border-cyan-300/25 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-300 backdrop-blur-md transition hover:border-cyan-300/70 hover:bg-cyan-300/10 hover:text-white"
+          >
+            Submit Request
+          </Link>
+        </div>
+      </div>
     </PublicPage>
   );
 }
+
+
 
 
