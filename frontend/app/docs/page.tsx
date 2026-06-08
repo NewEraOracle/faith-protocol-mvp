@@ -86,8 +86,8 @@ export default function DocsPage() {
 
             <a
               href="https://github.com/NewEraOracle/faith-protocol-mvp"
-              target="_blank"
-              rel="noreferrer"
+              
+              
               className="rounded-full border border-white/10 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300 backdrop-blur-md transition hover:border-cyan-300/50 hover:bg-cyan-300/10 hover:text-white"
             >
               GitHub
@@ -134,8 +134,8 @@ export default function DocsPage() {
 
             <a
               href="https://github.com/NewEraOracle/faith-protocol-mvp"
-              target="_blank"
-              rel="noreferrer"
+              
+              
               className="rounded-full border border-white/15 bg-black/35 px-5 py-3 text-sm font-semibold text-white backdrop-blur-md transition hover:border-cyan-300/70 hover:text-cyan-200"
             >
               GitHub
@@ -177,9 +177,9 @@ export default function DocsPage() {
 
             <div className="mt-6 flex flex-wrap gap-3">
               <a
-                href="/docs/FAITH-Litepaper.md"
-                target="_blank"
-                rel="noreferrer"
+                href="/litepaper"
+                
+                
                 className="inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-5 py-3 text-sm font-semibold text-cyan-200 transition hover:bg-cyan-300/20 hover:text-white"
               >
                 Read Document
@@ -225,6 +225,7 @@ export default function DocsPage() {
     </main>
   );
 }
+
 
 
 
