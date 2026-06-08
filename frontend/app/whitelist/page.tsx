@@ -217,7 +217,7 @@ export default function WhitelistPage() {
                   type="submit"
                   className="rounded-full bg-cyan-300 px-5 py-3 text-sm font-semibold text-black transition hover:bg-cyan-200"
                 >
-                  Request Access
+                  Contact
                 </button>
 
                 <p className="text-xs leading-6 text-white/45">
@@ -233,6 +233,7 @@ export default function WhitelistPage() {
     </main>
   );
 }
+
 
 
 

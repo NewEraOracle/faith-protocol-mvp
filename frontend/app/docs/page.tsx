@@ -78,10 +78,10 @@ export default function DocsPage() {
 
           <div className="hidden items-center gap-2 sm:flex">
             <Link
-              href="/whitelist"
+              href="/about"
               className="rounded-full border border-white/10 bg-black/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300 backdrop-blur-md transition hover:border-cyan-300/50 hover:bg-cyan-300/10 hover:text-white"
             >
-              Request Access
+              Contact
             </Link>
 
             <a
@@ -126,10 +126,10 @@ export default function DocsPage() {
             </Link>
 
             <Link
-              href="/whitelist"
+              href="/about"
               className="rounded-full border border-white/15 bg-black/35 px-5 py-3 text-sm font-semibold text-white backdrop-blur-md transition hover:border-cyan-300/70 hover:text-cyan-200"
             >
-              Request Access
+              Contact
             </Link>
 
             <a
@@ -179,10 +179,10 @@ export default function DocsPage() {
 
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
-                href="/whitelist"
+                href="/about"
                 className="inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-5 py-3 text-sm font-semibold text-cyan-200 transition hover:bg-cyan-300/20 hover:text-white"
               >
-                Request Whitepaper Access
+                Contact for Whitepaper Access
               </Link>
 
               <a
@@ -198,6 +198,7 @@ export default function DocsPage() {
     </main>
   );
 }
+
 
 
 

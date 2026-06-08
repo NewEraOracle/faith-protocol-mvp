@@ -24,6 +24,7 @@ const opportunities = [
   "RWA and productive infrastructure projects",
   "DeFi credit and liquidity developers",
   "Treasury and risk analytics teams",
+  "Earn and yield strategists",
   "AI agents and automation builders",
   "Strategic protocol partners",
 ];
@@ -119,6 +120,10 @@ export default function BuildPage() {
     </main>
   );
 }
+
+
+
+
 
 
 
