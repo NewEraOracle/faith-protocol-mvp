@@ -34,7 +34,7 @@ export async function POST(request: Request) {
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     await resend.emails.send({
-      from: "FAITH Access <access@faithdefi.com>",
+      from: "FAITH Access <contact@faithdefi.com>",
       to: "contact@faithdefi.com",
       replyTo: email || undefined,
       subject: "New FAITH Monetary Protocol Access Request",
@@ -56,3 +56,4 @@ export async function POST(request: Request) {
 
   return NextResponse.redirect(new URL("/access-request-received", request.url), 303);
 }
+
