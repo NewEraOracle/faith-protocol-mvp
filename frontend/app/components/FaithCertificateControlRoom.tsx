@@ -74,7 +74,7 @@ export function FaithCertificateControlRoom() {
               </span>
             </div>
 
-            <div className="mt-5 grid grid-cols-2 gap-3">
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
               <div className="rounded-xl border border-emerald-400/20 bg-emerald-400/10 p-3">
                 <p className="text-2xl font-semibold text-emerald-200">{item.liquid}</p>
                 <p className="mt-1 text-xs text-emerald-50/80">Liquid target</p>
@@ -130,6 +130,8 @@ export function FaithCertificateControlRoom() {
     </section>
   );
 }
+
+
 
 
 

@@ -54,7 +54,7 @@ const roadmap = [
 
 export default function DocsPage() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-black px-6 py-10 text-white lg:px-10">
+    <main className="relative min-h-screen overflow-x-hidden overflow-hidden bg-black px-4 py-8 sm:px-6 sm:py-10 text-white lg:px-10">
       <div className="pointer-events-none fixed inset-0">
         <img
           src="/faith/design/background-cosmic.png"
@@ -225,6 +225,8 @@ export default function DocsPage() {
     </main>
   );
 }
+
+
 
 
 
