@@ -1,113 +1,216 @@
-﻿# FAITH Protocol
+﻿# FAITH Monetary Protocol
 
-**PCS-regulated credit and treasury infrastructure for autonomous onchain economies on MegaETH.**
+**MegaETH-native credit, treasury, and protocol-risk infrastructure for disciplined economic growth.**
 
-FAITH Protocol is a testnet MVP exploring machine-regulated credit, treasury resilience, vault-based borrowing, oracle shock simulation, liquidation-risk visibility, and protocol-level risk intelligence through PCS, the Protocol Control System.
+FAITH Monetary Protocol is an early-stage testnet MVP exploring how programmable credit, treasury resilience, and PCS protocol-risk regulation can work together inside a machine-regulated digital economy.
 
-## Current Stage
+> Humans build. PCS regulates. Treasury protects. MegaETH executes. The economy grows.
 
-**Testnet MVP**
+FAITH is not positioned as a speculative lending application. It is designed as a capital operating system where credit expansion is balanced by treasury strength, risk visibility, and disciplined deployment boundaries.
 
-FAITH does not currently manage real user capital, offer guaranteed yield, issue live treasury certificates, or provide financial advice.
-
-## What the MVP Demonstrates
-
-- tFAITH testnet collateral
-- tfUSD testnet credit
-- Vault deposit and borrow flow
-- Oracle shock simulation
-- Liquidation-risk visibility
-- Treasury mock accounting
-- PCS protocol-risk monitoring
-
-## Core Demo Flow
-
-Connect Wallet -> Claim tFAITH -> Deposit Collateral -> Borrow tfUSD -> Simulate Oracle Shock -> PCS detects risk -> Liquidation warning appears.
+---
 
 ## Core Thesis
 
-FAITH is building a capital operating system where programmable credit, treasury resilience, and PCS protocol-risk intelligence help autonomous onchain economies grow with discipline.
+Digital economies need credit, but credit becomes fragile when expansion is not paired with treasury resilience, protocol-level risk intelligence, and clear safety boundaries.
 
-**Humans build. PCS regulates. Treasury protects. MegaETH executes. The economy grows.**
+FAITH combines:
 
-## Architecture
+- **Programmable credit**
+- **FUSD borrowing**
+- **Vault-based collateral logic**
+- **PCS risk monitoring**
+- **Treasury visibility**
+- **Oracle shock simulation**
+- **Security and compliance boundaries**
+- **MegaETH-native execution readiness**
 
-User -> VaultManager -> CreditEngine -> tfUSD/fUSD Accounting -> SettlementAdapter -> Treasury -> PCSMonitor -> LiquidationEngine
+The goal is to make growth observable, controllable, and resilient before production capital is introduced.
 
-## Smart Contract Modules
+---
 
-- FAITHToken / tFAITH
-- tfUSD / fUSD
-- VaultManager
-- CreditEngine
-- SettlementAdapter
-- Treasury
-- PCSMonitor
-- MockOracle
-- LiquidationEngine
+## Current MVP Status
 
-## Current MegaETH Testnet Deployment Registry
+FAITH is currently a **testnet-only MVP**.
 
-| Component | Address |
-|---|---|
-| tFAITH | 0x25131C5655DBB24B768bEb8cE4A135E0ED3836FA |
-| tfUSD | 0x35Ac0De590E8C2280464027aBdab93e6b0E199a0 |
-| tMockOracle | 0x7125fe3424Ba0796B2A45b450e295c93a18224c7 |
-| tVaultManager | 0x76849F654906F4956Ff0d3B2b10eE97ce4d0d4B |
+The current public build includes:
+
+- Premium public website
+- Mobile-responsive version
+- Public Litepaper
+- Security & Compliance Boundary page
+- Investor / Partner Summary page
+- Dashboard demo
+- PCS risk explanation panel
+- Whitelist / access request flow
+- Professional email delivery via Resend
+- `contact@faithdefi.com` request inbox
+- `no-reply@faithdefi.com` sender
+- Discord, X, and Telegram community links
+
+---
+
+## Live Routes
+
+The public app includes:
+
+- `/` — Public landing page
+- `/about` — Contact and community links
+- `/docs` — Documentation hub
+- `/litepaper` — Public FAITH Litepaper
+- `/security` — Security and compliance boundary
+- `/investors` — Investor and partner summary
+- `/whitelist` — Private access request form
+- `/access-request-received` — Request confirmation page
+- `/dashboard` — Testnet dashboard demo
+- `/protocol` — Protocol overview
+- `/tfusd` — FUSD overview
+- `/build` — Build / ecosystem page
+- `/developers` — Developer information
+- `/governance` — Governance overview
+- `/simulation` — Simulation page
+- `/simulations` — Simulation hub
+
+---
+
+## Dashboard Demo
+
+The dashboard demonstrates the current FAITH testnet flow:
+
+1. Collateral enters the vault system
+2. FUSD debt becomes visible
+3. Oracle shock behavior can be simulated
+4. PCS evaluates protocol-level risk
+5. Treasury protection remains observable
+6. The system explains what happened through a live demo panel
+
+This dashboard is intended for testnet education, early review, and protocol demonstration.
+
+---
+
+## Access Request Flow
+
+The whitelist page allows builders, advisors, ecosystem partners, and strategic reviewers to request access.
+
+Flow:
+
+1. Visitor submits the `/whitelist` form
+2. Vercel API route receives the request
+3. Resend sends an email from `no-reply@faithdefi.com`
+4. `contact@faithdefi.com` receives the request instantly
+5. Reply-to is set to the visitor's email address
+
+This allows FAITH to receive serious inbound interest while keeping the public site clean and controlled.
+
+---
+
+## Security Boundary
+
+FAITH is currently testnet-only.
+
+The protocol does not currently:
+
+- Manage real user capital
+- Offer guaranteed yield
+- Issue live treasury certificates
+- Provide financial advice
+- Operate as a public investment product
+
+Any future production deployment would require legal review, compliance review, security review, audit readiness, treasury controls, and governance standards.
+
+---
+
+## Private Materials Boundary
+
+The public Litepaper explains the high-level vision and system direction.
+
+Private materials are not published publicly, including:
+
+- Detailed PCS formulas
+- Treasury strategy assumptions
+- Tokenomics assumptions
+- Capital-routing mechanics
+- Legal/compliance structure
+- Production risk parameters
+- Investor-specific materials
+
+These are reserved for serious partners, advisors, auditors, and strategic investors through a controlled access process.
+
+---
+
+## Tech Stack
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Vercel
+- Resend
+- Namecheap PrivateEmail
+- MegaETH-oriented testnet architecture
+- Solidity / smart contract modules under active development
+
+---
 
 ## Local Development
 
 Install dependencies:
 
-    npm install
+```bash
+npm install
 
-Run the app:
+- Resend
+- Namecheap PrivateEmail
+- MegaETH-oriented testnet architecture
+- Solidity / smart contract modules under active development
 
-    npm run dev
+---
 
-Run tests:
+## Local Development
 
-    npm run test
-    npx hardhat test
+Install dependencies:
 
-## Roadmap
+npm install
 
-### Phase 1 — Testnet MVP
+Run the development server:
 
-tFAITH collateral, tfUSD borrowing, mock treasury, oracle shock simulation, liquidation demo, and PCS monitoring dashboard.
+npm run dev
 
-### Phase 2 — PCS v2
+Build production:
 
-Deterministic risk scoring, treasury coverage scoring, liquidation pressure scoring, borrow utilization scoring, action queue, and stress timeline.
+npm run build
 
-### Phase 3 — Treasury Architecture
+---
 
-Treasury design, controlled capital models, quarterly review concepts, PCS treasury monitoring, and legal-safe documentation.
+## Current Development Focus
 
-### Phase 4 — Ecosystem Layer
+1. Strengthen GitHub documentation
+2. Prepare short investor pitch deck
+3. Record 60-90 second demo video
+4. Improve technical proof and testnet walkthrough
+5. Gather feedback from Web3 builders, advisors, and MegaETH ecosystem participants
+6. Continue refining PCS, treasury, credit, and vault modules
 
-UtopiaByFaith integration, project vault concept, Build-on-FAITH framework, developer modules, and future USDm marketplace support.
+---
 
-### Phase 5 — Funding and Validation
+## Positioning
 
-Demo video, pitch deck, investor memo, MegaETH outreach, grants, strategic angels, and accelerators.
+FAITH is building a growing and flourishing machine-regulated economy, not through speculation, but through productive value, programmable credit, treasury resilience, PCS risk regulation, and real utility.
 
-### Phase 6 — Future RWA / Productive Capital
+FAITH is a capital operating system for disciplined economic growth, where credit expansion is balanced by treasury strength and PCS risk control.
 
-Legal structure, compliance review, partner due diligence, audited reporting, PCS controls, and controlled capital routing.
+---
 
-## Safety Boundary
+## Contact
 
-FAITH is currently a testnet MVP and research-stage protocol.
+- Website: faithdefi.com
+- Email: contact@faithdefi.com
+- X / Twitter: https://x.com/FaithMonetary
+- Telegram: https://t.me/faithmonetary
+- Discord: https://discord.gg/qSbSEP3P8
 
-- Testnet only
-- Not audited
-- No real user capital
-- No guaranteed yield
-- No live treasury certificates
-- No public investment product
-- No financial advice
-- PCS is protocol-risk monitoring, not user investment advice
+---
 
-Future RWA, treasury, certificate, stable settlement, or productive-capital modules require legal, regulatory, compliance, accounting, audit, and risk review before any real deployment.
+## Disclaimer
 
+FAITH Monetary Protocol is an early-stage testnet MVP. Nothing in this repository or public website should be interpreted as financial advice, investment advice, a public offering, or a guarantee of future performance.
